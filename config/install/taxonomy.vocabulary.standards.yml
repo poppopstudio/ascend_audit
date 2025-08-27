@@ -1,0 +1,8 @@
+langcode: en-gb
+status: true
+dependencies: {  }
+name: "Teachers' standards"
+vid: standards
+description: "Related teachers' standards, set on each factor in the whole setting categories."
+weight: 0
+new_revision: false

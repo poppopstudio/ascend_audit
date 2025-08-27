@@ -1,0 +1,28 @@
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.ascend_standards
+    - taxonomy.vocabulary.category
+    - taxonomy.vocabulary.standards
+id: taxonomy_term.category.ascend_standards
+field_name: ascend_standards
+entity_type: taxonomy_term
+bundle: category
+label: "Teachers' standards"
+description: "Related teachers' standards, set on each factor in the whole setting categories."
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      standards: standards
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
