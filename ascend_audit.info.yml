@@ -4,4 +4,18 @@ package: Ascend
 description: 'Ascend audit'
 core_version_requirement: ^10 || ^11
 dependencies:
-  - ascend_base:ascend_base
+  - cshs:cshs
+  - entity:entity
+  - entity_admin_handlers:entity_admin_handlers
+  - epp:epp
+  - field_group:field_group
+  - field_group_table:field_group_table
+  - profile:profile
+  - readonly_field_widget:readonly_field_widget
+  - simple_taxonomy_menu:simple_taxonomy_menu
+  - taxonomy:taxonomy
+  - views:views
+  - views_add_button:views_add_button
+
+config_devel:
+  - block.block.ascend_categories_block

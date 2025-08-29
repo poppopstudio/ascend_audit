@@ -1,0 +1,23 @@
+name: 'Ascend audit setup'
+description: 'Ascend audit setup recipe - installs modules and sets up config'
+type: 'Content type'
+recipes:
+  # Can't depend on other recipes outside of this dir or core!
+install:
+  - profile
+  - ascend_audit
+config:
+  strict: true
+  import:
+    ascend_audit: '*'
+  actions:
+    user.role.anonymous:
+      grantPermissions:
+        - 'view resource'
+        - 'download media'
+    user.role.authenticated:
+      grantPermissions:
+    user.role.content_editor:
+      grantPermissions:
+    user.role.user_manager:
+      grantPermissions:
