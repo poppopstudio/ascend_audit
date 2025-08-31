@@ -4,6 +4,8 @@ dependencies:
   config:
     - system.menu.main
     - taxonomy.vocabulary.category
+    - user.role.administrator
+    - user.role.auditor
   module:
     - taxonomy
     - user
@@ -171,9 +173,11 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: perm
+        type: role
         options:
-          perm: 'access content'
+          role:
+            administrator: administrator
+            auditor: auditor
       cache:
         type: tag
         options: {  }
@@ -306,7 +310,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - user.permissions
+        - user.roles
       tags: {  }
   block_1:
     id: block_1
@@ -325,7 +329,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - user.permissions
+        - user.roles
       tags: {  }
   page_1:
     id: page_1
@@ -354,5 +358,5 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - user.permissions
+        - user.roles
       tags: {  }

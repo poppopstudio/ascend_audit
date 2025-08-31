@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * @file
+ * Contains hook implementations for the Ascend resource module.
+ */
+/**
+ * Legacy hook implementation.
+ *
+ * @todo Remove this method when support for Drupal core < 11.1 is dropped.
+ */
+#[LegacyHook]
+function ascend_resource_uninstall() {
+  // DEV ONLY - Config delete
+  // $views=['category_parent_terms', 'resource_search' , ];
+  // $views = ['resource_search',];
+  // foreach ($views as $view) {
+  // \Drupal::service('config.factory')->getEditable('views.view.' . $view)->delete();
+  // }
+
+  $vocabs = ['standards']; // factor out into const?
+  foreach ($vocabs as $vocab) {
+    if ($vocabulary = Vocabulary::load($vocab)) {
+      $vocabulary->delete();
+    }
+  }
+
+  $config = [
+    'block.block.ascend_focus_areas',
+    'config_pages.type.ascend_settings',
+    'core.entity_form_display.config_pages.ascend_settings.default',
+    'core.entity_view_display.config_pages.ascend_settings.default',
+    'core.entity_view_mode.config_pages.full',
+    'field.field.config_pages.ascend_settings.ascend_focus_parent',
+    'field.field.taxonomy_term.category.ascend_standards',
+    'field.storage.config_pages.ascend_focus_parent',
+    'field.storage.taxonomy_term.ascend_standards',
+    'taxonomy.vocabulary.standards',
+    'views.view.focus_areas'
+  ];
+
+  foreach ($config as $item) {
+    \Drupal::service('config.factory')->getEditable($item)->delete();
+  }
+}

@@ -26,4 +26,7 @@ config_devel:
   - core.entity_view_mode.config_pages.full
   - field.field.config_pages.ascend_settings.ascend_focus_parent
   - field.storage.config_pages.ascend_focus_parent
+  - system.action.user_add_role_action.auditor
+  - system.action.user_remove_role_action.auditor
+  - user.role.auditor
   - views.views.focus_areas
