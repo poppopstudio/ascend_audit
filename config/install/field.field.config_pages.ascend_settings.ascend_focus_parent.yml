@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.ascend_settings
+    - field.storage.config_pages.ascend_focus_parent
+    - taxonomy.vocabulary.category
+id: config_pages.ascend_settings.ascend_focus_parent
+field_name: ascend_focus_parent
+entity_type: config_pages
+bundle: ascend_settings
+label: 'Focus area parent term'
+description: 'Select the taxonomy term that acts as parent to the focus area terms.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      category: category
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

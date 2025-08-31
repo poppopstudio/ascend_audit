@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.ascend_settings
+    - field.field.config_pages.ascend_settings.ascend_focus_parent
+  module:
+    - cshs
+id: config_pages.ascend_settings.default
+targetEntityType: config_pages
+bundle: ascend_settings
+mode: default
+content:
+  ascend_focus_parent:
+    type: cshs
+    weight: 0
+    region: content
+    settings:
+      save_lineage: false
+      force_deepest: false
+      parent: null
+      level_labels: ''
+      hierarchy_depth: 1
+      required_depth: 1
+      none_label: '- Please select -'
+    third_party_settings: {  }
+hidden:
+  label: true

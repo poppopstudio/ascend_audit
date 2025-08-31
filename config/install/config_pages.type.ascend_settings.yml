@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies: {  }
+id: ascend_settings
+label: 'Ascend settings'
+token: true
+context:
+  show_warning: true
+  group:
+    language: false
+  fallback:
+    language: ''
+menu:
+  path: /admin/config/system/ascend
+  weight: -30
+  description: ''

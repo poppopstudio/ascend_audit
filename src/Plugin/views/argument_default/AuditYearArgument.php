@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\ascend_views\Plugin\views\argument_default;
+namespace Drupal\ascend_audit\Plugin\views\argument_default;
 
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
@@ -11,7 +11,7 @@ use Drupal\views\Plugin\views\argument_default\ArgumentDefaultPluginBase;
  * TODO: class docs.
  */
 #[ViewsArgumentDefault(
-  id: 'ascend_views_audit_year_argument',
+  id: 'ascend_audit_audit_year_argument',
   title: new TranslatableMarkup('Audit Year Argument'),
   // (optional) The short title used in the views UI.
   short_title: new TranslatableMarkup('OPTIONAL: replace this with a value'),
