@@ -19,9 +19,11 @@ dependencies:
   - views_add_button:views_add_button
 
 config_devel:
+  - block.block.ascend_focus_areas
   - config_pages.type.ascend_settings
   - core.entity_form_display.config_pages.ascend_settings.default
   - core.entity_view_display.config_pages.ascend_settings.default
   - core.entity_view_mode.config_pages.full
   - field.field.config_pages.ascend_settings.ascend_focus_parent
   - field.storage.config_pages.ascend_focus_parent
+  - views.views.focus_areas

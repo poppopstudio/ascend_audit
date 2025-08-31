@@ -6,6 +6,7 @@ recipes:
 install:
   - config_pages
   - profile
+  - views_argument_token
   - ascend_audit
 config:
   strict: true
