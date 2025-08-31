@@ -12,13 +12,3 @@ config:
   import:
     ascend_audit: '*'
   actions:
-    user.role.anonymous:
-      grantPermissions:
-        # - 'view resource'
-        # - 'download media'
-    user.role.authenticated:
-      grantPermissions:
-    user.role.content_editor:
-      grantPermissions:
-    user.role.user_manager:
-      grantPermissions:
