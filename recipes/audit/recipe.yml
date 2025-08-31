@@ -4,6 +4,7 @@ type: 'Content type'
 recipes:
   # Can't depend on other recipes outside of this dir or core!
 install:
+  - config_pages
   - profile
   - ascend_audit
 config:
@@ -13,8 +14,8 @@ config:
   actions:
     user.role.anonymous:
       grantPermissions:
-        - 'view resource'
-        - 'download media'
+        # - 'view resource'
+        # - 'download media'
     user.role.authenticated:
       grantPermissions:
     user.role.content_editor:
