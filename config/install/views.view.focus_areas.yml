@@ -5,7 +5,6 @@ dependencies:
     - system.menu.main
     - taxonomy.vocabulary.category
     - user.role.administrator
-    - user.role.auditor
   module:
     - taxonomy
     - user
