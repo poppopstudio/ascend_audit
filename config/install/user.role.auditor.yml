@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - profile
+    - system
+    - toolbar
+id: auditor
+label: Auditor
+weight: 6
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access toolbar'
+  - 'create auditor profile'
+  - 'update own auditor profile'
+  - 'view own auditor profile'
+  - 'view the administration theme'

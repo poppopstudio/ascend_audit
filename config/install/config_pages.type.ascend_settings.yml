@@ -3,7 +3,6 @@ status: true
 dependencies: {  }
 id: ascend_settings
 label: 'Ascend settings'
-token: true
 context:
   show_warning: true
   group:
@@ -14,3 +13,4 @@ menu:
   path: /admin/config/system/ascend
   weight: -30
   description: ''
+token: true

@@ -1,0 +1,29 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.ascend_p_school
+    - profile.type.auditor
+  module:
+    - profile
+third_party_settings:
+  profile:
+    profile_private: true
+id: profile.auditor.ascend_p_school
+field_name: ascend_p_school
+entity_type: profile
+bundle: auditor
+label: 'Working school'
+description: 'If you are SENCO at multiple settings (schools), here you can select the setting that you are working with currently. This will be used by default in all audit items and action plans you create.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: auditor_schools
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference

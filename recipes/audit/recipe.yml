@@ -5,7 +5,7 @@ recipes:
   # Can't depend on other recipes outside of this dir or core!
 install:
   - config_pages
-  # - profile
+  - profile
   - views_argument_token
   - ascend_audit
 config:

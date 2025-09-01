@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.profile.auditor.ascend_p_school
+    - profile.type.auditor
+id: profile.auditor.default
+targetEntityType: profile
+bundle: auditor
+mode: default
+content:
+  ascend_p_school:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

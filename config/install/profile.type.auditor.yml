@@ -1,0 +1,12 @@
+langcode: en
+status: true
+dependencies: {  }
+id: auditor
+label: Auditor
+display_label: 'Working school'
+multiple: false
+registration: false
+roles:
+  auditor: auditor
+allow_revisions: false
+new_revision: false

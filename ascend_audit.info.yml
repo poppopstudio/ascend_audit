@@ -22,11 +22,17 @@ config_devel:
   - block.block.ascend_focus_areas
   - config_pages.type.ascend_settings
   - core.entity_form_display.config_pages.ascend_settings.default
+  - core.entity_form_display.profile.auditor.default
   - core.entity_view_display.config_pages.ascend_settings.default
+  - core.entity_view_display.profile.auditor.default
   - core.entity_view_mode.config_pages.full
   - field.field.config_pages.ascend_settings.ascend_focus_parent
+  - field.field.profile.auditor.ascend_p_school
   - field.storage.config_pages.ascend_focus_parent
+  - field.storage.profile.ascend_p_school
+  - profile.type.auditor
   - system.action.user_add_role_action.auditor
   - system.action.user_remove_role_action.auditor
   - user.role.auditor
-  - views.views.focus_areas
+  - views.view.auditor_schools
+  - views.view.focus_areas
