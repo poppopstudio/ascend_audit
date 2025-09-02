@@ -1,0 +1,6 @@
+entity.audit.add:
+  title: Add Audit
+  route_name: entity.audit.add_form
+  weight: 15
+  appears_on:
+    - entity.audit.collection

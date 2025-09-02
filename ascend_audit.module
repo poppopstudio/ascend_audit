@@ -2,8 +2,23 @@
 
 /**
  * @file
- * Contains hook implementations for the Ascend resource module.
+ * Contains hook implementations for the Ascend audit module.
  */
+
+use Drupal\ascend_audit\Hook\AuditHooks;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Hook\LegacyHook;
+
+/**
+ * Legacy hook implementation.
+ *
+ * @todo Remove this method when support for Drupal core < 11.1 is dropped.
+ */
+#[LegacyHook]
+function ascend_audit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  \Drupal::service(AuditHooks::class)->formAlter($form, $form_state, $form_id);
+}
+
 /**
  * Legacy hook implementation.
  *
@@ -18,12 +33,12 @@ function ascend_resource_uninstall() {
   // \Drupal::service('config.factory')->getEditable('views.view.' . $view)->delete();
   // }
 
-  $vocabs = ['standards']; // factor out into const?
-  foreach ($vocabs as $vocab) {
-    if ($vocabulary = Vocabulary::load($vocab)) {
-      $vocabulary->delete();
-    }
-  }
+  // $vocabs = ['standards']; // factor out into const?
+  // foreach ($vocabs as $vocab) {
+  //   if ($vocabulary = Vocabulary::load($vocab)) {
+  //     $vocabulary->delete();
+  //   }
+  // }
 
   $config = [
     'block.block.ascend_focus_areas',

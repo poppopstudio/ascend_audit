@@ -1,7 +1,7 @@
 name: Ascend audit
 type: module
 package: Ascend
-description: 'Ascend audit'
+description: 'Ascend audit main module'
 core_version_requirement: ^10 || ^11
 dependencies:
   - config_pages:config_pages

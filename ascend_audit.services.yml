@@ -1,0 +1,4 @@
+services:
+  Drupal\ascend_audit\Hook\AuditHooks:
+    class: Drupal\ascend_audit\Hook\AuditHooks
+    autowire: true
