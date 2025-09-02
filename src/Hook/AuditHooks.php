@@ -2,6 +2,7 @@
 
 namespace Drupal\ascend_audit\Hook;
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Hook\Attribute\Hook;
 
@@ -18,4 +19,27 @@ class AuditHooks {
     return;
   }
 
+  /**
+   * Implements hook_ENTITY_TYPE_insert().
+   */
+  #[Hook('config_pages_insert')]
+  public function configPagesInsert(EntityInterface $entity) {
+    if ($entity->bundle() === 'ascend_settings') {
+      $this->setFocusAreas();
+    }
+  }
+
+  /**
+   * Implements hook_ENTITY_TYPE_presave().
+   */
+  #[Hook('config_pages_update')]
+  public function configPagesUpdate(EntityInterface $entity) {
+    if ($entity->bundle() === 'ascend_settings') {
+      $this->setFocusAreas();
+    }
+  }
+
+  protected function setFocusAreas() {
+    $a = 1;
+  }
 }

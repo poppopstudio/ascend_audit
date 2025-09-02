@@ -6,6 +6,7 @@
  */
 
 use Drupal\ascend_audit\Hook\AuditHooks;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Hook\LegacyHook;
 
@@ -17,6 +18,27 @@ use Drupal\Core\Hook\LegacyHook;
 #[LegacyHook]
 function ascend_audit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   \Drupal::service(AuditHooks::class)->formAlter($form, $form_state, $form_id);
+}
+
+
+/**
+ * Legacy hook implementation.
+ *
+ * @todo Remove this method when support for Drupal core < 11.1 is dropped.
+ */
+#[LegacyHook]
+function ascend_audit_config_pages_insert(EntityInterface $entity) {
+  \Drupal::service(AuditHooks::class)->configPagesInsert($entity);
+}
+
+/**
+ * Legacy hook implementation.
+ *
+ * @todo Remove this method when support for Drupal core < 11.1 is dropped.
+ */
+#[LegacyHook]
+function ascend_audit_config_pages_update(EntityInterface $entity) {
+  \Drupal::service(AuditHooks::class)->configPagesUpdate($entity);
 }
 
 /**
@@ -40,21 +62,21 @@ function ascend_resource_uninstall() {
   //   }
   // }
 
-  $config = [
-    'block.block.ascend_focus_areas',
-    'config_pages.type.ascend_settings',
-    'core.entity_form_display.config_pages.ascend_settings.default',
-    'core.entity_view_display.config_pages.ascend_settings.default',
-    'core.entity_view_mode.config_pages.full',
-    'field.field.config_pages.ascend_settings.ascend_focus_parent',
-    'field.field.taxonomy_term.category.ascend_standards',
-    'field.storage.config_pages.ascend_focus_parent',
-    'field.storage.taxonomy_term.ascend_standards',
-    'taxonomy.vocabulary.standards',
-    'views.view.focus_areas'
-  ];
+  // $config = [
+  //   'block.block.ascend_focus_areas',
+  //   'config_pages.type.ascend_settings',
+  //   'core.entity_form_display.config_pages.ascend_settings.default',
+  //   'core.entity_view_display.config_pages.ascend_settings.default',
+  //   'core.entity_view_mode.config_pages.full',
+  //   'field.field.config_pages.ascend_settings.ascend_focus_parent',
+  //   'field.field.taxonomy_term.category.ascend_standards',
+  //   'field.storage.config_pages.ascend_focus_parent',
+  //   'field.storage.taxonomy_term.ascend_standards',
+  //   'taxonomy.vocabulary.standards',
+  //   'views.view.focus_areas'
+  // ];
 
-  foreach ($config as $item) {
-    \Drupal::service('config.factory')->getEditable($item)->delete();
-  }
+  // foreach ($config as $item) {
+  //   \Drupal::service('config.factory')->getEditable($item)->delete();
+  // }
 }
