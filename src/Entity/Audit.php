@@ -153,7 +153,7 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
 
     $fields['category'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t("Category"))
-      ->setDescription(t("The audit's category."))
+      ->setDescription(t("The audit item's category."))
       ->setRevisionable(TRUE)
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE)
@@ -175,17 +175,17 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
         'type' => 'cshs',
         'weight' => -10,
         'settings' => [
-          'force_deepest' => TRUE,
+          'force_deepest' => TRUE, // nope
           'parent' => 0,
           'none_label' => ' - Select category - ',
         ]
       ])
       ->setDisplayOptions('view', [
-        'type' => 'cshs_flexible_hierarchy',
+        'type' => 'cshs_full_hierarchy',
         'label' => 'inline',
         'weight' => -10,
         'settings' => [
-          'format' => '[term:parents:join: » ] » [term:description]',
+          // 'format' => '[term:parents:join: » ] » [term:description]',
           'link' => FALSE,
           'clear' => TRUE,
         ]
@@ -193,14 +193,14 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
 
     $fields['school'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t("School"))
-      ->setDescription(t("TODO: description of field."))
+      ->setDescription(t("The audit item's school."))
       ->setRevisionable(TRUE)
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
     $fields['year'] = BaseFieldDefinition::create('integer')
       ->setLabel(t("Year"))
-      ->setDescription(t("TODO: description of field."))
+      ->setDescription(t("The audit item's year."))
       ->setRevisionable(TRUE)
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
