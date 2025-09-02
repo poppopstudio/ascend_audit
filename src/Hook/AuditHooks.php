@@ -5,6 +5,7 @@ namespace Drupal\ascend_audit\Hook;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Hook\Attribute\Hook;
+use Drupal\field\Entity\FieldConfig;
 
 /**
  * Contains hook implementations for the Ascend audit module.
@@ -25,7 +26,7 @@ class AuditHooks {
   #[Hook('config_pages_insert')]
   public function configPagesInsert(EntityInterface $entity) {
     if ($entity->bundle() === 'ascend_settings') {
-      $this->setFocusAreas();
+      $this->setFocusAreas($entity);
     }
   }
 
@@ -35,11 +36,23 @@ class AuditHooks {
   #[Hook('config_pages_update')]
   public function configPagesUpdate(EntityInterface $entity) {
     if ($entity->bundle() === 'ascend_settings') {
-      $this->setFocusAreas();
+      $this->setFocusAreas($entity);
     }
   }
 
-  protected function setFocusAreas() {
-    $a = 1;
+  protected function setFocusAreas(EntityInterface $entity) {
+    // Get the ID of the term as set in the config_pages.
+    $term_id = $entity->ascend_focus_parent->first()->getValue()['target_id'];
+
+    if (isset($term_id) && is_numeric($term_id)) {
+      $field = FieldConfig::loadByName('audit', 'audit', 'category');
+      $field->setDisplayOptions('form', [
+        'settings' => [
+          'parent' => $term_id,
+        ]
+      ]);
+      $field->save();
+    }
   }
+
 }
