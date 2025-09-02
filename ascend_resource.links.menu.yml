@@ -1,0 +1,5 @@
+entity.audit.field_ui:
+  title: Audit settings
+  description: Create and manage fields, forms, and display settings for audits.
+  route_name: entity.audit.field_ui_base
+  parent: system.admin_structure

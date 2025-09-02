@@ -19,22 +19,22 @@ class ViewsAddButtonResource extends ViewsAddButtonDefault {
   /**
    * {@inheritdoc}
    */
-  public function description() {
-    return $this->t('Default Views Add Button URL Generator for resource entitites');
-  }
+  // public function description() {
+  //   return $this->t('Default Views Add Button URL Generator for audit entitites');
+  // }
 
-  /**
-   * {@inheritdoc}
-   */
-  public static function generateUrl($entity_type, $bundle, array $options, $context = '') {
+  // /**
+  //  * {@inheritdoc}
+  //  */
+  // public static function generateUrl($entity_type, $bundle, array $options, $context = '') {
 
-    if (\Drupal::service('current_user')->hasPermission('use resource.default form mode')) {
-      $route_name = 'entity.resource.add_form';
-    }
-    else {
-      $route_name = 'entity.resource.add_form.simple';
-    }
+  //   if (\Drupal::service('current_user')->hasPermission('use resource.default form mode')) {
+  //     $route_name = 'entity.resource.add_form';
+  //   }
+  //   else {
+  //     $route_name = 'entity.resource.add_form.simple';
+  //   }
 
-    return Url::fromRoute($route_name, $options);
-  }
+  //   return Url::fromRoute($route_name, $options);
+  // }
 }
