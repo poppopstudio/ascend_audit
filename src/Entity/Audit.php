@@ -175,8 +175,8 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
         'type' => 'cshs',
         'weight' => -10,
         'settings' => [
-          'force_deepest' => TRUE, // nope
-          'parent' => 0,
+          // 'force_deepest' => TRUE, // nope
+          'parent' => 0, // set this to the top level of focus areas.
           'none_label' => ' - Select category - ',
         ]
       ])
@@ -196,7 +196,25 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
       ->setDescription(t("The audit item's school."))
       ->setRevisionable(TRUE)
       ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
+      ->setDisplayConfigurable('view', TRUE)
+      ->setRequired(TRUE)
+      ->setCardinality(1)
+      ->setSetting('target_type', 'school')
+      ->setSetting('handler', 'default')
+      ->setDisplayOptions('view', array(
+        'label' => 'inline',
+        'type' => 'entity_reference_label',
+        'weight' => 0,
+      ))
+      ->setDisplayOptions('form', array(
+        'type' => 'entity_reference_autocomplete',
+        'weight' => 0,
+        'settings' => array(
+          'match_operator' => 'CONTAINS',
+          'size' => 60,
+          'placeholder' => '',
+        ),
+    ));
 
     $fields['year'] = BaseFieldDefinition::create('integer')
       ->setLabel(t("Year"))
