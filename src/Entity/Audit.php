@@ -133,7 +133,7 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
       ->setDescription(t("The date & time that the audit was created."))
       ->setRevisionable(TRUE)
       ->setDisplayOptions('view', [
-        'label' => 'hidden',
+        'label' => 'inline',
         'type' => 'timestamp',
         'weight' => 0,
       ])

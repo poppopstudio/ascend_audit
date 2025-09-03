@@ -45,8 +45,11 @@ class AuditHooks {
     $term_id = (int) $entity->ascend_focus_parent->first()->getValue()['target_id'];
 
     if (isset($term_id)) {
+      // Get the form settings for the category field on audit.
       $display_repository = \Drupal::service('entity_display.repository');
       $display = $display_repository->getFormDisplay('audit', 'audit', 'default');
+
+      // Get the category form component and update the parent setting.
       $options = $display->getComponent('category');
       $options['settings']['parent'] = $term_id;
       $display->setComponent('category', $options);
