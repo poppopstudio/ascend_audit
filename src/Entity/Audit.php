@@ -153,7 +153,7 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
 
     $fields['category'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t("Category"))
-      ->setDescription(t("The audit item's category."))
+      ->setDescription(t("The focus area for this audit item."))
       ->setRevisionable(TRUE)
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE)
@@ -175,9 +175,12 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
         'type' => 'cshs',
         'weight' => -10,
         'settings' => [
-          // 'force_deepest' => TRUE, // nope
           'parent' => 0, // set this to the top level of focus areas.
-          'none_label' => ' - Select category - ',
+          'hierarchy_depth' => 1,
+          'required_depth' => 1,
+          'save_lineage' => FALSE,
+          'force_deepest' => FALSE,
+          'none_label' => ' - Select focus area - ',
         ]
       ])
       ->setDisplayOptions('view', [
@@ -221,7 +224,18 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
       ->setDescription(t("The audit item's year."))
       ->setRevisionable(TRUE)
       ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
+      ->setDisplayConfigurable('view', TRUE)
+      ->setRequired(TRUE)
+      ->setCardinality(1)
+      ->setDisplayOptions('view', array(
+        'label' => 'inline',
+        'type' => 'label',
+        'weight' => 5,
+      ))
+      ->setDisplayOptions('form', array(
+        'type' => 'number_integer',
+        'weight' => 0,
+      ));
 
     return $fields;
   }

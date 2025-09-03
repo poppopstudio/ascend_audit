@@ -42,16 +42,15 @@ class AuditHooks {
 
   protected function setFocusAreas(EntityInterface $entity) {
     // Get the ID of the term as set in the config_pages.
-    $term_id = $entity->ascend_focus_parent->first()->getValue()['target_id'];
+    $term_id = (int) $entity->ascend_focus_parent->first()->getValue()['target_id'];
 
-    if (isset($term_id) && is_numeric($term_id)) {
-      $field = FieldConfig::loadByName('audit', 'audit', 'category');
-      $field->setDisplayOptions('form', [
-        'settings' => [
-          'parent' => $term_id,
-        ]
-      ]);
-      $field->save();
+    if (isset($term_id)) {
+      $display_repository = \Drupal::service('entity_display.repository');
+      $display = $display_repository->getFormDisplay('audit', 'audit', 'default');
+      $options = $display->getComponent('category');
+      $options['settings']['parent'] = $term_id;
+      $display->setComponent('category', $options);
+      $display->save();
     }
   }
 
