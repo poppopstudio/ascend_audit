@@ -26,6 +26,7 @@ config_devel:
   - core.entity_form_display.audit.audit.default
   - core.entity_form_display.config_pages.ascend_settings.default
   - core.entity_form_display.profile.auditor.default
+  - core.entity_view_display.audit.audit.default
   - core.entity_view_display.config_pages.ascend_settings.default
   - core.entity_view_display.profile.auditor.default
   - core.entity_view_mode.config_pages.full

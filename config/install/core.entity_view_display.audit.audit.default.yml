@@ -1,0 +1,38 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - ascend_audit
+id: audit.audit.default
+targetEntityType: audit
+bundle: audit
+mode: default
+content:
+  category:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  school:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  year:
+    type: number_unformatted
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  changed: true
+  created: true
+  title: true
+  uid: true

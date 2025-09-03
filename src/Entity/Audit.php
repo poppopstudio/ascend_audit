@@ -203,7 +203,7 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
       ->setRequired(TRUE)
       ->setCardinality(1)
       ->setSetting('target_type', 'school')
-      ->setSetting('handler', 'default')
+      ->setSetting('handler', 'default:school')
       ->setDisplayOptions('view', array(
         'label' => 'inline',
         'type' => 'entity_reference_label',

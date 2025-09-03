@@ -4,6 +4,7 @@ dependencies:
   module:
     - ascend_audit
     - cshs
+    - readonly_field_widget
 id: audit.audit.default
 targetEntityType: audit
 bundle: audit
@@ -21,6 +22,23 @@ content:
       hierarchy_depth: 1
       required_depth: 1
       none_label: ' - Select focus area - '
+    third_party_settings: {  }
+  changed:
+    type: readonly_field_widget
+    weight: 7
+    region: content
+    settings:
+      label: above
+      formatter_type: null
+      formatter_settings: {  }
+      show_description: false
+      error_validation: false
+    third_party_settings: {  }
+  created:
+    type: datetime_timestamp
+    weight: 6
+    region: content
+    settings: {  }
     third_party_settings: {  }
   school:
     type: entity_reference_autocomplete
@@ -47,6 +65,16 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   year:
     type: number
     weight: 3
@@ -54,7 +82,4 @@ content:
     settings:
       placeholder: ''
     third_party_settings: {  }
-hidden:
-  changed: true
-  created: true
-  uid: true
+hidden: {  }
