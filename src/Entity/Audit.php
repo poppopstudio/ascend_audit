@@ -233,7 +233,7 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
         'weight' => 5,
       ))
       ->setDisplayOptions('form', array(
-        'type' => 'number_integer',
+        'type' => 'number',
         'weight' => 0,
       ));
 
