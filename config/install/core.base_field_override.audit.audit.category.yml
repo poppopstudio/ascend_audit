@@ -1,0 +1,33 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.category
+  module:
+    - ascend_audit
+    - epp
+third_party_settings:
+  epp:
+    value: '[current-page:query:cid]'
+    on_update: 0
+id: audit.audit.category
+field_name: category
+entity_type: audit
+bundle: audit
+label: Category
+description: 'The focus area for this audit item.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      category: category
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

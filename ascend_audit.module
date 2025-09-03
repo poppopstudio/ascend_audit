@@ -9,6 +9,7 @@ use Drupal\ascend_audit\Hook\AuditHooks;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Hook\LegacyHook;
+use Drupal\Core\Render\Element;
 
 /**
  * Legacy hook implementation.
@@ -39,6 +40,39 @@ function ascend_audit_config_pages_insert(EntityInterface $entity) {
 #[LegacyHook]
 function ascend_audit_config_pages_update(EntityInterface $entity) {
   \Drupal::service(AuditHooks::class)->configPagesUpdate($entity);
+}
+
+
+/**
+ * These two function were required in order to add compatibility with
+ *  field_group module. This also necessitated the audit.html.twig template.
+ *  https://www.drupal.org/project/field_group/issues/2859858
+ */
+
+function ascend_audit_theme($existing, $type, $theme, $path) {
+  return [
+    'audit' => [
+      'render element' => 'elements',
+    ],
+  ];
+}
+
+function template_preprocess_audit(&$variables) {
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+
+  // Helpful $content variable for templates.
+  $variables += ['content' => []];
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+}
+
+function ascend_audit_gin_content_form_routes(): array {
+  return [
+    // Audit entity edit form handled by gin (to get sidebar).
+    'entity.audit.add_form',
+    'entity.audit.edit_form',
+  ];
 }
 
 /**

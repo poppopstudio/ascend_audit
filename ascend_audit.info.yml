@@ -21,6 +21,9 @@ dependencies:
 config_devel:
   - block.block.ascend_focus_areas
   - config_pages.type.ascend_settings
+  - core.base_field_override.audit.audit.category
+  - core.base_field_override.audit.audit.school
+  - core.entity_form_display.audit.audit.default
   - core.entity_form_display.config_pages.ascend_settings.default
   - core.entity_form_display.profile.auditor.default
   - core.entity_view_display.config_pages.ascend_settings.default
@@ -28,11 +31,14 @@ config_devel:
   - core.entity_view_mode.config_pages.full
   - field.field.config_pages.ascend_settings.ascend_focus_parent
   - field.field.profile.auditor.ascend_p_school
+  - field.field.taxonomy_term.category.ascend_standards
   - field.storage.config_pages.ascend_focus_parent
   - field.storage.profile.ascend_p_school
+  - field.storage.taxonomy_term.ascend_standards
   - profile.type.auditor
   - system.action.user_add_role_action.auditor
   - system.action.user_remove_role_action.auditor
+  - taxonomy.vocabulary.standards
   - user.role.auditor
   - views.view.auditor_schools
   - views.view.focus_areas

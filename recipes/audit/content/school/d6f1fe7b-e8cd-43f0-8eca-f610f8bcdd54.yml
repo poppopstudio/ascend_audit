@@ -1,0 +1,29 @@
+_meta:
+  version: '1.0'
+  entity_type: school
+  uuid: d6f1fe7b-e8cd-43f0-8eca-f610f8bcdd54
+  depends:
+    b1e0250c-0d49-47f5-99fc-5b0758efe39f: user
+    25bd4299-cf76-468d-9d4d-d2f35ee397dd: taxonomy_term
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'AAA Academy'
+  created:
+    -
+      value: 1756912644
+  ascend_sch_auditor:
+    -
+      entity: b1e0250c-0d49-47f5-99fc-5b0758efe39f
+  ascend_sch_cluster:
+    -
+      entity: 25bd4299-cf76-468d-9d4d-d2f35ee397dd
+  ascend_sch_dfe:
+    -
+      value: 123
