@@ -17,12 +17,12 @@ class AuditAccess extends EntityAccessControlHandler {
     // Only customize 'view' operation to enable "view own" logic.
     if ($operation === 'view') {
       // Check if user can view any entity.
-      if ($account->hasPermission('view audits')) {
+      if ($account->hasPermission('view audit')) {
         return AccessResult::allowed()->cachePerPermissions();
       }
 
       // Check if user can view their own entities.
-      if ($account->hasPermission('view own audits')) {
+      if ($account->hasPermission('view own audit')) {
         return AccessResult::allowedIf($account->id() == $entity->getOwnerId())
           ->cachePerPermissions()
           ->cachePerUser()
