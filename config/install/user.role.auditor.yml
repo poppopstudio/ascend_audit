@@ -20,3 +20,4 @@ permissions:
   - 'view own auditor profile'
   - 'view own unpublished audit'
   - 'view the administration theme'
+  - 'view schools'
