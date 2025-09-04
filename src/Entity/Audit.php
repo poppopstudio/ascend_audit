@@ -86,14 +86,16 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
     $fields += static::ownerBaseFieldDefinitions($entity_type);
 
     // Review this field
-    $fields['title'] = BaseFieldDefinition::create('string')
-      ->setLabel(t("Title"))
-      ->setRequired(TRUE)
-      ->setRevisionable(TRUE)
-      ->setSetting('max_length', 255)
-      ->setDisplayOptions('form', ['type' => 'string_textfield', 'weight' => -5])
-      ->setDisplayConfigurable('view', TRUE)
-      ->setDisplayConfigurable('form', TRUE);
+    // $fields['title'] = BaseFieldDefinition::create('string')
+    //   ->setLabel(t("Title"))
+    //   ->setRequired(TRUE)
+    //   ->setRevisionable(TRUE)
+    //   ->setSetting('max_length', 255)
+    //   ->setDisplayOptions('form', [
+    //     'type' => 'hidden',
+    //   ])
+    //   ->setDisplayConfigurable('view', TRUE)
+    //   ->setDisplayConfigurable('form', TRUE);
 
     $fields['uid']
       ->setLabel(t('Authored by'))
@@ -240,4 +242,14 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
     return $fields;
   }
 
+  /**
+   * Just add this method for computed labels
+   */
+  public function label() {
+    $category_id = $this->get('category')->target_id ?? 'X';
+    $school_id = $this->get('school')->target_id ?? 'X';
+    $year = $this->get('year')->value ?? 'X';
+
+    return "c{$category_id}.s{$school_id}.y{$year}";
+  }
 }
