@@ -1,3 +1,6 @@
 administer audit entities:
   title: Administer Audit entities
-  description: Description for Administer Audit entities.
+  description: Modify config & fields for audit entities.
+
+view own audits:
+  title: View own audits

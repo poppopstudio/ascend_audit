@@ -27,7 +27,7 @@ use Drupal\user\EntityOwnerTrait;
  *   show_revision_ui = TRUE,
  *   collection_permission = "access audit overview",
  *   handlers = {
- *     "access" = "Drupal\entity\EntityAccessControlHandler",
+ *     "access" = "Drupal\ascend_audit\Entity\Handler\AuditAccess",
  *     "route_provider" = {
  *       "html" = "Drupal\entity_admin_handlers\SingleBundleEntity\SingleBundleEntityHtmlRouteProvider",
  *       "revision" = \Drupal\Core\Entity\Routing\RevisionHtmlRouteProvider::class,
