@@ -2,3 +2,6 @@ services:
   Drupal\ascend_audit\Hook\AuditHooks:
     class: Drupal\ascend_audit\Hook\AuditHooks
     autowire: true
+  Drupal\ascend_audit\Services\AuditYearService:
+    class: Drupal\ascend_audit\Services\AuditYearService
+    autowire: true

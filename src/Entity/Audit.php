@@ -2,6 +2,7 @@
 
 namespace Drupal\ascend_audit\Entity;
 
+use Drupal\ascend_audit\Services\AuditYearService;
 use Drupal\Core\Entity\EditorialContentEntityBase;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityPublishedTrait;
@@ -223,16 +224,21 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
 
     $fields['year'] = BaseFieldDefinition::create('integer')
       ->setLabel(t("Year"))
-      ->setDescription(t("The audit item's year."))
+      ->setDescription(t('Working school year in YY format (e.g. 24 for 2024/25).'))
       ->setRevisionable(TRUE)
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE)
       ->setRequired(TRUE)
       ->setCardinality(1)
+      ->setDefaultValueCallback('Drupal\ascend_audit\Entity\Audit::getSchoolYear')
+      ->setSettings([
+        'max_length' => 2,
+        'text_processing' => 0,
+      ])
       ->setDisplayOptions('view', array(
         'label' => 'inline',
         'type' => 'label',
-        'weight' => 5,
+        'weight' => 0,
       ))
       ->setDisplayOptions('form', array(
         'type' => 'number',
@@ -243,7 +249,7 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
   }
 
   /**
-   * Just add this method for computed labels
+   * Use a computed label instead of storing titles.
    */
   public function label() {
     $category_id = $this->get('category')->target_id ?? 'X';
@@ -251,5 +257,12 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
     $year = $this->get('year')->value ?? 'X';
 
     return "s{$school_id}.c{$category_id}.y{$year}";
+  }
+
+  /**
+   * Default value callback for year field.
+   */
+  public static function getSchoolYear() {
+    return \Drupal::service(AuditYearService::class)->getSchoolYear(); // D.I.??
   }
 }

@@ -2,10 +2,11 @@
 
 namespace Drupal\ascend_audit\Hook;
 
+use Drupal\ascend_audit\Services\AuditYearService;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Hook\Attribute\Hook;
-use Drupal\field\Entity\FieldConfig;
+use Drupal\Core\Render\BubbleableMetadata;
 
 /**
  * Contains hook implementations for the Ascend audit module.
@@ -55,6 +56,50 @@ class AuditHooks {
       $display->setComponent('category', $options);
       $display->save();
     }
+  }
+
+
+  /**
+   * Implements hook_token_info().
+   */
+  #[Hook('token_info')]
+  public function tokenInfo() {
+    $types['audit'] = [
+      'name' => t('Audit'),
+      'description' => t('Audit-related tokens.'),
+    ];
+
+    $tokens['school_year'] = [
+      'name' => t('School Year (YY)'),
+      'description' => t('Current school year in YY format (e.g. 24).'),
+    ];
+
+    return [
+      'types' => $types,
+      'tokens' => ['audit' => $tokens],
+    ];
+  }
+
+
+  /**
+   * Implements hook_tokens().
+   */
+  public function tokens($type, $tokens, array $data, array $options, BubbleableMetadata $bubbleable_metadata) {
+    $replacements = [];
+
+    if ($type == 'audit') {
+      $year = \Drupal::service(AuditYearService::class)->getSchoolYear();
+
+      foreach ($tokens as $name => $original) {
+        switch ($name) {
+          case 'school_year':
+            $replacements[$original] = $year;
+            break;
+        }
+      }
+    }
+
+    return $replacements;
   }
 
 }
