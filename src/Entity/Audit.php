@@ -230,7 +230,7 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
       ->setDisplayConfigurable('view', TRUE)
       ->setRequired(TRUE)
       ->setCardinality(1)
-      ->setDefaultValueCallback('Drupal\ascend_audit\Entity\Audit::getSchoolYear')
+      ->setDefaultValueCallback('Drupal\ascend_audit\Entity\Audit::getDefaultYear')
       ->setSettings([
         'max_length' => 2,
         'text_processing' => 0,
@@ -262,7 +262,7 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
   /**
    * Default value callback for year field.
    */
-  public static function getSchoolYear() {
+  public static function getDefaultYear() {
     return \Drupal::service(AuditYearService::class)->getSchoolYear(); // D.I.??
   }
 }

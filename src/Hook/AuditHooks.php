@@ -58,7 +58,6 @@ class AuditHooks {
     }
   }
 
-
   /**
    * Implements hook_token_info().
    */
@@ -79,7 +78,6 @@ class AuditHooks {
       'tokens' => ['audit' => $tokens],
     ];
   }
-
 
   /**
    * Implements hook_tokens().
