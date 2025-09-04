@@ -2,6 +2,7 @@
 
 namespace Drupal\ascend_audit\Plugin\views\argument_default;
 
+use Drupal\ascend_audit\Services\AuditYearService;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\views\Attribute\ViewsArgumentDefault;
@@ -25,7 +26,7 @@ class AuditYearArgument extends ArgumentDefaultPluginBase {
    * {@inheritdoc}
    */
   public function getArgument() {
-    return '2024';
+    return \Drupal::service(AuditYearService::class)->getSchoolYear();
   }
 
   /**
@@ -40,7 +41,7 @@ class AuditYearArgument extends ArgumentDefaultPluginBase {
    */
   public function getCacheContexts() {
     return [
-      'user',
+      'user', // surely not, here.
     ];
   }
 
