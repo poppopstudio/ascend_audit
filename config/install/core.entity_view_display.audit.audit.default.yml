@@ -29,9 +29,9 @@ content:
     region: content
   ascend_aud_rating:
     type: entity_reference_label
-    label: above
+    label: inline
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     weight: 3
     region: content

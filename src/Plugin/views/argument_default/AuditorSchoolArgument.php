@@ -25,6 +25,7 @@ class AuditorSchoolArgument extends ArgumentDefaultPluginBase {
    * {@inheritdoc}
    */
   public function getArgument() {
+    // $user =  \Drupal::currentUser();
     // return \Drupal::currentUser()->id();
 
     // Return working school ID for current user.
@@ -44,7 +45,7 @@ class AuditorSchoolArgument extends ArgumentDefaultPluginBase {
   public function getCacheContexts() {
     return [
       'user',
-      // school too?
+      // school too? and/or profile!
     ];
   }
 

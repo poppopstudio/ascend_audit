@@ -15,13 +15,13 @@ use Drupal\user\EntityOwnerTrait;
  *
  * @ContentEntityType(
  *   id = "audit",
- *   label = @Translation("Audit"),
- *   label_collection = @Translation("Audits"),
- *   label_singular = @Translation("audit"),
- *   label_plural = @Translation("audits"),
+ *   label = @Translation("Audit item"),
+ *   label_collection = @Translation("Audit items"),
+ *   label_singular = @Translation("audit item"),
+ *   label_plural = @Translation("audit items"),
  *   label_count = @PluralTranslation(
- *     singular = "@count audit",
- *     plural = "@count audits",
+ *     singular = "@count audit item",
+ *     plural = "@count audit items",
  *   ),
  *   base_table = "audit",
  *   revision_table = "audit_revision",
