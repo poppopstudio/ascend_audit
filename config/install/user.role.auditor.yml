@@ -3,6 +3,7 @@ status: true
 dependencies:
   module:
     - ascend_audit
+    - ascend_school
     - profile
     - system
     - toolbar
@@ -17,8 +18,8 @@ permissions:
   - 'create auditor profile'
   - 'update own audit'
   - 'update own auditor profile'
+  - 'view own audit'
   - 'view own auditor profile'
   - 'view own unpublished audit'
-  - 'view the administration theme'
-  - 'view own audit'
   - 'view school'
+  - 'view the administration theme'

@@ -4,7 +4,29 @@ dependencies:
   module:
     - ascend_audit
     - cshs
+    - field_group
     - readonly_field_widget
+third_party_settings:
+  field_group:
+    group_authoring_information:
+      children:
+        - uid
+        - created
+        - changed
+      label: 'Authoring information'
+      region: content
+      parent_name: ''
+      weight: 3
+      format_type: details_sidebar
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        open: false
+        description: ''
+        required_fields: false
+        weight: 0
 id: audit.audit.default
 targetEntityType: audit
 bundle: audit
@@ -17,7 +39,7 @@ content:
     settings:
       save_lineage: false
       force_deepest: false
-      parent: '1'
+      parent: '67'
       level_labels: ''
       hierarchy_depth: 1
       required_depth: 1
@@ -25,7 +47,7 @@ content:
     third_party_settings: {  }
   changed:
     type: readonly_field_widget
-    weight: 7
+    weight: 6
     region: content
     settings:
       label: above
@@ -36,13 +58,13 @@ content:
     third_party_settings: {  }
   created:
     type: datetime_timestamp
-    weight: 6
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
   school:
     type: entity_reference_autocomplete
-    weight: 2
+    weight: 1
     region: content
     settings:
       match_operator: CONTAINS
@@ -52,7 +74,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 4
+    weight: 7
     region: content
     settings:
       display_label: true
@@ -67,7 +89,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 4
     region: content
     settings:
       match_operator: CONTAINS
@@ -77,7 +99,7 @@ content:
     third_party_settings: {  }
   year:
     type: number
-    weight: 3
+    weight: 2
     region: content
     settings:
       placeholder: ''
