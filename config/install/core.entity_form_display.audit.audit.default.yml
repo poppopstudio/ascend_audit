@@ -1,11 +1,16 @@
 langcode: en
 status: true
 dependencies:
+  config:
+    - field.field.audit.audit.ascend_aud_evidence
+    - field.field.audit.audit.ascend_aud_forward
+    - field.field.audit.audit.ascend_aud_rating
   module:
     - ascend_audit
     - cshs
     - field_group
     - readonly_field_widget
+    - text
 third_party_settings:
   field_group:
     group_authoring_information:
@@ -16,7 +21,7 @@ third_party_settings:
       label: 'Authoring information'
       region: content
       parent_name: ''
-      weight: 3
+      weight: 6
       format_type: details_sidebar
       format_settings:
         classes: ''
@@ -32,6 +37,28 @@ targetEntityType: audit
 bundle: audit
 mode: default
 content:
+  ascend_aud_evidence:
+    type: text_textarea
+    weight: 4
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  ascend_aud_forward:
+    type: text_textarea
+    weight: 5
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  ascend_aud_rating:
+    type: options_buttons
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   category:
     type: cshs
     weight: 0

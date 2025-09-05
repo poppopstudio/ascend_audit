@@ -1,13 +1,40 @@
 langcode: en
 status: true
 dependencies:
+  config:
+    - field.field.audit.audit.ascend_aud_evidence
+    - field.field.audit.audit.ascend_aud_forward
+    - field.field.audit.audit.ascend_aud_rating
   module:
     - ascend_audit
+    - text
 id: audit.audit.default
 targetEntityType: audit
 bundle: audit
 mode: default
 content:
+  ascend_aud_evidence:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  ascend_aud_forward:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  ascend_aud_rating:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
   category:
     type: entity_reference_label
     label: inline

@@ -1,0 +1,29 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.audit.ascend_aud_rating
+    - taxonomy.vocabulary.rating
+  module:
+    - ascend_audit
+id: audit.audit.ascend_aud_rating
+field_name: ascend_aud_rating
+entity_type: audit
+bundle: audit
+label: Rating
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      rating: rating
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

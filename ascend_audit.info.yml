@@ -30,9 +30,15 @@ config_devel:
   - core.entity_view_display.config_pages.ascend_settings.default
   - core.entity_view_display.profile.auditor.default
   - core.entity_view_mode.config_pages.full
+  - field.field.audit.audit.ascend_aud_evidence
+  - field.field.audit.audit.ascend_aud_forward
+  - field.field.audit.audit.ascend_aud_rating
   - field.field.config_pages.ascend_settings.ascend_focus_parent
   - field.field.profile.auditor.ascend_p_school
   - field.field.taxonomy_term.category.ascend_standards
+  - field.storage.audit.ascend_aud_evidence
+  - field.storage.audit.ascend_aud_forward
+  - field.storage.audit.ascend_aud_rating
   - field.storage.config_pages.ascend_focus_parent
   - field.storage.profile.ascend_p_school
   - field.storage.taxonomy_term.ascend_standards
@@ -40,6 +46,7 @@ config_devel:
   - system.action.user_add_role_action.auditor
   - system.action.user_remove_role_action.auditor
   - taxonomy.vocabulary.standards
+  - taxonomy.vocabulary.rating
   - user.role.auditor
   - views.view.auditor_schools
   - views.view.focus_areas
