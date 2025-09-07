@@ -32,6 +32,7 @@
         "drupal/simple_taxonomy_menu": "^2.1",
         "drupal/token": "^1.15",
         "drupal/views_add_button": "^2.0",
-        "drupal/views_argument_token": "^2.0"
+        "drupal/views_argument_token": "^2.0",
+        "drupal/views_relationship_condition": "^1.0@alpha"
     }
 }

@@ -41,6 +41,7 @@ use Drupal\user\EntityOwnerTrait;
  *       "revision-revert" = \Drupal\Core\Entity\Form\RevisionRevertForm::class,
  *     },
  *     "list_builder" = "Drupal\ascend_audit\Entity\Handler\AuditListBuilder",
+ *     "views_data" = "Drupal\ascend_audit\Entity\Handler\AuditViewsData",
  *     "permission_provider" = "Drupal\entity\EntityPermissionProvider",
  *   },
  *   admin_permission = "administer audit entities",
@@ -156,7 +157,7 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
 
     $fields['category'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t("Category"))
-      ->setDescription(t("The focus area for this audit item."))
+      ->setDescription(t("The factor for this audit item."))
       ->setRevisionable(TRUE)
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE)
@@ -178,9 +179,9 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
         'type' => 'cshs',
         'weight' => -10,
         'settings' => [
-          'parent' => 0, // set this to the top level of focus areas.
-          'hierarchy_depth' => 1,
-          'required_depth' => 1,
+          'parent' => 0, // Get set to the top level of focus areas.
+          'hierarchy_depth' => 2,
+          'required_depth' => 2,
           'save_lineage' => FALSE,
           'force_deepest' => FALSE,
           'none_label' => ' - Select focus area - ',

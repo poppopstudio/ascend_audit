@@ -17,6 +17,7 @@ dependencies:
   - taxonomy:taxonomy
   - views:views
   - views_add_button:views_add_button
+  - views_relationship_condition:views_relationship_condition
 
 config_devel:
   - block.block.ascend_focus_areas
@@ -48,5 +49,6 @@ config_devel:
   - taxonomy.vocabulary.standards
   - taxonomy.vocabulary.rating
   - user.role.auditor
+  - views.view.audit_by_category
   - views.view.auditor_schools
   - views.view.focus_areas
