@@ -2,6 +2,7 @@
     "name": "poppopstudio/ascend_audit",
     "description": "Ascend project audit",
     "type": "drupal-custom-module",
+    "license": "proprietary",
     "authors": [
         {
             "name": "NikLP",
