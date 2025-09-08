@@ -9,7 +9,7 @@ use Drupal\views\Attribute\ViewsArgumentDefault;
 use Drupal\views\Plugin\views\argument_default\ArgumentDefaultPluginBase;
 
 /**
- * TODO: class docs.
+ * Service class for ascend_audit.
  */
 #[ViewsArgumentDefault(
   id: 'ascend_audit_audit_year_argument',
@@ -38,7 +38,7 @@ class AuditYearArgument extends ArgumentDefaultPluginBase {
    */
   public function getCacheContexts() {
     return [
-      'user', // surely not, here.
+      'user', // surely not, here. school? profile?
     ];
   }
 

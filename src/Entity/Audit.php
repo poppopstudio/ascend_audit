@@ -2,6 +2,7 @@
 
 namespace Drupal\ascend_audit\Entity;
 
+use Drupal\ascend_audit\Services\AuditSchoolService;
 use Drupal\ascend_audit\Services\AuditYearService;
 use Drupal\Core\Entity\EditorialContentEntityBase;
 use Drupal\Core\Entity\EntityChangedTrait;
@@ -194,6 +195,7 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
       ->setDisplayConfigurable('view', TRUE)
       ->setRequired(TRUE)
       ->setCardinality(1)
+      ->setDefaultValueCallback('Drupal\ascend_audit\Entity\Audit::getWorkingSchool')
       ->setSetting('target_type', 'school')
       ->setSetting('handler', 'default:school')
       ->setDisplayOptions('view', array(
@@ -252,6 +254,13 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
    * Default value callback for year field.
    */
   public static function getDefaultYear() {
-    return \Drupal::service(AuditYearService::class)->getWorkingYear(); // D.I.??
+    return \Drupal::service(AuditYearService::class)->getWorkingYear();
+  }
+
+  /**
+   * Default value callback for school field.
+   */
+  public static function getDefaultSchool() {
+    return \Drupal::service(AuditSchoolService::class)->getWorkingSchool();
   }
 }

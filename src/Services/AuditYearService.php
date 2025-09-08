@@ -5,7 +5,7 @@ namespace Drupal\ascend_audit\Services;
 class AuditYearService {
 
   /**
-   * Get working school year in YY format.
+   * Get working academic year in YY format.
    */
   public function getWorkingYear() {
     $current_date = new \DateTime();

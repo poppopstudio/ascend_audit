@@ -5,3 +5,6 @@ services:
   Drupal\ascend_audit\Services\AuditYearService:
     class: Drupal\ascend_audit\Services\AuditYearService
     autowire: true
+  Drupal\ascend_audit\Services\AuditSchoolService:
+    class: Drupal\ascend_audit\Services\AuditSchoolService
+    autowire: true
