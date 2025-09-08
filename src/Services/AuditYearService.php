@@ -7,7 +7,7 @@ class AuditYearService {
   /**
    * Get working school year in YY format.
    */
-  public function getSchoolYear() {
+  public function getWorkingYear() {
     $current_date = new \DateTime();
     $current_year = (int) $current_date->format('y'); // Already YY format
     $current_month = (int) $current_date->format('n'); // 1-12

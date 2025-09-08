@@ -87,18 +87,6 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
     $fields = parent::baseFieldDefinitions($entity_type);
     $fields += static::ownerBaseFieldDefinitions($entity_type);
 
-    // Review this field
-    // $fields['title'] = BaseFieldDefinition::create('string')
-    //   ->setLabel(t("Title"))
-    //   ->setRequired(TRUE)
-    //   ->setRevisionable(TRUE)
-    //   ->setSetting('max_length', 255)
-    //   ->setDisplayOptions('form', [
-    //     'type' => 'hidden',
-    //   ])
-    //   ->setDisplayConfigurable('view', TRUE)
-    //   ->setDisplayConfigurable('form', TRUE);
-
     $fields['uid']
       ->setLabel(t('Authored by'))
       ->setDescription(t('The username of the content author.'))
@@ -231,7 +219,7 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
       ->setDisplayConfigurable('view', TRUE)
       ->setRequired(TRUE)
       ->setCardinality(1)
-      ->setDefaultValueCallback('Drupal\ascend_audit\Entity\Audit::getDefaultYear')
+      ->setDefaultValueCallback('Drupal\ascend_audit\Entity\Audit::getWorkingYear')
       ->setSettings([
         'max_length' => 2,
         'text_processing' => 0,
@@ -264,6 +252,6 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
    * Default value callback for year field.
    */
   public static function getDefaultYear() {
-    return \Drupal::service(AuditYearService::class)->getSchoolYear(); // D.I.??
+    return \Drupal::service(AuditYearService::class)->getWorkingYear(); // D.I.??
   }
 }

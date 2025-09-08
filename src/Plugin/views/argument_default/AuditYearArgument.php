@@ -23,7 +23,7 @@ class AuditYearArgument extends ArgumentDefaultPluginBase {
    * {@inheritdoc}
    */
   public function getArgument() {
-    return \Drupal::service(AuditYearService::class)->getSchoolYear();
+    return \Drupal::service(AuditYearService::class)->getWorkingYear();
   }
 
   /**
