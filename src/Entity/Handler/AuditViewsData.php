@@ -15,7 +15,7 @@ class AuditViewsData extends EntityViewsData {
     // https://www.drupal8.ovh/en/tutoriels/245/custom-views-data-handler-for-a-custom-entity-on-drupal-8
     $data = parent::getViewsData();
 
-    // Add the relationship for "Audit has category".
+    // Add the filter for "Audit has category".
     // $data[BASE TABLE of field][TERM FIELD column id]
     $data['audit']['category']['group'] = $this->t('Audit');
     $data['audit']['category']['title'] = $this->t('Audit has category ID');
