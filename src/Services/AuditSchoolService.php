@@ -8,8 +8,8 @@ class AuditSchoolService {
    * Get working school in entity ID format.
    */
   public function getWorkingSchool() {
-    $current_user =  \Drupal::currentUser();
-    $current_user_roles =  array_values($current_user->getRoles(TRUE));
+    $current_user = \Drupal::currentUser();
+    $current_user_roles = array_values($current_user->getRoles(TRUE));
 
     /**
      * If we need to have profiles for non-auditor users, here is currently

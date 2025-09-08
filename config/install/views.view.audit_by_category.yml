@@ -385,6 +385,78 @@ display:
           validate_options: {  }
           break_phrase: false
           not: false
+        school:
+          id: school
+          table: audit
+          field: school
+          relationship: reverse__audit__category
+          group_type: group
+          admin_label: ''
+          entity_type: audit
+          entity_field: school
+          plugin_id: entity_target_id
+          default_action: default
+          exception:
+            value: ''
+            title_enable: false
+            title: All
+          title_enable: false
+          title: ''
+          default_argument_type: ascend_audit_auditor_school_argument
+          default_argument_options: {  }
+          summary_options:
+            base_path: ''
+            count: true
+            override: false
+            items_per_page: 25
+          summary:
+            sort_order: asc
+            number_of_records: 0
+            format: default_summary
+          specify_validation: false
+          validate:
+            type: none
+            fail: 'not found'
+          validate_options: {  }
+          break_phrase: false
+          not: false
+          relationship_condition: 1
+        year:
+          id: year
+          table: audit
+          field: year
+          relationship: reverse__audit__category
+          group_type: group
+          admin_label: ''
+          entity_type: audit
+          entity_field: year
+          plugin_id: numeric
+          default_action: default
+          exception:
+            value: ''
+            title_enable: false
+            title: All
+          title_enable: false
+          title: ''
+          default_argument_type: ascend_audit_audit_year_argument
+          default_argument_options: {  }
+          summary_options:
+            base_path: ''
+            count: true
+            override: false
+            items_per_page: 25
+          summary:
+            sort_order: asc
+            number_of_records: 0
+            format: default_summary
+          specify_validation: false
+          validate:
+            type: none
+            fail: 'not found'
+          validate_options: {  }
+          break_phrase: false
+          not: false
+          relationship_condition: 1
       filters:
         status:
           id: status
