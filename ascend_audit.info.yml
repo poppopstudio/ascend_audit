@@ -24,7 +24,6 @@ config_devel:
   - block.block.ascend_focus_areas
   - config_pages.type.ascend_settings
   - core.base_field_override.audit.audit.category
-  - core.base_field_override.audit.audit.school
   - core.entity_form_display.audit.audit.default
   - core.entity_form_display.config_pages.ascend_settings.default
   - core.entity_form_display.profile.auditor.default

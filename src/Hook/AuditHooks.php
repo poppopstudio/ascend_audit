@@ -86,7 +86,7 @@ class AuditHooks {
     $replacements = [];
 
     if ($type == 'audit') {
-      $year = \Drupal::service(AuditYearService::class)->getSchoolYear();
+      $year = \Drupal::service(AuditYearService::class)->getWorkingYear();
 
       foreach ($tokens as $name => $original) {
         switch ($name) {

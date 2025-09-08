@@ -61,7 +61,7 @@ function ascend_audit_theme($existing, $type, $theme, $path) {
         'school' => NULL,
         'year' => NULL,
       ],
-      'template' => 'auditor-working-info',
+      'template' => 'block--auditor-working-info',
     ],
   ];
 }
