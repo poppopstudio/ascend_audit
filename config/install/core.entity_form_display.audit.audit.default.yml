@@ -67,10 +67,10 @@ content:
       save_lineage: false
       force_deepest: false
       parent: '67'
-      level_labels: ''
-      hierarchy_depth: 1
-      required_depth: 1
-      none_label: ' - Select focus area - '
+      level_labels: 'Focus area, Factor'
+      hierarchy_depth: 2
+      required_depth: 2
+      none_label: '- Select focus area -'
     third_party_settings: {  }
   changed:
     type: readonly_field_widget
