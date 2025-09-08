@@ -4,11 +4,6 @@ dependencies:
   config:
     - field.storage.profile.ascend_p_school
     - profile.type.auditor
-  module:
-    - profile
-third_party_settings:
-  profile:
-    profile_private: true
 id: profile.auditor.ascend_p_school
 field_name: ascend_p_school
 entity_type: profile
