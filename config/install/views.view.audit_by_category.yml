@@ -581,7 +581,7 @@ display:
       tags: {  }
   attachment_1:
     id: attachment_1
-    display_title: 'Audits present (Attach)'
+    display_title: 'Audits completed (Attach)'
     display_plugin: attachment
     position: 2
     display_options:
@@ -900,7 +900,7 @@ display:
       tags: {  }
   page_1:
     id: page_1
-    display_title: 'Audits needed (Page)'
+    display_title: 'Audits required (Page)'
     display_plugin: page
     position: 1
     display_options:

@@ -24,4 +24,19 @@ class AuditYearService {
     return sprintf('%02d', $school_year);
   }
 
+  /**
+   * Get a properly formatted YYYY/YY text version of the data.
+   */
+  public function getFormattedWorkingYear() {
+    $yy = $this->getWorkingYear(); // Gets YY format (e.g., "24")
+
+    // Convert YY back to full year for the start year.
+    $start_year = 2000 + (int) $yy; // e.g., 2024
+
+    // The end year is always start year + 1.
+    $end_year = $start_year + 1; // e.g., 2025
+
+    // Format as YYYY/YY.
+    return $start_year . '/' . sprintf('%02d', $end_year % 100);
+  }
 }

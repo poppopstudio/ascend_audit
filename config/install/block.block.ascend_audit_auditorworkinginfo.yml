@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - ascend_audit
+    - system
+    - user
+  theme:
+    - localgov_base
+id: ascend_audit_auditorworkinginfo
+theme: localgov_base
+region: content_top
+weight: 0
+provider: null
+plugin: auditor_working_info
+settings:
+  id: auditor_working_info
+  label: 'Auditor Working Info'
+  label_display: '0'
+  provider: ascend_audit
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '/audit/*'
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      auditor: auditor

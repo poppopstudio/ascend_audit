@@ -19,7 +19,7 @@ class AuditSchoolService {
     // Only auditors have profiles atm.
     if (in_array('auditor', $current_user_roles)) {
 
-      // Var thing here.
+      /** @var \Drupal\profile\entity\Profile */ // ????
       $auditor_profile = \Drupal::entityTypeManager()
         ->getStorage('profile')
         ->loadByUser($current_user, 'auditor');
@@ -30,4 +30,20 @@ class AuditSchoolService {
 
     return;
   }
+
+  /**
+   * Get working school in name format.
+   */
+  public function getWorkingSchoolName() {
+    // Given we can get the ID from the other service function...
+    $school_id = $this->getWorkingSchool();
+
+    // We can get the school name from here.
+    $school_entity = \Drupal::entityTypeManager()
+      ->getStorage('school')
+      ->load($school_id);
+
+    return $school_entity->label();
+  }
+
 }

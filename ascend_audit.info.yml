@@ -20,6 +20,7 @@ dependencies:
   - views_relationship_condition:views_relationship_condition
 
 config_devel:
+  - block.block.ascend_audit_auditorworkinginfo
   - block.block.ascend_focus_areas
   - config_pages.type.ascend_settings
   - core.base_field_override.audit.audit.category
