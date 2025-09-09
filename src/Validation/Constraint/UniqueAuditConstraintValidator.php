@@ -70,7 +70,7 @@ class UniqueAuditConstraintValidator extends ConstraintValidator implements Cont
 
     // If we found existing audits, add a violation.
     if (!empty($existing_audits)) {
-      $this->context->addViolation($constraint->message);
+      $this->context->addViolation($constraint->item_preexists);
     }
   }
 }
