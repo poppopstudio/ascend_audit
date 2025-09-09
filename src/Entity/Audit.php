@@ -61,7 +61,7 @@ use Drupal\user\EntityOwnerTrait;
  *     "revision_log_message" = "revision_log"
  *   },
  *   constraints = {
- *     "UniqueAuditConstraint" = {}
+ *     "UniqueAudit" = {}
  *   },
  *   field_ui_base_route = "entity.audit.field_ui_base",
  *   links = {
