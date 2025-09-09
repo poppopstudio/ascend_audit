@@ -21,7 +21,6 @@ function ascend_audit_form_alter(&$form, FormStateInterface $form_state, $form_i
   \Drupal::service(AuditHooks::class)->formAlter($form, $form_state, $form_id);
 }
 
-
 /**
  * Legacy hook implementation.
  *
@@ -41,6 +40,16 @@ function ascend_audit_config_pages_insert(EntityInterface $entity) {
 function ascend_audit_config_pages_update(EntityInterface $entity) {
   \Drupal::service(AuditHooks::class)->configPagesUpdate($entity);
 }
+
+/**
+ * Legacy hook implementation.
+ *
+ * @todo Remove this method when support for Drupal core < 11.1 is dropped.
+ */
+// #[LegacyHook]
+// function ascend_audit_form_user_validate(&$form, FormStateInterface $form_state) {
+//   \Drupal::service(AuditHooks::class)->formUserValidate($form, $form_state);
+// }
 
 
 /**

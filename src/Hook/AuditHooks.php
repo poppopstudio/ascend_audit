@@ -7,6 +7,7 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Render\BubbleableMetadata;
+use Drupal\Core\Session\AccountInterface;
 
 /**
  * Contains hook implementations for the Ascend audit module.
@@ -58,46 +59,63 @@ class AuditHooks {
     }
   }
 
+
+  /**
+   * Implements hook_form_FORM_ID_alter().
+   */
+  // #[Hook('form_user_validate')]
+  // function formUserValidate(&$form, FormStateInterface $form_state) {
+  //   // Get the user entity from the form state.
+  //   $a = 1;
+  //   $user = $form_state->getFormObject()->getEntity();
+
+  //   if ($user->hasRole('adviser') && $user->hasRole('auditor')) {
+  //     // Set a form error message. This will prevent the form from saving.
+  //     $form_state->setErrorByName('roles', t('A user cannot be both an Auditor and an Adviser.'));
+  //   }
+  // }
+
+
   /**
    * Implements hook_token_info().
    */
-  #[Hook('token_info')]
-  public function tokenInfo() {
-    $types['audit'] = [
-      'name' => t('Audit'),
-      'description' => t('Audit-related tokens.'),
-    ];
+  // #[Hook('token_info')]
+  // public function tokenInfo() {
+  //   $types['audit'] = [
+  //     'name' => t('Audit'),
+  //     'description' => t('Audit-related tokens.'),
+  //   ];
 
-    $tokens['school_year'] = [
-      'name' => t('School Year (YY)'),
-      'description' => t('Current school year in YY format (e.g. 24).'),
-    ];
+  //   $tokens['school_year'] = [
+  //     'name' => t('School Year (YY)'),
+  //     'description' => t('Current school year in YY format (e.g. 24).'),
+  //   ];
 
-    return [
-      'types' => $types,
-      'tokens' => ['audit' => $tokens],
-    ];
-  }
+  //   return [
+  //     'types' => $types,
+  //     'tokens' => ['audit' => $tokens],
+  //   ];
+  // }
 
   /**
    * Implements hook_tokens().
    */
-  public function tokens($type, $tokens, array $data, array $options, BubbleableMetadata $bubbleable_metadata) {
-    $replacements = [];
+  // public function tokens($type, $tokens, array $data, array $options, BubbleableMetadata $bubbleable_metadata) {
+  //   $replacements = [];
 
-    if ($type == 'audit') {
-      $year = \Drupal::service(AuditYearService::class)->getWorkingYear();
+  //   if ($type == 'audit') {
+  //     $year = \Drupal::service(AuditYearService::class)->getWorkingYear();
 
-      foreach ($tokens as $name => $original) {
-        switch ($name) {
-          case 'school_year':
-            $replacements[$original] = $year;
-            break;
-        }
-      }
-    }
+  //     foreach ($tokens as $name => $original) {
+  //       switch ($name) {
+  //         case 'school_year':
+  //           $replacements[$original] = $year;
+  //           break;
+  //       }
+  //     }
+  //   }
 
-    return $replacements;
-  }
+  //   return $replacements;
+  // }
 
 }
