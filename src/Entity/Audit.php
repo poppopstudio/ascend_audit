@@ -152,6 +152,7 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
       ->setDisplayConfigurable('view', TRUE)
       ->setRequired(TRUE)
       ->setCardinality(1)
+      ->addConstraint('UniqueAudit') // Prevent duplicate entries.
       ->setSetting('target_type', 'taxonomy_term')
       ->setSetting('handler', 'default:taxonomy_term')
       ->setSetting("handler_settings", [
@@ -168,7 +169,7 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
         'type' => 'cshs',
         'weight' => -10,
         'settings' => [
-          'parent' => 0, // Get set to the top level of focus areas.
+          'parent' => 0, // Gets set to the top level of focus areas.
           'hierarchy_depth' => 2,
           'required_depth' => 2,
           'save_lineage' => FALSE,
