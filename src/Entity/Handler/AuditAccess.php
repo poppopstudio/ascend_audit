@@ -14,25 +14,83 @@ class AuditAccess extends EntityAccessControlHandler {
    */
   protected function checkAccess(EntityInterface $entity, $operation, AccountInterface $account) {
 
-    // Only customize 'view' operation to enable "view own" logic.
-    if ($operation === 'view') {
-      // Check if user can view any entity.
-      if ($account->hasPermission('view audit')) {
+    // Check operations that require school-based access control
+    if (in_array($operation, ['view', 'update'])) {
+
+      // Global permissions first
+      if ($account->hasPermission($operation . ' audit')) {
         return AccessResult::allowed()->cachePerPermissions();
       }
 
-      // Check if user can view their own entities.
-      if ($account->hasPermission('view own audit')) {
-        return AccessResult::allowedIf($account->id() == $entity->getOwnerId())
-          ->cachePerPermissions()
-          ->cachePerUser()
-          ->addCacheableDependency($entity);
+      // Check if user is an auditor
+      if (in_array('auditor', $account->getRoles())) {
+
+        // Check (below) if user has working access to the school.
+        $auditor_linked = $this->checkAuditAuditorLink($entity, $account);
+
+        if (!$auditor_linked) {
+          return AccessResult::forbidden()
+            ->cachePerPermissions()
+            ->cachePerUser()
+            ->addCacheableDependency($entity);
+            // may need to change if a school is saved?
+        }
+
+        // Add a developer note for these overloaded perms.
+
+        // For view operation, check "view own" permission
+        if ($operation === 'view' && $account->hasPermission('view own audit')) {
+          return AccessResult::allowed()
+            ->cachePerPermissions()
+            ->cachePerUser()
+            ->addCacheableDependency($entity);
+        }
+
+        // For update operation, check "update own" or school access
+        if ($operation === 'update' && $account->hasPermission('update own audit')) {
+          return AccessResult::allowed()
+            ->cachePerPermissions()
+            ->cachePerUser()
+            ->addCacheableDependency($entity);
+        }
       }
 
       return AccessResult::forbidden()->cachePerPermissions();
     }
 
-    // For all other operations, use parent EntityAccessControlHandler logic.
+    // For all other operations, use parent EntityAccessControlHandler logic
     return parent::checkAccess($entity, $operation, $account);
+  }
+
+  /**
+   * Check if auditor is linked to the school ref'd on the audit entity.
+   */
+  protected function checkAuditAuditorLink(EntityInterface $entity, AccountInterface $account) {
+
+    // Get the school ID from the audit entity.
+    $audit_school_id = $entity->get('school')->target_id;
+
+    if (!$audit_school_id) {
+      return FALSE; // No school set on audit, deny access.
+    }
+
+    // Load the audit's school(s - should receive a list of one item).
+    $audit_schools = \Drupal::entityTypeManager()
+      ->getStorage('school')
+      ->loadByProperties([
+        'id' => $audit_school_id,
+      ]);
+
+    if (empty($audit_schools)) {
+      return FALSE; // No school set, deny access.
+    }
+
+    // Get the first (only) item from the list.
+    $audit_school = reset($audit_schools);
+    $school_auditor = $audit_school->get('auditor')->target_id;
+
+    $result = ($school_auditor == $account->id());
+
+    return $result;
   }
 }
