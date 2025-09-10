@@ -63,7 +63,7 @@ class AuditAccess extends EntityAccessControlHandler {
   }
 
   /**
-   * Check if auditor is linked to the school ref'd on the audit entity.
+   * Check if auditor is linked to the school on the audit entity.
    */
   protected function checkAuditAuditorLink(EntityInterface $entity, AccountInterface $account) {
 
@@ -74,19 +74,15 @@ class AuditAccess extends EntityAccessControlHandler {
       return FALSE; // No school set on audit, deny access.
     }
 
-    // Load the audit's school(s - should receive a list of one item).
-    $audit_schools = \Drupal::entityTypeManager()
+    // Load the audit's school.
+    $audit_school = \Drupal::entityTypeManager()
       ->getStorage('school')
-      ->loadByProperties([
-        'id' => $audit_school_id,
-      ]);
+      ->load($audit_school_id);
 
-    if (empty($audit_schools)) {
+    if (empty($audit_school)) {
       return FALSE; // No school set, deny access.
     }
 
-    // Get the first (only) item from the list.
-    $audit_school = reset($audit_schools);
     $school_auditor = $audit_school->get('auditor')->target_id;
 
     $result = ($school_auditor == $account->id());
