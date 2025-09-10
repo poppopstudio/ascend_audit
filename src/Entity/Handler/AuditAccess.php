@@ -83,7 +83,7 @@ class AuditAccess extends EntityAccessControlHandler {
       return FALSE; // No school set, deny access.
     }
 
-    $school_auditor = $audit_school->get('auditor')->target_id;
+    $school_auditor = $audit_school->get('ascend_sch_auditor')->target_id;
 
     $result = ($school_auditor == $account->id());
 
