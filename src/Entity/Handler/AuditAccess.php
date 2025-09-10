@@ -38,7 +38,7 @@ class AuditAccess extends EntityAccessControlHandler {
 
         // Add a developer note for these overloaded perms.
 
-        // For view operation, check "view own" permission
+        // For view operation, check "view own" permission.
         if ($operation === 'view' && $account->hasPermission('view own audit')) {
           return AccessResult::allowed()
             ->cachePerPermissions()
@@ -46,7 +46,7 @@ class AuditAccess extends EntityAccessControlHandler {
             ->addCacheableDependency($entity);
         }
 
-        // For update operation, check "update own" or school access
+        // For update operation, check "update own" permission.
         if ($operation === 'update' && $account->hasPermission('update own audit')) {
           return AccessResult::allowed()
             ->cachePerPermissions()
@@ -84,9 +84,6 @@ class AuditAccess extends EntityAccessControlHandler {
     }
 
     $school_auditor = $audit_school->get('ascend_sch_auditor')->target_id;
-
-    $result = ($school_auditor == $account->id());
-
-    return $result;
+    return ($school_auditor == $account->id());
   }
 }
