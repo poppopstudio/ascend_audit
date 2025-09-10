@@ -3,4 +3,4 @@ administer audit entities:
   description: Modify config & fields for audit entities.
 
 view own audit:
-  title: View own audits
+  title: View own audit items
