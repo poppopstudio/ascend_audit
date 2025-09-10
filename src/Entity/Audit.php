@@ -61,7 +61,7 @@ use Drupal\user\EntityOwnerTrait;
  *     "revision_log_message" = "revision_log"
  *   },
  *   constraints = {
- *     "UniqueAuditConstraint" = {}
+ *     "UniqueAudit" = {}
  *   },
  *   field_ui_base_route = "entity.audit.field_ui_base",
  *   links = {
@@ -155,7 +155,6 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
       ->setDisplayConfigurable('view', TRUE)
       ->setRequired(TRUE)
       ->setCardinality(1)
-      ->addConstraint('UniqueAuditConstraint') // Prevent duplicate entries.
       ->setSetting('target_type', 'taxonomy_term')
       ->setSetting('handler', 'default:taxonomy_term')
       ->setSetting("handler_settings", [

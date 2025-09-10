@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraint;
  * Checks that an audit's category + school + year combination is unique.
  *
  * @Constraint(
- *   id = "UniqueAuditConstraint",
+ *   id = "UniqueAudit",
  *   label = @Translation("Unique audit", context = "Validation"),
  *   type = "entity"
  * )
