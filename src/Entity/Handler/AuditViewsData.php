@@ -32,7 +32,7 @@ class AuditViewsData extends EntityViewsData {
 
     // Add the relationship for "Audit has category".
     $data['audit']['category']['relationship'] = [
-      'title' => $this->t('Audit item has category'),
+      'title' => $this->t('Audit item has category'), // is this right??
       'help' => $this->t('Category referenced by audit item.'),
       'id' => 'standard',
       'base' => 'taxonomy_term_field_data',

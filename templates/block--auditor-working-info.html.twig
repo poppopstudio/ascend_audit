@@ -1,20 +1,20 @@
 <div class="auditor-working-info">
-  <span class="title">Working with: </span>
-  {% if school %}
-    <span class="working-school">
+  <span class="title">{{ 'Working with: '|t }}</span>
+  <span class="auditor-working-info__school">
+    {% if school %}
       {# <strong>{{ 'School:'|t }}</strong> {{ school }} #}
       {{ school }},
-    </span>
-  {% else %}
-    {{ 'No working school set'|t }}
-  {% endif %}
+    {% else %}
+      {{ 'No working school set'|t }}
+    {% endif %}
+  </span>
 
-  {% if year %}
-    <span class="working-year">
+  <span class="auditor-working-info__year">
+    {% if year %}
       {# <strong>{{ 'Year:'|t }}</strong> {{ year }} #}
       {{ year }}
-    </span>
-  {% else %}
-    {{ 'No working school set'|t }}
-  {% endif %}
+    {% else %}
+      {{ 'No working year set'|t }}
+    {% endif %}
+  </span>
 </div>

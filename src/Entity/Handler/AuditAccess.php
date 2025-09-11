@@ -17,12 +17,12 @@ class AuditAccess extends EntityAccessControlHandler {
     // Check operations that require school-based access control
     if (in_array($operation, ['view', 'update'])) {
 
-      // Global permissions first
+      // Global permissions first.
       if ($account->hasPermission($operation . ' audit')) {
         return AccessResult::allowed()->cachePerPermissions();
       }
 
-      // Check if user is an auditor
+      // Check if user is an auditor.
       if (in_array('auditor', $account->getRoles())) {
 
         // Check (below) if user has working access to the school.

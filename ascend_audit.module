@@ -46,11 +46,10 @@ function ascend_audit_config_pages_update(EntityInterface $entity) {
  *
  * @todo Remove this method when support for Drupal core < 11.1 is dropped.
  */
-// #[LegacyHook]
-// function ascend_audit_form_user_validate(&$form, FormStateInterface $form_state) {
-//   \Drupal::service(AuditHooks::class)->formUserValidate($form, $form_state);
-// }
-
+#[LegacyHook]
+function ascend_audit_entity_type_alter(array &$entity_types) {
+  \Drupal::service(AuditHooks::class)->userAlter($entity_types);
+}
 
 /**
  * These two functions were required in order to add compatibility with
@@ -85,9 +84,9 @@ function template_preprocess_audit(&$variables) {
   }
 }
 
+// Get Audit entity edit forms handled by gin (to get sidebar).
 function ascend_audit_gin_content_form_routes(): array {
   return [
-    // Get Audit entity edit forms handled by gin (to get sidebar).
     'entity.audit.add_form',
     'entity.audit.edit_form',
   ];

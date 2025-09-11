@@ -23,6 +23,16 @@ class AuditHooks {
   }
 
   /**
+   * Implements hook_entity_type_alter().
+   */
+  #[Hook('entity_type_alter')]
+  public function userAlter(array &$entity_types) {
+    if (isset($entity_types['user'])) {
+      $entity_types['user']->addConstraint('AuditRoleConflict');
+    }
+  }
+
+  /**
    * Implements hook_ENTITY_TYPE_insert().
    */
   #[Hook('config_pages_insert')]

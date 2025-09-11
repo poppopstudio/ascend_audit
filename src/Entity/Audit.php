@@ -61,7 +61,8 @@ use Drupal\user\EntityOwnerTrait;
  *     "revision_log_message" = "revision_log"
  *   },
  *   constraints = {
- *     "UniqueAudit" = {}
+ *     "UniqueAudit" = {},
+ *     "AuditRoleConflict" = {}
  *   },
  *   field_ui_base_route = "entity.audit.field_ui_base",
  *   links = {
@@ -246,7 +247,7 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
    * Use a computed label instead of storing titles.
    */
   public function label() {
-    $category_id = $this->get('category')->target_id ?? 'X';
+    $category_id = $this->get('category')->target_id ?? 'X'; // Probably needs work on the Xs!
     $school_id = $this->get('school')->target_id ?? 'X';
     $year = $this->get('year')->value ?? 'X';
 
