@@ -7,6 +7,7 @@ dependencies:
     - field.field.audit.audit.ascend_aud_rating
   module:
     - ascend_audit
+    - cshs
     - text
 id: audit.audit.default
 targetEntityType: audit
@@ -36,10 +37,12 @@ content:
     weight: 3
     region: content
   category:
-    type: entity_reference_label
+    type: cshs_full_hierarchy
     label: inline
     settings:
-      link: false
+      linked: false
+      reverse: false
+      separator: ' » '
     third_party_settings: {  }
     weight: 0
     region: content

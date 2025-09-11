@@ -50,5 +50,6 @@ config_devel:
   - taxonomy.vocabulary.rating
   - user.role.auditor
   - views.view.audit_by_category
+  - views.view.audit_standards
   - views.view.auditor_schools
   - views.view.focus_areas
