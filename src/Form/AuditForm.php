@@ -26,8 +26,6 @@ class AuditForm extends ContentEntityForm {
       ]);
     }
 
-    $form['advanced']['#attributes']['class'][] = 'entity-meta'; // ?
-
     $form['meta'] = [
       '#type' => 'details',
       '#group' => 'advanced',
@@ -35,11 +33,12 @@ class AuditForm extends ContentEntityForm {
       '#title' => $this->t('Status'),
       '#attributes' => ['class' => ['entity-meta__header']],
       '#tree' => TRUE,
-      // '#access' => $this->currentUser()->hasPermission('update any audit'),
+      '#access' => $this->currentUser()->hasPermission('update any audit'),
     ];
     $form['meta']['published'] = [
       '#type' => 'item',
       '#markup' => $audit->isPublished() ? $this->t('Published') : $this->t('Not published'),
+      // This line seems redundant but the above line doesn't work anyway? Only shows published for either.
       '#access' => !$audit->isNew(),
       '#wrapper_attributes' => ['class' => ['entity-meta__title']],
     ];
@@ -47,6 +46,7 @@ class AuditForm extends ContentEntityForm {
       '#type' => 'item',
       '#title' => $this->t('Last saved'),
       // '#markup' => !$audit->isNew() ? $this->dateFormatter->format($audit->getChangedTime(), 'short') : $this->t('Not saved yet'),
+      '#markup' => !$audit->isNew() ? \Drupal::service('date.formatter')->format($audit->getChangedTime(), 'short') : $this->t('Not saved yet'),
       '#wrapper_attributes' => ['class' => ['entity-meta__last-saved']],
     ];
     $form['meta']['author'] = [
@@ -56,16 +56,44 @@ class AuditForm extends ContentEntityForm {
       '#wrapper_attributes' => ['class' => ['entity-meta__author']],
     ];
 
+
+    // this doesn't work at all
+
+
+    // Node author information for administrators.
+    $form['author'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Authoring information'),
+      '#group' => 'advanced',
+      '#attributes' => [
+        'class' => ['node-form-author'],
+      ],
+      '#attached' => [
+        'library' => ['node/drupal.node'],
+      ],
+      '#weight' => 90,
+      '#optional' => TRUE,
+    ];
+
+    if (isset($form['uid'])) {
+      $form['uid']['#group'] = 'author';
+    }
+
+    if (isset($form['created'])) {
+      $form['created']['#group'] = 'author';
+    }
+
+
     // Get the category from the audit entity.
     $details_category = $audit->get('category')->target_id;
 
+    // Add the related TStandards view into the sidebar.
     $form['audit_standards'] = [
       '#type' => 'details',
       '#group' => 'advanced',
       '#weight' => -20,
       '#title' => $this->t("Teachers' Standards"),
       '#open' => TRUE,
-      // '#access' => $audit->currentUser->hasRoles('auditor'),
     ];
     $form['audit_standards']['details'] = [
       '#type' => 'container',
@@ -73,6 +101,29 @@ class AuditForm extends ContentEntityForm {
       '#wrapper_attributes' => ['class' => ['entity-meta__title']], // Stolen but just works.
     ];
 
+
+    // Add the related category info into the sidebar.
+    $category_term = \Drupal::entityTypeManager()
+      ->getStorage('taxonomy_term')
+      ->load($details_category);
+
+    $category_info = $category_term ? $category_term->get('ascend_info')->value : NULL;
+
+    $form['audit_cat_info'] = [
+      '#type' => 'details',
+      '#group' => 'advanced',
+      '#weight' => -15,
+      '#title' => $this->t('Category info'),
+      '#open' => TRUE,
+    ];
+    $form['audit_cat_info']['details'] = [
+      '#type' => 'item',
+      '#markup' => $category_info ?? $this->t('No information currently stored for this category.'),
+      '#attributes' => ['class' => ['entity-meta__title']],
+    ];
+
+
+    // Add the related category resources view into the sidebar.
     // Check the resource kit is installed - does this need DI?
     if (\Drupal::service('module_handler')->moduleExists('ascend_resource')) {
       $form['audit_resources'] = [
@@ -88,21 +139,6 @@ class AuditForm extends ContentEntityForm {
         '#wrapper_attributes' => ['class' => ['entity-meta__title']],
       ];
     }
-
-    $form['audit_info'] = [
-      '#type' => 'details',
-      '#group' => 'advanced',
-      '#weight' => -15,
-      '#title' => t('Audit info'),
-      '#open' => TRUE,
-      // '#access' => $this->currentUser->hasPermission('administer nodes'),
-    ];
-
-    $form['audit_info']['details'] = [
-      '#type' => 'container',
-      'view' => views_embed_view('ascend_audit_info', 'embed_1', $details_category),
-      '#wrapper_attributes' => ['class' => ['entity-meta__title']],
-    ];
 
     return $form;
   }
