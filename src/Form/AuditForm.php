@@ -56,21 +56,52 @@ class AuditForm extends ContentEntityForm {
       '#wrapper_attributes' => ['class' => ['entity-meta__author']],
     ];
 
-    $form['standards'] = [
+    // Get the category from the audit entity.
+    $details_category = $audit->get('category')->target_id;
+
+    $form['audit_standards'] = [
       '#type' => 'details',
       '#group' => 'advanced',
       '#weight' => -20,
       '#title' => $this->t("Teachers' Standards"),
       '#open' => TRUE,
-      // '#access' => $audit->currentUser->hasRoles('auditor'),    // !!!
+      // '#access' => $audit->currentUser->hasRoles('auditor'),
     ];
-    $form['standards']['details'] = [
+    $form['audit_standards']['details'] = [
       '#type' => 'container',
-      // '#type' => 'item',
-      '#wrapper_attributes' => ['class' => ['entity-meta__title']],
+      'view' => views_embed_view('audit_standards', 'embed_1', $details_category),
+      '#wrapper_attributes' => ['class' => ['entity-meta__title']], // Stolen but just works.
+    ];
 
-      'view' => views_embed_view('audit_standards', 'embed_1', $audit->get('category')->target_id),
-      // 'view' => views_embed_view('audit_standards', 'embed_1', '96'),
+    // Check the resource kit is installed - does this need DI?
+    if (\Drupal::service('module_handler')->moduleExists('ascend_resource')) {
+      $form['audit_resources'] = [
+        '#type' => 'details',
+        '#group' => 'advanced',
+        '#weight' => -10,
+        '#title' => $this->t("Category resources"),
+        '#open' => TRUE,
+      ];
+      $form['audit_resources']['details'] = [
+        '#type' => 'container',
+        'view' => views_embed_view('category_resources', 'embed_2', $details_category),
+        '#wrapper_attributes' => ['class' => ['entity-meta__title']],
+      ];
+    }
+
+    $form['audit_info'] = [
+      '#type' => 'details',
+      '#group' => 'advanced',
+      '#weight' => -15,
+      '#title' => t('Audit info'),
+      '#open' => TRUE,
+      // '#access' => $this->currentUser->hasPermission('administer nodes'),
+    ];
+
+    $form['audit_info']['details'] = [
+      '#type' => 'container',
+      'view' => views_embed_view('ascend_audit_info', 'embed_1', $details_category),
+      '#wrapper_attributes' => ['class' => ['entity-meta__title']],
     ];
 
     return $form;
