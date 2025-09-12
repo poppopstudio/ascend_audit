@@ -63,7 +63,7 @@ class UniqueAuditConstraintValidator extends ConstraintValidator implements Cont
 
     // If this is an existing entity (update), exclude it from the query.
     if (!$entity->isNew()) {
-      $query->condition('id', $entity->id(), '<>');
+      $query->condition('audit_id', $entity->id(), '<>');
     }
 
     $existing_audits = $query->execute();
