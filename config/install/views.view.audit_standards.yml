@@ -177,7 +177,20 @@ display:
       cache:
         type: tag
         options: {  }
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: "No teachers' standards currently assigned to {{ arguments.tid }}"
+            format: basic_html
+          tokenize: true
       sorts: {  }
       arguments:
         tid:
