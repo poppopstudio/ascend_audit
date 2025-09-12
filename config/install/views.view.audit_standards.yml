@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - taxonomy.vocabulary.standards
+    - user.role.administrator
     - user.role.auditor
   module:
     - taxonomy
@@ -35,7 +36,7 @@ display:
           entity_field: parent
           plugin_id: field
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -78,7 +79,7 @@ display:
           click_sort_column: target_id
           type: entity_reference_label
           settings:
-            link: true
+            link: false
           group_column: target_id
           group_columns: {  }
           group_rows: true
@@ -171,6 +172,7 @@ display:
         type: role
         options:
           role:
+            administrator: administrator
             auditor: auditor
       cache:
         type: tag
@@ -195,8 +197,11 @@ display:
             title: All
           title_enable: false
           title: ''
-          default_argument_type: node
-          default_argument_options: {  }
+          default_argument_type: query_parameter
+          default_argument_options:
+            query_param: cid
+            fallback: ''
+            multiple: and
           summary_options:
             base_path: ''
             count: true
@@ -237,14 +242,17 @@ display:
       style:
         type: default
         options:
-          grouping: {  }
+          grouping:
+            -
+              field: parent_target_id
+              rendered: true
+              rendered_strip: false
           row_class: ''
-          default_row_class: true
-          uses_fields: false
+          default_row_class: false
       row:
         type: fields
         options:
-          default_field_elements: true
+          default_field_elements: false
           inline: {  }
           separator: ''
           hide_empty: false
@@ -269,6 +277,21 @@ display:
           required: true
       header: {  }
       footer: {  }
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - user.roles
+      tags: {  }
+  embed_1:
+    id: embed_1
+    display_title: Embed
+    display_plugin: embed
+    position: 1
+    display_options:
       display_extenders: {  }
     cache_metadata:
       max-age: -1

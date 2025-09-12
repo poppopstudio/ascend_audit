@@ -14,7 +14,65 @@ class AuditForm extends ContentEntityForm {
    * {@inheritdoc}
    */
   public function form(array $form, FormStateInterface $form_state) {
+
     $form = parent::form($form, $form_state);
+    /** @var \Drupal\ascend_audit\Entity\Audit $audit */
+    $audit = $this->entity;
+
+    if ($this->operation == 'edit') {
+      $form['#title'] = $this->t('<em>Edit @type</em> @title', [
+        '@type' => 'audit',
+        '@title' => $audit->label(),
+      ]);
+    }
+
+    $form['advanced']['#attributes']['class'][] = 'entity-meta'; // ?
+
+    $form['meta'] = [
+      '#type' => 'details',
+      '#group' => 'advanced',
+      '#weight' => -100,
+      '#title' => $this->t('Status'),
+      '#attributes' => ['class' => ['entity-meta__header']],
+      '#tree' => TRUE,
+      // '#access' => $this->currentUser()->hasPermission('update any audit'),
+    ];
+    $form['meta']['published'] = [
+      '#type' => 'item',
+      '#markup' => $audit->isPublished() ? $this->t('Published') : $this->t('Not published'),
+      '#access' => !$audit->isNew(),
+      '#wrapper_attributes' => ['class' => ['entity-meta__title']],
+    ];
+    $form['meta']['changed'] = [
+      '#type' => 'item',
+      '#title' => $this->t('Last saved'),
+      // '#markup' => !$audit->isNew() ? $this->dateFormatter->format($audit->getChangedTime(), 'short') : $this->t('Not saved yet'),
+      '#wrapper_attributes' => ['class' => ['entity-meta__last-saved']],
+    ];
+    $form['meta']['author'] = [
+      '#type' => 'item',
+      '#title' => $this->t('Author'),
+      '#markup' => $audit->getOwner()->getAccountName(),
+      '#wrapper_attributes' => ['class' => ['entity-meta__author']],
+    ];
+
+    $form['standards'] = [
+      '#type' => 'details',
+      '#group' => 'advanced',
+      '#weight' => -20,
+      '#title' => $this->t("Teachers' Standards"),
+      '#open' => TRUE,
+      // '#access' => $audit->currentUser->hasRoles('auditor'),    // !!!
+    ];
+    $form['standards']['details'] = [
+      '#type' => 'container',
+      // '#type' => 'item',
+      '#wrapper_attributes' => ['class' => ['entity-meta__title']],
+
+      'view' => views_embed_view('audit_standards', 'embed_1', $audit->get('category')->target_id),
+      // 'view' => views_embed_view('audit_standards', 'embed_1', '96'),
+    ];
+
     return $form;
   }
 
