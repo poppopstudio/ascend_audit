@@ -26,7 +26,7 @@ class AuditAccess extends EntityAccessControlHandler {
       if (in_array('auditor', $account->getRoles())) {
 
         // Check (below) if user has working access to the school.
-        $auditor_linked = $this->checkAuditAuditorLink($entity, $account);
+        $auditor_linked = $this->checkAuditorSchoolLink($entity, $account);
 
         if (!$auditor_linked) {
           return AccessResult::forbidden()
@@ -65,7 +65,7 @@ class AuditAccess extends EntityAccessControlHandler {
   /**
    * Check if auditor is linked to the school on the audit entity.
    */
-  protected function checkAuditAuditorLink(EntityInterface $entity, AccountInterface $account) {
+  protected function checkAuditorSchoolLink(EntityInterface $entity, AccountInterface $account) {
 
     // Get the school ID from the audit entity.
     $audit_school_id = $entity->get('school')->target_id;
