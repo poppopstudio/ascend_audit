@@ -59,7 +59,7 @@ function ascend_audit_entity_type_alter(array &$entity_types) {
 
 function ascend_audit_theme($existing, $type, $theme, $path) {
   return [
-    // This is for field_group.
+    // This is for the field_group workaround above`.
     'audit' => [
       'render element' => 'elements',
     ],

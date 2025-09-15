@@ -9,8 +9,8 @@ dependencies:
   module:
     - taxonomy
     - user
-id: focus_areas
-label: 'Focus areas'
+id: audit_focus_areas
+label: 'Audit focus areas'
 module: views
 description: 'List of all focus areas for audit (block)'
 tag: ''

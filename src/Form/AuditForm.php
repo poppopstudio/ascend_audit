@@ -26,6 +26,7 @@ class AuditForm extends ContentEntityForm {
       ]);
     }
 
+    // Emulates entity info behaviour similar to nodes (guess where it's from).
     $form['meta'] = [
       '#type' => 'details',
       '#group' => 'advanced',
@@ -57,33 +58,6 @@ class AuditForm extends ContentEntityForm {
     ];
 
 
-    // this doesn't work at all
-
-
-    // Node author information for administrators.
-    $form['author'] = [
-      '#type' => 'details',
-      '#title' => $this->t('Authoring information'),
-      '#group' => 'advanced',
-      '#attributes' => [
-        'class' => ['node-form-author'],
-      ],
-      '#attached' => [
-        'library' => ['node/drupal.node'],
-      ],
-      '#weight' => 90,
-      '#optional' => TRUE,
-    ];
-
-    if (isset($form['uid'])) {
-      $form['uid']['#group'] = 'author';
-    }
-
-    if (isset($form['created'])) {
-      $form['created']['#group'] = 'author';
-    }
-
-
     // Get the category from the audit entity.
     $details_category = $audit->get('category')->target_id;
 
@@ -102,7 +76,7 @@ class AuditForm extends ContentEntityForm {
     ];
 
 
-    // Add the related category info into the sidebar.
+    // Add the related category info to the sidebar.
     $category_term = \Drupal::entityTypeManager()
       ->getStorage('taxonomy_term')
       ->load($details_category);
@@ -130,7 +104,7 @@ class AuditForm extends ContentEntityForm {
         '#type' => 'details',
         '#group' => 'advanced',
         '#weight' => -10,
-        '#title' => $this->t("Category resources"),
+        '#title' => $this->t("Related resources"),
         '#open' => TRUE,
       ];
       $form['audit_resources']['details'] = [
