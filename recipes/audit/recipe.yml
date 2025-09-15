@@ -19,7 +19,7 @@ config:
         name: ascend_standards
         options:
           type: cshs
-          weight: 3
+          weight: 7
           region: content
           settings:
             save_lineage: false
