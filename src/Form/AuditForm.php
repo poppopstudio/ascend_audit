@@ -61,6 +61,11 @@ class AuditForm extends ContentEntityForm {
     // Get the category from the audit entity.
     $details_category = $audit->get('category')->target_id;
 
+    // IMPORTANT: if not set, all ensuing views are redundant.
+    if (!isset($details_category)) {
+      return $form;
+    }
+
     // Add the related TStandards view into the sidebar.
     $form['audit_standards'] = [
       '#type' => 'details',
@@ -76,45 +81,6 @@ class AuditForm extends ContentEntityForm {
     ];
 
 
-    // Add the related category info to the sidebar.
-    $category_term = \Drupal::entityTypeManager()
-      ->getStorage('taxonomy_term')
-      ->load($details_category);
-
-    $category_info = $category_term ? $category_term->get('ascend_info')->value : NULL;
-
-    $form['audit_cat_info'] = [
-      '#type' => 'details',
-      '#group' => 'advanced',
-      '#weight' => -15,
-      '#title' => $this->t('Category info'),
-      '#open' => TRUE,
-    ];
-    $form['audit_cat_info']['details'] = [
-      '#type' => 'item',
-      '#markup' => $category_info ?? $this->t('No information currently stored for this category.'),
-      '#attributes' => ['class' => ['entity-meta__title']],
-    ];
-
-
-    // Add the related category resources view into the sidebar.
-    // Check the resource kit is installed - does this need DI?
-    if (\Drupal::service('module_handler')->moduleExists('ascend_resource')) {
-      $form['audit_resources'] = [
-        '#type' => 'details',
-        '#group' => 'advanced',
-        '#weight' => -10,
-        '#title' => $this->t("Related resources"),
-        '#open' => TRUE,
-      ];
-      $form['audit_resources']['details'] = [
-        '#type' => 'container',
-        'view' => views_embed_view('category_resources', 'embed_2', $details_category),
-        '#wrapper_attributes' => ['class' => ['entity-meta__title']],
-      ];
-    }
-
-
     // Add the historic audits view into the sidebar.
     $form['audit_historic'] = [
       '#type' => 'details',
@@ -128,6 +94,53 @@ class AuditForm extends ContentEntityForm {
       'view' => views_embed_view('audit_historic', 'embed_1', $details_category),
       '#wrapper_attributes' => ['class' => ['entity-meta__title']],
     ];
+
+
+    // Check the resource kit is installed - does this need DI?
+    if (\Drupal::service('module_handler')->moduleExists('ascend_resource')) {
+
+      // Add the related category info to the sidebar.
+      $category_term = \Drupal::entityTypeManager()
+        ->getStorage('taxonomy_term')
+        ->load($details_category);
+
+      // $category_info = $category_term ? $category_term->get('ascend_info')->value : NULL;
+      $category_info = $category_term->get('ascend_info')->value ?? NULL;
+
+      // if ($category_term->hasField('ascend_info')) {
+      //   $field = $category_term->get('ascend_info');
+      //   if (!$field->isEmpty()) {
+      //     $category_info = $field->value;
+      //   }
+      // }
+
+      $form['audit_cat_info'] = [
+        '#type' => 'details',
+        '#group' => 'advanced',
+        '#weight' => -15,
+        '#title' => $this->t('Category info'),
+        '#open' => TRUE,
+      ];
+      $form['audit_cat_info']['details'] = [
+        '#type' => 'item',
+        '#markup' => $category_info ?? $this->t('No information currently stored for this category.'),
+        '#attributes' => ['class' => ['entity-meta__title']],
+      ];
+
+      // Add the related category resources view into the sidebar.
+      $form['audit_resources'] = [
+        '#type' => 'details',
+        '#group' => 'advanced',
+        '#weight' => -10,
+        '#title' => $this->t("Related resources"),
+        '#open' => TRUE,
+      ];
+      $form['audit_resources']['details'] = [
+        '#type' => 'container',
+        'view' => views_embed_view('category_resources', 'embed_2', $details_category),
+        '#wrapper_attributes' => ['class' => ['entity-meta__title']],
+      ];
+    }
 
     return $form;
   }
