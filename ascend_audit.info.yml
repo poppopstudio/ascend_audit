@@ -21,7 +21,7 @@ dependencies:
 
 config_devel:
   - block.block.ascend_audit_auditorworkinginfo
-  - block.block.ascend_focus_areas
+  - block.block.audit_focus_areas
   - config_pages.type.ascend_settings
   - core.base_field_override.audit.audit.category
   - core.entity_form_display.audit.audit.default
@@ -50,6 +50,7 @@ config_devel:
   - taxonomy.vocabulary.rating
   - user.role.auditor
   - views.view.audit_by_category
+  - views.view.audit_focus_areas
+  - views.view.audit_historic
   - views.view.audit_standards
   - views.view.auditor_schools
-  - views.view.focus_areas

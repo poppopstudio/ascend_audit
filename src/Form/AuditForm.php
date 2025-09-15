@@ -114,6 +114,21 @@ class AuditForm extends ContentEntityForm {
       ];
     }
 
+
+    // Add the historic audits view into the sidebar.
+    $form['audit_historic'] = [
+      '#type' => 'details',
+      '#group' => 'advanced',
+      '#weight' => 20,
+      '#title' => $this->t("Historic audits"),
+      '#open' => TRUE,
+    ];
+    $form['audit_historic']['details'] = [
+      '#type' => 'container',
+      'view' => views_embed_view('audit_historic', 'embed_1', $details_category),
+      '#wrapper_attributes' => ['class' => ['entity-meta__title']],
+    ];
+
     return $form;
   }
 

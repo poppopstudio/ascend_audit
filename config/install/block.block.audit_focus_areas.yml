@@ -2,26 +2,26 @@ langcode: en
 status: true
 dependencies:
   config:
-    - views.view.focus_areas
+    - views.view.audit_focus_areas
   module:
     - system
     - views
   theme:
     - localgov_base
-id: ascend_focus_areas
+id: audit_focus_areas
 theme: localgov_base
 region: sidebar_first
 weight: 0
 provider: null
-plugin: 'views_block:focus_areas-block_1'
+plugin: 'views_block:audit_focus_areas-block_1'
 settings:
-  id: 'views_block:focus_areas-block_1'
+  id: 'views_block:audit_focus_areas-block_1'
   label: ''
   label_display: visible
   provider: views
+  context_mapping: {  }
   views_label: ''
   items_per_page: none
-  context_mapping: {  }
 visibility:
   request_path:
     id: request_path
