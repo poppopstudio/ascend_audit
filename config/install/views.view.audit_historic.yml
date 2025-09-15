@@ -2,14 +2,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - user.role.administrator
     - user.role.auditor
   module:
     - ascend_audit
     - taxonomy
     - user
 id: audit_historic
-label: 'Historic audit items'
+label: 'Audit historic items'
 module: views
 description: 'Show list of historic audit items by category/school for audit edit screens'
 tag: ''
@@ -99,11 +98,11 @@ display:
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: ''
+            alt: "Indicated year's audit item for this category / school "
             rel: ''
             link_class: ''
             prefix: ''
-            suffix: ' audit'
+            suffix: ''
             target: _blank
             nl2br: false
             max_length: 0
@@ -159,7 +158,6 @@ display:
         type: role
         options:
           role:
-            administrator: administrator
             auditor: auditor
       cache:
         type: tag
@@ -175,7 +173,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: 'No items for...'
+            value: 'No audit items available here yet.'
             format: basic_html
           tokenize: false
       sorts: {  }
