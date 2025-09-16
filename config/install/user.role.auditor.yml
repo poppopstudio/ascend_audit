@@ -4,6 +4,7 @@ dependencies:
   module:
     - ascend_audit
     - ascend_school
+    - form_mode_manager
     - profile
     - system
     - toolbar
@@ -18,6 +19,7 @@ permissions:
   - 'create auditor profile'
   - 'update own audit'
   - 'update own auditor profile'
+  - 'use audit.auditor form mode'
   - 'view own audit'
   - 'view own auditor profile'
   - 'view own unpublished audit'

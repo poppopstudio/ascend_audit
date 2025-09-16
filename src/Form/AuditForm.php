@@ -104,15 +104,7 @@ class AuditForm extends ContentEntityForm {
         ->getStorage('taxonomy_term')
         ->load($details_category);
 
-      // $category_info = $category_term ? $category_term->get('ascend_info')->value : NULL;
       $category_info = $category_term->get('ascend_info')->value ?? NULL;
-
-      // if ($category_term->hasField('ascend_info')) {
-      //   $field = $category_term->get('ascend_info');
-      //   if (!$field->isEmpty()) {
-      //     $category_info = $field->value;
-      //   }
-      // }
 
       $form['audit_cat_info'] = [
         '#type' => 'details',
@@ -126,6 +118,7 @@ class AuditForm extends ContentEntityForm {
         '#markup' => $category_info ?? $this->t('No information currently stored for this category.'),
         '#attributes' => ['class' => ['entity-meta__title']],
       ];
+
 
       // Add the related category resources view into the sidebar.
       $form['audit_resources'] = [

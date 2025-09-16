@@ -89,6 +89,7 @@ function ascend_audit_gin_content_form_routes(): array {
   return [
     'entity.audit.add_form',
     'entity.audit.edit_form',
+    'entity.audit.add_form.auditor',
   ];
 }
 

@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - ascend_audit
+id: audit.auditor
+label: Auditor
+description: 'Edit audit items as an Auditor. Restricts certain fields to read-only and omits authoring information from form.'
+targetEntityType: audit
+cache: true
