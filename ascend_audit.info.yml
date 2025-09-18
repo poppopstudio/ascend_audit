@@ -11,6 +11,7 @@ dependencies:
   - epp:epp
   - field_group:field_group
   - field_group_table:field_group_table
+  - fmm_views_edit_link:fmm_views_edit_link
   - profile:profile
   - readonly_field_widget:readonly_field_widget
   - simple_taxonomy_menu:simple_taxonomy_menu

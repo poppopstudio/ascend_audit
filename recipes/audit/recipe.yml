@@ -8,6 +8,7 @@ install:
   - profile
   - views_argument_token
   - views_relationship_condition
+  - fmm_views_edit_link
   - ascend_audit
 config:
   strict: true
