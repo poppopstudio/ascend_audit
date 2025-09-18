@@ -15,6 +15,10 @@ config:
   import:
     ascend_audit: '*'
   actions:
+    form_mode_manager.links:
+      simpleConfigUpdate:
+        local_tasks.audit:
+          position: primary
     core.entity_form_display.taxonomy_term.category.default:
       setComponent:
         name: ascend_standards
