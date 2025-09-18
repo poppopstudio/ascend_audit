@@ -114,7 +114,7 @@ content:
     region: content
     settings:
       label: inline
-      formatter_type: number_unformatted
+      formatter_type: audit_year_formatter
       formatter_settings: {  }
       show_description: false
       error_validation: false
