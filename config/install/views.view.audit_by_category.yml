@@ -6,6 +6,7 @@ dependencies:
     - user.role.auditor
   module:
     - ascend_audit
+    - fmm_views_edit_link
     - taxonomy
     - text
     - user
@@ -764,18 +765,18 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          text: view
+          text: View
           output_url_as_text: false
           absolute: false
-        edit_audit:
-          id: edit_audit
+        form_mode_edit_link:
+          id: form_mode_edit_link
           table: audit
-          field: edit_audit
+          field: form_mode_edit_link
           relationship: reverse__audit__category
           group_type: group
           admin_label: ''
           entity_type: audit
-          plugin_id: entity_link_edit
+          plugin_id: form_mode_edit_link
           label: ''
           exclude: false
           alter:
@@ -817,9 +818,10 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          text: edit
-          output_url_as_text: false
-          absolute: false
+          text: Edit
+          output_url_as_text: 0
+          absolute: 0
+          form_mode: audit.auditor
       filters:
         status:
           id: status
