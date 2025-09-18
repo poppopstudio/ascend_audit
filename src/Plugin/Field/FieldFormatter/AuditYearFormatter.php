@@ -9,7 +9,7 @@ use Drupal\Core\Field\FormatterBase;
  * Plugin implementation of the academic year formatter.
  *
  * @FieldFormatter(
- *   id = "ascend_audit_year_formatter",
+ *   id = "audit_year_formatter",
  *   label = @Translation("Academic year"),
  *   field_types = {
  *     "integer"

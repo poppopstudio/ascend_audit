@@ -55,7 +55,7 @@ content:
     weight: 1
     region: content
   year:
-    type: number_unformatted
+    type: audit_year_formatter
     label: inline
     settings: {  }
     third_party_settings: {  }
