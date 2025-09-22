@@ -1,6 +1,6 @@
 {
     "name": "poppopstudio/ascend_audit",
-    "description": "Ascend project audit",
+    "description": "Ascend project audit kit",
     "type": "drupal-custom-module",
     "license": "proprietary",
     "authors": [
