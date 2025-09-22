@@ -21,14 +21,13 @@ class AuditViewsData extends EntityViewsData {
     $data['audit']['category']['title'] = $this->t('Audit item has category');
     $data['audit']['category']['help'] = $this->t('Audit has the selected category terms.');
 
-    $data['audit']['category']['filter'] =
-      [
-        'title' => $this->t('Audit item has category'),
-        'id' => 'taxonomy_index_tid',
-        'field' => 'category',
-        'numeric' => TRUE,
-        'allow empty' => TRUE,
-      ];
+    $data['audit']['category']['filter'] = [
+      'title' => $this->t('Audit item has category'),
+      'id' => 'taxonomy_index_tid',
+      'field' => 'category',
+      'numeric' => TRUE,
+      'allow empty' => TRUE,
+    ];
 
     // Add the relationship for "Audit has category".
     $data['audit']['category']['relationship'] = [
