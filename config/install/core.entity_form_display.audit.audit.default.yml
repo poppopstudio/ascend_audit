@@ -9,7 +9,6 @@ dependencies:
     - ascend_audit
     - cshs
     - field_group
-    - readonly_field_widget
     - text
 third_party_settings:
   field_group:
@@ -17,7 +16,6 @@ third_party_settings:
       children:
         - uid
         - created
-        - changed
       label: 'Authoring information'
       region: content
       parent_name: ''
@@ -72,17 +70,6 @@ content:
       required_depth: 2
       none_label: '- Select focus area -'
     third_party_settings: {  }
-  changed:
-    type: readonly_field_widget
-    weight: 6
-    region: content
-    settings:
-      label: above
-      formatter_type: null
-      formatter_settings: {  }
-      show_description: false
-      error_validation: false
-    third_party_settings: {  }
   created:
     type: datetime_timestamp
     weight: 5
@@ -136,4 +123,5 @@ content:
     settings:
       placeholder: ''
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  changed: true
