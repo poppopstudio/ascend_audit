@@ -232,7 +232,7 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
       ])
       ->setDisplayOptions('view', array(
         'label' => 'inline',
-        'type' => 'label',
+        'type' => 'audit_year_formatter',
         'weight' => 0,
       ))
       ->setDisplayOptions('form', array(
