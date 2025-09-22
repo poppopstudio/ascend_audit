@@ -66,25 +66,19 @@ class AuditHooks {
       $options['settings']['parent'] = $term_id;
       $display->setComponent('category', $options);
       $display->save();
+
+      if (\Drupal::service('module_handler')->moduleExists('ascend_ap')) {
+        // Get the form settings for the category field on APs.
+        $display = $display_repository->getFormDisplay('ap', 'ap', 'default');
+
+        // Get the category form component and update the parent setting.
+        $options = $display->getComponent('category');
+        $options['settings']['parent'] = $term_id;
+        $display->setComponent('category', $options);
+        $display->save();
+      }
     }
   }
-
-
-  /**
-   * Implements hook_form_FORM_ID_alter().
-   */
-  // #[Hook('form_user_validate')]
-  // function formUserValidate(&$form, FormStateInterface $form_state) {
-  //   // Get the user entity from the form state.
-  //   $a = 1;
-  //   $user = $form_state->getFormObject()->getEntity();
-
-  //   if ($user->hasRole('adviser') && $user->hasRole('auditor')) {
-  //     // Set a form error message. This will prevent the form from saving.
-  //     $form_state->setErrorByName('roles', t('A user cannot be both an Auditor and an Adviser.'));
-  //   }
-  // }
-
 
   /**
    * Implements hook_token_info().
