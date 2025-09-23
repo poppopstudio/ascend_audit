@@ -87,7 +87,7 @@ class AuditForm extends ContentEntityForm {
       '#group' => 'advanced',
       '#weight' => -5,
       '#title' => $this->t("Historic audits"),
-      '#open' => TRUE,
+      '#open' => FALSE,
     ];
     $form['audit_historic']['details'] = [
       '#type' => 'container',
