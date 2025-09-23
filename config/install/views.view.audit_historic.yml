@@ -90,7 +90,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '20{{ year__value }}/{{ year__value + 1 }}'
+            text: '{{ year }}'
             make_link: true
             path: '{{ view_audit }}'
             absolute: false
@@ -128,7 +128,7 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: number_unformatted
+          type: audit_year_formatter
           settings: {  }
           group_column: value
           group_columns: {  }

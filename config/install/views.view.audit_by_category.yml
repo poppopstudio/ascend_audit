@@ -818,10 +818,10 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
+          form_mode: audit.auditor
           text: Edit
           output_url_as_text: 0
           absolute: 0
-          form_mode: audit.auditor
       filters:
         status:
           id: status
