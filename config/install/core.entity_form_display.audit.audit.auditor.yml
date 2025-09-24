@@ -88,13 +88,6 @@ content:
       show_description: false
       error_validation: false
     third_party_settings: {  }
-  status:
-    type: boolean_checkbox
-    weight: 6
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
   teachers_standards:
     weight: 8
     region: content
@@ -122,4 +115,5 @@ content:
 hidden:
   changed: true
   created: true
+  status: true
   uid: true
