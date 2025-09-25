@@ -19,10 +19,21 @@ class AuditSchoolService {
     // Only auditors have profiles atm.
     if (in_array('auditor', $current_user_roles)) {
 
-      /** @var \Drupal\profile\entity\Profile */ // ????
+      /** @var \Drupal\profile\entity\Profile */
       $auditor_profile = \Drupal::entityTypeManager()
         ->getStorage('profile')
         ->loadByUser($current_user, 'auditor');
+
+      // Return the working school ID from the profile.
+      return $auditor_profile->get('ascend_p_school')->target_id;
+    }
+
+    if (in_array('adviser', $current_user_roles)) {
+
+      /** @var \Drupal\profile\entity\Profile */
+      $auditor_profile = \Drupal::entityTypeManager()
+        ->getStorage('profile')
+        ->loadByUser($current_user, 'adviser');
 
       // Return the working school ID from the profile.
       return $auditor_profile->get('ascend_p_school')->target_id;
