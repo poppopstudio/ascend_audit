@@ -11,32 +11,22 @@ class AuditSchoolService {
     $current_user = \Drupal::currentUser();
     $current_user_roles = array_values($current_user->getRoles(TRUE));
 
-    /**
-     * If we need to have profiles for non-auditor users, here is currently
-     * the best place to put checks for that.
-     */
+    // Define the roles that have profile-based school assignments.
+    $profile_roles = ['auditor', 'adviser'];
 
-    // Only auditors have profiles atm.
-    if (in_array('auditor', $current_user_roles)) {
+    // If any profile role is present, return a working school ID.
+    foreach ($profile_roles as $role) {
+      if (in_array($role, $current_user_roles)) {
+        /** @var \Drupal\profile\entity\Profile */
+        $profile = \Drupal::entityTypeManager()
+          ->getStorage('profile')
+          ->loadByUser($current_user, $role);
 
-      /** @var \Drupal\profile\entity\Profile */
-      $auditor_profile = \Drupal::entityTypeManager()
-        ->getStorage('profile')
-        ->loadByUser($current_user, 'auditor');
-
-      // Return the working school ID from the profile.
-      return $auditor_profile->get('ascend_p_school')->target_id;
-    }
-
-    if (in_array('adviser', $current_user_roles)) {
-
-      /** @var \Drupal\profile\entity\Profile */
-      $auditor_profile = \Drupal::entityTypeManager()
-        ->getStorage('profile')
-        ->loadByUser($current_user, 'adviser');
-
-      // Return the working school ID from the profile.
-      return $auditor_profile->get('ascend_p_school')->target_id;
+        if ($profile && !$profile->get('ascend_p_school')->isEmpty()) {
+          return $profile->get('ascend_p_school')->target_id;
+        }
+        // Probably need error handling here?
+      }
     }
 
     return;
