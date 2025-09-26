@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: ap_comment
+label: 'AP comment'
+target_entity_type_id: ap
+description: 'Comment type for action plans.'
