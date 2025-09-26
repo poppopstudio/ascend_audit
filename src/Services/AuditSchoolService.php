@@ -15,18 +15,25 @@ class AuditSchoolService {
     $profile_roles = ['auditor', 'adviser'];
 
     // If any profile role is present, return a working school ID.
-    foreach ($profile_roles as $role) {
-      if (in_array($role, $current_user_roles)) {
-        /** @var \Drupal\profile\entity\Profile */
-        $profile = \Drupal::entityTypeManager()
-          ->getStorage('profile')
-          ->loadByUser($current_user, $role);
 
-        if ($profile && !$profile->get('ascend_p_school')->isEmpty()) {
-          return $profile->get('ascend_p_school')->target_id;
-        }
-        // Probably need error handling here?
+    // Get roles the user actually has from our target roles.
+    $matching_roles = array_intersect($profile_roles, $current_user_roles);
+    if (empty($matching_roles)) {
+      return null;
+    }
+
+    // Process matching roles (maintains priority order from $profile_roles).
+    foreach ($matching_roles as $role) {
+
+      /** @var \Drupal\profile\entity\Profile */
+      $profile = \Drupal::entityTypeManager()
+        ->getStorage('profile')
+        ->loadByUser($current_user, $role);
+
+      if ($profile && !$profile->get('ascend_p_school')->isEmpty()) {
+        return $profile->get('ascend_p_school')->target_id;
       }
+      // Probably need error handling here?
     }
 
     return;
