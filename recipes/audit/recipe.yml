@@ -25,8 +25,6 @@ config:
       simpleConfigUpdate:
         local_tasks.audit:
           position: primary
-        local_tasks.ap:
-          position: primary
     core.entity_form_display.taxonomy_term.category.default:
       setComponent:
         name: ascend_standards
