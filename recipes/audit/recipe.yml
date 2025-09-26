@@ -4,12 +4,15 @@ type: 'Content type'
 recipes:
   # Can't depend on other recipes outside of this dir or core!
 install:
+  - comment
+  - comment_notify
   - config_pages
   - profile
   - views_argument_token
   - views_relationship_condition
   - fmm_views_edit_link
   - ascend_audit
+  - ascend_ap
 config:
   strict: true
   import:
@@ -18,6 +21,8 @@ config:
     form_mode_manager.links:
       simpleConfigUpdate:
         local_tasks.audit:
+          position: primary
+        local_tasks.ap:
           position: primary
     core.entity_form_display.taxonomy_term.category.default:
       setComponent:
