@@ -19,6 +19,7 @@ install:
 config:
   strict: true
   import:
+    ascend_school: '*'
     ascend_audit: '*'
   actions:
     form_mode_manager.links:
