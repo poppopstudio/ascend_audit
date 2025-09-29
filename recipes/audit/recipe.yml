@@ -4,7 +4,9 @@ type: 'Content type'
 recipes:
   # Can't depend on other recipes outside of this dir or core!
 install:
+  - ascend_school
   - ascend_audit
+  # - ascend_ap
   # Comment modules are installed here BUT NOT used/config'd until audit_ap.
   # Means we can centralise our contrib modules in this ascend_audit repo.
   - comment
@@ -14,8 +16,6 @@ install:
   - views_argument_token
   - views_relationship_condition
   - fmm_views_edit_link
-  # - ascend_school
-  # - ascend_ap
 config:
   strict: true
   import:
