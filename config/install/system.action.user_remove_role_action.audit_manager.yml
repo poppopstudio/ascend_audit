@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.audit_manager
+  module:
+    - user
+id: user_remove_role_action.audit_manager
+label: 'Remove the Audit manager role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: audit_manager

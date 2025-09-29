@@ -48,10 +48,13 @@ config_devel:
   - field.storage.profile.ascend_p_school
   - field.storage.taxonomy_term.ascend_standards
   - profile.type.auditor
+  - system.action.user_add_role_action.audit_manager
   - system.action.user_add_role_action.auditor
+  - system.action.user_remove_role_action.audit_manager
   - system.action.user_remove_role_action.auditor
   - taxonomy.vocabulary.standards
   - taxonomy.vocabulary.rating
+  - user.role.audit_manager
   - user.role.auditor
   - views.view.audit_by_category
   - views.view.audit_focus_areas

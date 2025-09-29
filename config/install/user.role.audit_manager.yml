@@ -1,0 +1,50 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - ascend_ap
+    - ascend_audit
+    - ascend_school
+    - comment
+    - contextual
+    - form_mode_manager
+    - profile
+    - system
+    - toolbar
+id: audit_manager
+label: 'Audit manager'
+weight: 9
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access ap overview'
+  - 'access audit overview'
+  - 'access comments'
+  - 'access contextual links'
+  - 'access school overview'
+  - 'access toolbar'
+  - 'create ap'
+  - 'create audit'
+  - 'create school'
+  - 'delete any ap'
+  - 'delete any audit'
+  - 'delete own ap'
+  - 'delete own audit'
+  - 'update any ap'
+  - 'update any audit'
+  - 'update any school'
+  - 'update own ap'
+  - 'update own audit'
+  - 'update own school'
+  - 'use ap.default form mode'
+  - 'use audit.default form mode'
+  - 'view any profile'
+  - 'view ap'
+  - 'view audit'
+  - 'view own ap'
+  - 'view own audit'
+  - 'view own unpublished ap'
+  - 'view own unpublished audit'
+  - 'view own unpublished school'
+  - 'view school'
+  - 'view the administration theme'
