@@ -21,10 +21,13 @@ config:
   import:
     ascend_school: '*'
     ascend_audit: '*'
+    ascend_ap: '*'
   actions:
     form_mode_manager.links:
       simpleConfigUpdate:
         local_tasks.audit:
+          position: primary
+        local_tasks.ap:
           position: primary
     core.entity_form_display.taxonomy_term.category.default:
       setComponent:
@@ -45,3 +48,6 @@ config:
     user.role.user_manager:
       grantPermissions:
         - 'assign auditor role'
+        - 'assign adviser role'
+        - 'assign audit_manager role'
+        - 'assign site_manager role'
