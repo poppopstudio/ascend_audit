@@ -2,12 +2,10 @@
 
 namespace Drupal\ascend_audit\Hook;
 
-use Drupal\ascend_audit\Services\AuditYearService;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Hook\Attribute\Hook;
-use Drupal\Core\Render\BubbleableMetadata;
-use Drupal\Core\Session\AccountInterface;
+use Drupal\user\UserInterface;
 
 /**
  * Contains hook implementations for the Ascend audit module.
@@ -26,7 +24,7 @@ class AuditHooks {
    * Implements hook_entity_type_alter().
    */
   #[Hook('entity_type_alter')]
-  public function userAlter(array &$entity_types) {
+  public function entityTypeAlter(array &$entity_types) {
     if (isset($entity_types['user'])) {
       $entity_types['user']->addConstraint('AuditRoleConflict');
     }
@@ -52,6 +50,7 @@ class AuditHooks {
     }
   }
 
+  // Update ap/audit forms' category field settings to correct term id.
   protected function setFocusAreas(EntityInterface $entity) {
     // Get the ID of the term as set in the config_pages.
     $term_id = (int) $entity->ascend_focus_parent->first()->getValue()['target_id'];
@@ -79,6 +78,77 @@ class AuditHooks {
       }
     }
   }
+
+  /**
+   * Implements hook_user_update().
+   */
+  #[Hook('user_update')]
+  function userUpdate(UserInterface $account) {
+
+    $current_user = \Drupal::currentUser();
+
+    // Only issue these role updates if current user has user admin perms.
+    if (!$current_user->hasPermission('administer users')) {
+      return;
+    }
+
+    $original = $account->original ?? NULL;
+
+    if (!$original) {
+      return;
+    }
+
+    // Get current and original roles (excl. anon/auth).
+    $current_roles = $account->getRoles(TRUE);
+    $original_roles = $original->getRoles(TRUE);
+
+    // Find newly added roles.
+    $new_roles = array_diff($current_roles, $original_roles);
+
+    if (empty($new_roles)) {
+      return;
+    }
+
+    // Define additional roles for primary roles.
+    $role_mappings = [
+      'site_manager' => ['content_editor', 'user_manager', 'resource_manager'], // audit_manager
+      'adviser' => ['resource_manager'],
+    ];
+
+    $roles_to_add = [];
+
+    foreach ($new_roles as $new_role) {
+      if (isset($role_mappings[$new_role])) {
+        foreach ($role_mappings[$new_role] as $additional_role) {
+          if (!$account->hasRole($additional_role)) {
+            $roles_to_add[] = $additional_role;
+          }
+        }
+      }
+    }
+
+    // Add additional roles if any were found.
+    if (!empty($roles_to_add)) {
+      foreach ($roles_to_add as $role) {
+        $account->addRole($role);
+      }
+
+      $account->save();
+
+      \Drupal::logger('ascend_audit')->info('Additional roles assigned to @user after @primary assignment: @additional', [
+        '@user' => $account->getDisplayName(),
+        '@primary' => implode(', ', $new_roles),
+        '@additional' => implode(', ', $roles_to_add),
+      ]);
+
+      \Drupal::messenger()->addMessage(t('Additional roles assigned to @user after @primary assignment: @additional', [
+        '@user' => $account->getDisplayName(),
+        '@primary' => implode(', ', $new_roles),
+        '@additional' => implode(', ', $roles_to_add),
+      ]));
+    }
+  }
+
 
   /**
    * Implements hook_token_info().
