@@ -50,4 +50,3 @@ config:
         - 'assign auditor role'
         - 'assign adviser role'
         - 'assign audit_manager role'
-        - 'assign site_manager role'
