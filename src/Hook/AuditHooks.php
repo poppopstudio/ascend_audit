@@ -111,7 +111,7 @@ class AuditHooks {
 
     // Define additional roles for primary roles.
     $role_mappings = [
-      'site_manager' => ['content_editor', 'user_manager', 'resource_manager'], // audit_manager
+      'site_manager' => ['content_editor', 'user_manager', 'resource_manager', 'audit_manager'],
       'adviser' => ['resource_manager'],
     ];
 
