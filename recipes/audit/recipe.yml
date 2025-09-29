@@ -41,3 +41,6 @@ config:
             required_depth: 0
             none_label: '- Please select -'
           third_party_settings: {  }
+    user.role.user_manager:
+      grantPermissions:
+        - 'assign auditor role'
