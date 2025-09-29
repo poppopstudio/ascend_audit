@@ -6,7 +6,7 @@ recipes:
 install:
   - ascend_school
   - ascend_audit
-  # - ascend_ap
+  - ascend_ap
   # Comment modules are installed here BUT NOT used/config'd until audit_ap.
   # Means we can centralise our contrib modules in this ascend_audit repo.
   - comment
