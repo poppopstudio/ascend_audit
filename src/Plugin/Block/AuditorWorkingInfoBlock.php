@@ -69,11 +69,6 @@ class AuditorWorkingInfoBlock extends BlockBase implements ContainerFactoryPlugi
    * {@inheritdoc}
    */
   public function build() {
-    // Check if user is an auditor
-    // if (!in_array('auditor', $this->currentUser->getRoles())) {
-    //   return []; // Don't show block for non-auditors
-    // }
-
     $username = $this->currentUser->getDisplayName();
     $school = $this->auditSchoolService->getWorkingSchoolName();
     $year = $this->auditYearService->getFormattedWorkingYear();
