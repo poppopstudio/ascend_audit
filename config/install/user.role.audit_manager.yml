@@ -6,6 +6,7 @@ dependencies:
     - ascend_audit
     - ascend_school
     - comment
+    - comment_notify
     - contextual
     - form_mode_manager
     - profile
@@ -30,6 +31,7 @@ permissions:
   - 'delete any audit'
   - 'delete own ap'
   - 'delete own audit'
+  - 'subscribe to comments'
   - 'update any ap'
   - 'update any audit'
   - 'update any school'
