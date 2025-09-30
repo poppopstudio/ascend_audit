@@ -22,7 +22,7 @@ visibility:
   request_path:
     id: request_path
     negate: false
-    pages: '/audit/*'
+    pages: "/audit/*\r\n/ap/*"
   user_role:
     id: user_role
     negate: false
@@ -30,3 +30,4 @@ visibility:
       user: '@user.current_user_context:current_user'
     roles:
       auditor: auditor
+      adviser: adviser
