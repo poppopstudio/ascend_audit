@@ -13,7 +13,7 @@ dependencies:
     - toolbar
 id: auditor
 label: Auditor
-weight: 6
+weight: 8
 is_admin: null
 permissions:
   - 'access administration pages'
