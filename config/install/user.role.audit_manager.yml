@@ -24,6 +24,7 @@ permissions:
   - 'access contextual links'
   - 'access school overview'
   - 'access toolbar'
+  - 'administer comments'
   - 'create ap'
   - 'create audit'
   - 'create school'
