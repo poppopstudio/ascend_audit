@@ -141,7 +141,7 @@ class AuditHooks {
         '@additional' => implode(', ', $roles_to_add),
       ]);
 
-      \Drupal::messenger()->addMessage(t('Additional role(s) assigned to @user after @primary assignment: @additional', [
+      \Drupal::messenger()->addMessage(t('Additional role(s) assigned to @user after @primary assignment: <strong>@additional</strong>', [
         '@user' => $account->getDisplayName(),
         '@primary' => implode(', ', $new_roles),
         '@additional' => implode(', ', $roles_to_add),
