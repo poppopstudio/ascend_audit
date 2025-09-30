@@ -20,6 +20,7 @@ class AuditHooks {
     return;
   }
 
+
   /**
    * Implements hook_entity_type_alter().
    */
@@ -29,6 +30,7 @@ class AuditHooks {
       $entity_types['user']->addConstraint('AuditRoleConflict');
     }
   }
+
 
   /**
    * Implements hook_ENTITY_TYPE_insert().
@@ -52,6 +54,7 @@ class AuditHooks {
 
   // Update ap/audit forms' category field settings to correct term id.
   protected function setFocusAreas(EntityInterface $entity) {
+    
     // Get the ID of the term as set in the config_pages.
     $term_id = (int) $entity->ascend_focus_parent->first()->getValue()['target_id'];
 
@@ -79,18 +82,20 @@ class AuditHooks {
     }
   }
 
+
+  /**
+   * Implements hook_user_insert().
+   */
+  #[Hook('user_insert')]
+  public function userInsert(UserInterface $account) {
+    $this->assignRoles($account, $account->getRoles(TRUE), TRUE);
+  }
+
   /**
    * Implements hook_user_update().
    */
   #[Hook('user_update')]
-  function userUpdate(UserInterface $account) {
-
-    $current_user = \Drupal::currentUser();
-
-    // Only issue these role updates if current user has user admin perms.
-    if (!$current_user->hasPermission('administer users')) {
-      return;
-    }
+  public function userUpdate(UserInterface $account) {
 
     $original = $account->original ?? NULL;
 
@@ -109,17 +114,32 @@ class AuditHooks {
       return;
     }
 
+    $this->assignRoles($account, $new_roles, FALSE);
+  }
+
+  /**
+   * Helper function to assign additional roles.
+   */
+  protected function assignRoles(UserInterface $account, array $trigger_roles, $is_new_user = FALSE) {
+
+    $current_user = \Drupal::currentUser();
+
+    // Only issue these role updates if current user has user admin perms.
+    if (!$current_user->hasPermission('administer users')) {
+      return;
+    }
+
     // Define additional roles for primary roles.
     $role_mappings = [
-      'site_manager' => ['content_editor', 'user_manager', 'resource_manager', 'audit_manager'],
       'adviser' => ['resource_manager'],
+      'site_manager' => ['content_editor', 'user_manager', 'resource_manager', 'audit_manager'],
     ];
 
     $roles_to_add = [];
 
-    foreach ($new_roles as $new_role) {
-      if (isset($role_mappings[$new_role])) {
-        foreach ($role_mappings[$new_role] as $additional_role) {
+    foreach ($trigger_roles as $role) {
+      if (isset($role_mappings[$role])) {
+        foreach ($role_mappings[$role] as $additional_role) {
           if (!$account->hasRole($additional_role)) {
             $roles_to_add[] = $additional_role;
           }
@@ -135,17 +155,19 @@ class AuditHooks {
 
       $account->save();
 
-      \Drupal::logger('ascend_audit')->info('Additional role(s) assigned to @user after @primary assignment: @additional', [
+      $message_vars = [
         '@user' => $account->getDisplayName(),
-        '@primary' => implode(', ', $new_roles),
         '@additional' => implode(', ', $roles_to_add),
-      ]);
+      ];
 
-      \Drupal::messenger()->addMessage(t('Additional role(s) assigned to @user after @primary assignment: <strong>@additional</strong>', [
-        '@user' => $account->getDisplayName(),
-        '@primary' => implode(', ', $new_roles),
-        '@additional' => implode(', ', $roles_to_add),
-      ]));
+      if ($is_new_user) {
+        \Drupal::logger('ascend_audit')->info('Additional role(s) assigned to new user @user: @additional', $message_vars);
+        \Drupal::messenger()->addMessage(t('Additional role(s) assigned to @user: @additional', $message_vars));
+      } else {
+        $message_vars['@primary'] = implode(', ', $trigger_roles);
+        \Drupal::logger('ascend_audit')->info('Additional role(s) assigned to @user after @primary assignment: @additional', $message_vars);
+        \Drupal::messenger()->addMessage(t('Additional role(s) assigned to @user after @primary assignment: <strong>@additional</strong>', $message_vars));
+      }
     }
   }
 

@@ -38,6 +38,16 @@ function ascend_audit_user_update(UserInterface $account) {
  * @todo Remove this method when support for Drupal core < 11.1 is dropped.
  */
 #[LegacyHook]
+function ascend_audit_user_insert(UserInterface $account) {
+  \Drupal::service(AuditHooks::class)->userInsert($account);
+}
+
+/**
+ * Legacy hook implementation.
+ *
+ * @todo Remove this method when support for Drupal core < 11.1 is dropped.
+ */
+#[LegacyHook]
 function ascend_audit_config_pages_insert(EntityInterface $entity) {
   \Drupal::service(AuditHooks::class)->configPagesInsert($entity);
 }
