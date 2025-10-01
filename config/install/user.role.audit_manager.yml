@@ -1,6 +1,9 @@
 langcode: en
 status: true
 dependencies:
+  config:
+    - user.role.adviser
+    - user.role.auditor
   module:
     - ascend_ap
     - ascend_audit
@@ -9,9 +12,10 @@ dependencies:
     - comment_notify
     - contextual
     - form_mode_manager
+    - masquerade
+    - node
     - profile
     - system
-    - toolbar
 id: audit_manager
 label: 'Audit manager'
 weight: 7
@@ -21,9 +25,9 @@ permissions:
   - 'access ap overview'
   - 'access audit overview'
   - 'access comments'
+  - 'access content overview'
   - 'access contextual links'
   - 'access school overview'
-  - 'access toolbar'
   - 'administer comments'
   - 'create ap'
   - 'create audit'
@@ -32,6 +36,8 @@ permissions:
   - 'delete any audit'
   - 'delete own ap'
   - 'delete own audit'
+  - 'masquerade as adviser'
+  - 'masquerade as auditor'
   - 'subscribe to comments'
   - 'update any ap'
   - 'update any audit'

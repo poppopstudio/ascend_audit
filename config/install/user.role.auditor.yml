@@ -10,7 +10,6 @@ dependencies:
     - form_mode_manager
     - profile
     - system
-    - toolbar
 id: auditor
 label: Auditor
 weight: 8
@@ -18,7 +17,6 @@ is_admin: null
 permissions:
   - 'access administration pages'
   - 'access comments'
-  - 'access toolbar'
   - 'create ap'
   - 'create audit'
   - 'create auditor profile'
