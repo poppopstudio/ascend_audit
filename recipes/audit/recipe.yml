@@ -7,7 +7,7 @@ install:
   - ascend_school
   - ascend_audit
   - ascend_ap
-  # Comment modules are installed here BUT NOT used/config'd until audit_ap.
+  # Comment modules are installed here BUT config'd in audit_ap.
   # Means we can centralise our contrib modules in this ascend_audit repo.
   - comment
   - comment_notify
@@ -50,3 +50,14 @@ config:
         - 'assign auditor role'
         - 'assign adviser role'
         - 'assign audit_manager role'
+        - 'access profile overview'
+        - 'access user profiles'
+        - 'view user email addresses'
+    user.role.site_manager:
+      grantPermissions:
+        - 'create terms in cluster'
+        - 'create terms in rating'
+        - 'create terms in standards'
+        - 'edit terms in cluster'
+        - 'edit terms in rating'
+        - 'edit terms in standards'

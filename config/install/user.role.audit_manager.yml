@@ -28,6 +28,7 @@ permissions:
   - 'access content overview'
   - 'access contextual links'
   - 'access school overview'
+  - 'access user profiles'
   - 'administer comments'
   - 'create ap'
   - 'create audit'
