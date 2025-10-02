@@ -66,36 +66,6 @@ class AuditForm extends ContentEntityForm {
       return $form;
     }
 
-    // Add the related TStandards view into the sidebar.
-    $form['audit_standards'] = [
-      '#type' => 'details',
-      '#group' => 'advanced',
-      '#weight' => -20,
-      '#title' => $this->t("Teachers' Standards"),
-      '#open' => TRUE,
-    ];
-    $form['audit_standards']['details'] = [
-      '#type' => 'container',
-      'view' => views_embed_view('audit_standards', 'embed_1', $details_category),
-      '#wrapper_attributes' => ['class' => ['entity-meta__title']], // Stolen but just works.
-    ];
-
-
-    // Add the historic audits view into the sidebar.
-    $form['audit_historic'] = [
-      '#type' => 'details',
-      '#group' => 'advanced',
-      '#weight' => -5,
-      '#title' => $this->t("Historic audits"),
-      '#open' => FALSE,
-    ];
-    $form['audit_historic']['details'] = [
-      '#type' => 'container',
-      'view' => views_embed_view('audit_historic', 'embed_1', $details_category),
-      '#wrapper_attributes' => ['class' => ['entity-meta__title']],
-    ];
-
-
     // Check the resource kit is installed - does this need DI?
     if (\Drupal::service('module_handler')->moduleExists('ascend_resource')) {
 
@@ -124,7 +94,7 @@ class AuditForm extends ContentEntityForm {
       $form['audit_resources'] = [
         '#type' => 'details',
         '#group' => 'advanced',
-        '#weight' => -10,
+        '#weight' => -5,
         '#title' => $this->t("Related resources"),
         '#open' => TRUE,
       ];
@@ -134,6 +104,36 @@ class AuditForm extends ContentEntityForm {
         '#wrapper_attributes' => ['class' => ['entity-meta__title']],
       ];
     }
+
+
+    // Add the related TStandards view into the sidebar.
+    $form['audit_standards'] = [
+      '#type' => 'details',
+      '#group' => 'advanced',
+      '#weight' => -10,
+      '#title' => $this->t("Teachers' Standards"),
+      '#open' => TRUE,
+    ];
+    $form['audit_standards']['details'] = [
+      '#type' => 'container',
+      'view' => views_embed_view('audit_standards', 'embed_1', $details_category),
+      '#wrapper_attributes' => ['class' => ['entity-meta__title']], // Stolen but just works.
+    ];
+
+
+    // Add the historic audits view into the sidebar.
+    $form['audit_historic'] = [
+      '#type' => 'details',
+      '#group' => 'advanced',
+      '#weight' => -5,
+      '#title' => $this->t("Historic audits"),
+      '#open' => FALSE,
+    ];
+    $form['audit_historic']['details'] = [
+      '#type' => 'container',
+      'view' => views_embed_view('audit_historic', 'embed_1', $details_category),
+      '#wrapper_attributes' => ['class' => ['entity-meta__title']],
+    ];
 
     return $form;
   }
