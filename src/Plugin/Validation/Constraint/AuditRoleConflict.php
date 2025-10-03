@@ -21,5 +21,6 @@ class AuditRoleConflict extends Constraint {
    */
   public $auditor_adviser_conflict = 'A user cannot have both Auditor and Adviser roles assigned simultaneously.';
   public $audit_manager_adviser_conflict = 'A user cannot have both Audit manager and Adviser roles assigned simultaneously.';
+  public $audit_manager_auditor_conflict = 'A user cannot have both Audit manager and Auditor roles assigned simultaneously.';
 
 }
