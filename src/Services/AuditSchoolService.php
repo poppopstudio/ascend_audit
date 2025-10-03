@@ -33,7 +33,7 @@ class AuditSchoolService {
       if ($profile && !$profile->get('ascend_p_school')->isEmpty()) {
         return $profile->get('ascend_p_school')->target_id;
       }
-      // Probably need error handling here?
+      // Possibly need some error handling here?
     }
 
     return;

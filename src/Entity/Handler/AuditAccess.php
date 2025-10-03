@@ -36,8 +36,6 @@ class AuditAccess extends EntityAccessControlHandler {
             // may need to change if a school is saved?
         }
 
-        // Add a developer note for these overloaded perms.
-
         // For view operation, check "view own" permission.
         if ($operation === 'view' && $account->hasPermission('view own audit')) {
           return AccessResult::allowed()
