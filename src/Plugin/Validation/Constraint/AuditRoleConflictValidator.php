@@ -26,8 +26,15 @@ class AuditRoleConflictValidator extends ConstraintValidator {
     $roles = $entity->getRoles();
 
     // Check for conflicting roles.
+
+    // Auditor/adviser cannot co-exist, privacy issue.
     if (in_array('auditor', $roles) && in_array('adviser', $roles)) {
-      $this->context->addViolation($constraint->message);
+      $this->context->addViolation($constraint->auditor_adviser_conflict);
+    }
+
+    // Audit manager/adviser cannot co-exist, privacy issue.
+    if (in_array('audit_manager', $roles) && in_array('adviser', $roles)) {
+      $this->context->addViolation($constraint->audit_manager_adviser_conflict);
     }
   }
 
