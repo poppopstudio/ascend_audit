@@ -58,7 +58,7 @@ class AuditSchoolService {
     // Given we can get the ID from the other service function...
     $school_id = $this->getWorkingSchool();
 
-    if (!isset($school_id)) {
+    if (!isset($school_id) || !is_integer($school_id)) {
       return;
     }
 
@@ -70,7 +70,7 @@ class AuditSchoolService {
     if (!isset($school_entity)) {
       return;
     }
-    
+
     return $school_entity->label();
   }
 }
