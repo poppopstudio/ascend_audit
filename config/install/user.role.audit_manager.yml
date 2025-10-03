@@ -4,6 +4,7 @@ dependencies:
   config:
     - user.role.adviser
     - user.role.auditor
+    - user.role.authenticated
   module:
     - ascend_ap
     - ascend_audit
@@ -37,9 +38,9 @@ permissions:
   - 'delete any audit'
   - 'delete own ap'
   - 'delete own audit'
-  - 'masquerade as authenticated'
   - 'masquerade as adviser'
   - 'masquerade as auditor'
+  - 'masquerade as authenticated'
   - 'subscribe to comments'
   - 'update any ap'
   - 'update any audit'
