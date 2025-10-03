@@ -19,7 +19,11 @@ class AuditSchoolService {
     // Get roles the user actually has from our target roles.
     $matching_roles = array_intersect($profile_roles, $current_user_roles);
     if (empty($matching_roles)) {
-      return null;
+      /**
+       * Could do something a bit more impactful but user shouldn't have perms
+       * to access anything that requires the value?
+      */
+      return null; // 1??
     }
 
     // Process matching roles (maintains priority order from $profile_roles).
@@ -33,7 +37,18 @@ class AuditSchoolService {
       if ($profile && !$profile->get('ascend_p_school')->isEmpty()) {
         return $profile->get('ascend_p_school')->target_id;
       }
-      // Possibly need some error handling here?
+
+      // At this point, user does not have a saved profile entry.
+      $message_vars = [
+        '@user' => $current_user->getDisplayName(),
+        // '@additional' => implode(', ', $roles_to_add),
+      ];
+
+      \Drupal::logger('ascend_audit')->warning('User @user does not have a working school assigned in their profile', $message_vars);
+      \Drupal::messenger()->addWarning(t('Please set a working school in your profile', $message_vars));
+
+      // Return at least a token value in order to not break things.
+      return 1; // Will be the ID of the first available school.
     }
 
     return;
