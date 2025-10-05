@@ -317,21 +317,6 @@ display:
         options: {  }
       empty: {  }
       sorts:
-        name:
-          id: name
-          table: taxonomy_term_field_data
-          field: name
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: taxonomy_term
-          entity_field: name
-          plugin_id: standard
-          order: ASC
-          expose:
-            label: ''
-            field_identifier: ''
-          exposed: false
         weight:
           id: weight
           table: taxonomy_term_field_data
@@ -595,7 +580,7 @@ display:
           entity_type: taxonomy_term
           entity_field: name
           plugin_id: term_name
-          label: Shortcode
+          label: 'Short code'
           exclude: false
           alter:
             alter_text: false
@@ -981,7 +966,7 @@ display:
           entity_type: taxonomy_term
           entity_field: name
           plugin_id: term_name
-          label: Shortcode
+          label: 'Short code'
           exclude: false
           alter:
             alter_text: false
