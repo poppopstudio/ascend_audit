@@ -19,7 +19,7 @@ dependencies:
     - system
 id: audit_manager
 label: 'Audit manager'
-weight: 7
+weight: 8
 is_admin: null
 permissions:
   - 'access administration pages'
