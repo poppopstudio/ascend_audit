@@ -17,10 +17,6 @@ class AuditViewsData extends EntityViewsData {
 
     // Add the filter for "Audit has category".
     // $data[BASE TABLE of field][TERM FIELD column id]
-    $data['audit']['category']['group'] = $this->t('Audit item');
-    $data['audit']['category']['title'] = $this->t('Audit item has category');
-    $data['audit']['category']['help'] = $this->t('Audit has the selected category terms.');
-
     $data['audit']['category']['filter'] = [
       'title' => $this->t('Audit item has category'),
       'id' => 'taxonomy_index_tid',
@@ -31,7 +27,7 @@ class AuditViewsData extends EntityViewsData {
 
     // Add the relationship for "Audit has category".
     $data['audit']['category']['relationship'] = [
-      'title' => $this->t('Audit item has category'), // is this right??
+      'title' => $this->t('Audit item has category'),
       'help' => $this->t('Category referenced by audit item.'),
       'id' => 'standard',
       'base' => 'taxonomy_term_field_data',
