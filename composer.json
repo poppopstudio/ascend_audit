@@ -20,6 +20,7 @@
         "drupal/cshs": "^4.0",
         "drupal/entity": "^1.6",
         "drupal/entity_admin_handlers": "^1.0@beta",
+        "drupal/entity_print": "^2.18",
         "drupal/epp": "^1.7",
         "drupal/field_group": "^4.0",
         "drupal/field_group_table": "^1.1",
