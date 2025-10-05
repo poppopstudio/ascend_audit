@@ -39,7 +39,7 @@ class AuditSchoolService {
       }
     }
 
-    // At this point, user does not have a saved profile entry.
+    // At this point, assume user does not have a saved profile entry.
     $message_vars = [
       '@user' => $current_user->getDisplayName(),
     ];
@@ -58,14 +58,14 @@ class AuditSchoolService {
     // Given we can get the ID from the other service function...
     $school_id = $this->getWorkingSchool();
 
-    if (!isset($school_id) || !is_integer($school_id)) {
+    if (!isset($school_id)) {
       return;
     }
 
     // We can get the school name from here.
     $school_entity = \Drupal::entityTypeManager()
       ->getStorage('school')
-      ->load($school_id);
+      ->load((int) $school_id);
 
     if (!isset($school_entity)) {
       return;
