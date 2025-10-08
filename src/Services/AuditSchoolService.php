@@ -5,6 +5,12 @@ namespace Drupal\ascend_audit\Services;
 class AuditSchoolService {
 
   /**
+   * Given this is passed to a view argument, we want a non-error-inducing value
+   * that is not misleading but doesn't cause views to collapse.
+   */
+  const DUMMYSCHOOLID = 0;
+
+  /**
    * Get working school in entity ID format.
    */
   public function getWorkingSchool() {
@@ -23,7 +29,7 @@ class AuditSchoolService {
        * Could do something a bit more impactful but user shouldn't have perms
        * to access anything that requires the value?
        */
-      return 1; // was null but...
+      return self::DUMMYSCHOOLID;
     }
 
     // Process matching roles (maintains priority order from $profile_roles).
@@ -48,7 +54,7 @@ class AuditSchoolService {
     \Drupal::messenger()->addWarning(t('Please set a working school in your profile to continue.', $message_vars));
 
     // Return at least a token value in order to not break things.
-    return 1; // Will be the ID of the first available school.
+    return self::DUMMYSCHOOLID;
   }
 
   /**
