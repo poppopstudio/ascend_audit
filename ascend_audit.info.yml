@@ -5,8 +5,12 @@ description: 'Ascend audit main module'
 core_version_requirement: ^10 || ^11
 dependencies:
   - config_pages:config_pages
+  - configurable_views_filter_block:configurable_views_filter_block
+  - content_lock:content_lock
   - cshs:cshs
+  - diff:diff
   - entity:entity
+  - entity_print:entity_print
   - entity_admin_handlers:entity_admin_handlers
   - epp:epp
   - field_group:field_group
@@ -14,10 +18,13 @@ dependencies:
   - fmm_views_edit_link:fmm_views_edit_link
   - profile:profile
   - readonly_field_widget:readonly_field_widget
+  - role_delegation:role_delegation
   - simple_taxonomy_menu:simple_taxonomy_menu
   - taxonomy:taxonomy
+  - token:token
   - views:views
   - views_add_button:views_add_button
+  - views_argument_token:views_argument_token
   - views_relationship_condition:views_relationship_condition
 
 config_devel:
