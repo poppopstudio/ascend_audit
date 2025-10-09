@@ -31,6 +31,23 @@ config:
           position: primary
         local_tasks.ap:
           position: primary
+    content_lock.settings:
+      simpleConfigUpdate:
+        types.ap:
+          '*': '*'
+        types.audit:
+          '*': '*'
+        types.school:
+          '*': '*'
+        form_op_lock.ap:
+          mode: 0
+          values: {  }
+        form_op_lock.audit:
+          mode: 0
+          values: {  }
+        form_op_lock.school:
+          mode: 0
+          values: {  }
     core.entity_form_display.taxonomy_term.category.default:
       setComponent:
         name: ascend_standards
