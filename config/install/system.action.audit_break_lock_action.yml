@@ -1,0 +1,11 @@
+uuid: 2145aa46-7995-47ff-b73e-5f24093d8c7e
+langcode: en
+status: true
+dependencies:
+  module:
+    - content_lock
+id: audit_break_lock_action
+label: 'Break lock audit'
+type: audit
+plugin: 'entity:break_lock:audit'
+configuration: {  }

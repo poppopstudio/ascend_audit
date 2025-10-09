@@ -1,0 +1,11 @@
+uuid: d395e366-22be-4816-b66a-66f8dbdfaafe
+langcode: en
+status: true
+dependencies:
+  module:
+    - content_lock
+id: ap_break_lock_action
+label: 'Break lock ap'
+type: ap
+plugin: 'entity:break_lock:ap'
+configuration: {  }

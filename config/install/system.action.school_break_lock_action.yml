@@ -1,0 +1,11 @@
+uuid: 087b2eb2-82a9-4cab-adc5-6f5fa1b8c02b
+langcode: en
+status: true
+dependencies:
+  module:
+    - content_lock
+id: school_break_lock_action
+label: 'Break lock school'
+type: school
+plugin: 'entity:break_lock:school'
+configuration: {  }
