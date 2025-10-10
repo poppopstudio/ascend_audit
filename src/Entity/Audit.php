@@ -92,6 +92,14 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
     $fields = parent::baseFieldDefinitions($entity_type);
     $fields += static::ownerBaseFieldDefinitions($entity_type);
 
+    // Can't use this to set label because values don't exist.
+    // $fields['title'] = BaseFieldDefinition::create('string')
+    //   ->setLabel(t("Audit reference"))
+    //   ->setSetting('max_length', 50)
+    //   ->setDisplayOptions('view', ['label' => 'hidden', 'type' => 'string', 'weight' => -5])
+    //   ->setDefaultValueCallback('Drupal\ascend_audit\Entity\Audit::label')
+
+
     $fields['uid']
       ->setLabel(t('Authored by'))
       ->setDescription(t('The username of the content author.'))

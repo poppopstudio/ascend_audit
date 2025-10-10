@@ -15,6 +15,15 @@ class AuditViewsData extends EntityViewsData {
     // https://www.drupal8.ovh/en/tutoriels/245/custom-views-data-handler-for-a-custom-entity-on-drupal-8
     $data = parent::getViewsData();
 
+    // Fetch a computed value for the title/label/whatever.
+    $data['audit']['computed_label'] = [
+      'title' => $this->t('Audit Label'),
+      'help' => $this->t('The computed label (ai:sX.cX.yX)'),
+      'field' => [
+        'id' => 'audit_computed_label',
+      ],
+    ];
+
     // Add the filter for "Audit has category".
     // $data[BASE TABLE of field][TERM FIELD column id]
     $data['audit']['category']['filter'] = [
