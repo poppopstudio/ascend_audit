@@ -64,7 +64,7 @@ content:
     settings:
       save_lineage: false
       force_deepest: false
-      parent: '67'
+      parent: '0'
       level_labels: 'Focus area, Factor'
       hierarchy_depth: 2
       required_depth: 2

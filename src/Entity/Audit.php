@@ -172,7 +172,7 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
         'type' => 'cshs',
         'weight' => -10,
         'settings' => [
-          'parent' => 0, // Gets set to the top level of focus areas.
+          'parent' => 0,
           'hierarchy_depth' => 2,
           'required_depth' => 2,
           'save_lineage' => FALSE,
@@ -185,7 +185,6 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
         'label' => 'inline',
         'weight' => -10,
         'settings' => [
-          // 'format' => '[term:parents:join: » ] » [term:description]',
           'link' => FALSE,
           'clear' => TRUE,
         ]
@@ -251,7 +250,7 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
     $school_id = $this->get('school')->target_id ?? 'X';
     $year = $this->get('year')->value ?? 'X';
 
-    return "s{$school_id}.c{$category_id}.y{$year}";
+    return "ai:c{$category_id}.s{$school_id}.y{$year}";
   }
 
   /**
