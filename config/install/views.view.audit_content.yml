@@ -6,7 +6,7 @@ dependencies:
     - user
     - views_bulk_operations
 id: audit_content
-label: 'Audit items'
+label: 'Audit items content'
 module: views
 description: 'Content view of audit items to override the basic one provided by the module.'
 tag: ''
