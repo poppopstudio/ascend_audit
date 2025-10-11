@@ -22,7 +22,7 @@ visibility:
   request_path:
     id: request_path
     negate: false
-    pages: "/audit/*\r\n/ap/*"
+    pages: "/audit/*\r\n/ap/*\r\n/user/*/audit\r\n/user/*/ap"
   user_role:
     id: user_role
     negate: false
