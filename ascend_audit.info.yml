@@ -64,6 +64,7 @@ config_devel:
   - user.role.auditor
   - views.view.audit_by_category
   - views.view.audit_focus_areas
+  - views.view.audit_my_content
   - views.view.audit_historic
   - views.view.audit_content
   - views.view.audit_standards
