@@ -125,3 +125,4 @@ content:
     third_party_settings: {  }
 hidden:
   changed: true
+  path: true
