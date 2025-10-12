@@ -53,6 +53,7 @@ config_devel:
   - field.storage.config_pages.ascend_focus_parent
   - field.storage.profile.ascend_p_school
   - field.storage.taxonomy_term.ascend_standards
+  - pathauto.pattern.audit
   - profile.type.auditor
   - system.action.user_add_role_action.audit_manager
   - system.action.user_add_role_action.auditor

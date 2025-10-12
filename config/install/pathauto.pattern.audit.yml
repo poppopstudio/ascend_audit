@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - ascend_audit
+id: audit
+label: 'Audit item'
+type: audit
+pattern: 'audit/[audit:category:target_id]/[audit:school:target_id]/[audit:year:value]'
+selection_criteria: {  }
+selection_logic: and
+weight: 0
+relationships: {  }
