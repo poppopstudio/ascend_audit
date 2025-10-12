@@ -68,7 +68,7 @@ content:
       formatter_type: cshs_flexible_hierarchy
       formatter_settings:
         cshs_flexible_hierarchy:
-          format: '[term:parent:name] » <strong>[term:description]</strong>'
+          format: '[term:parent:name] » <span>[term:description]</span>'
           clear: '1'
           linked: 0
           reverse: 0
