@@ -12,13 +12,12 @@ class AuditViewsData extends EntityViewsData {
    * {@inheritdoc}
    */
   public function getViewsData() {
-    // https://www.drupal8.ovh/en/tutoriels/245/custom-views-data-handler-for-a-custom-entity-on-drupal-8
     $data = parent::getViewsData();
 
     // Fetch a computed value for the title/label/whatever.
     $data['audit']['computed_label'] = [
       'title' => $this->t('Audit Label'),
-      'help' => $this->t('The computed label (ai:sX.cX.yX)'),
+      'help' => $this->t('The computed label (ai:cX.sX.yX)'),
       'field' => [
         'id' => 'audit_computed_label',
       ],
