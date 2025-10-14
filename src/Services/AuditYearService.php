@@ -2,10 +2,25 @@
 
 namespace Drupal\ascend_audit\Services;
 
+use DateTime;
+use DateTimeInterface;
+use Drupal\Component\Datetime\TimeInterface;
+
 /**
  * Gets the current academic year.
  */
 class AuditYearService {
+
+  /**
+   * Creates a AscendCurrentYear instance.
+   *
+   * @param \Drupal\Component\Datetime\TimeInterface $time
+   *   The time service.
+   */
+  public function __construct(
+    protected TimeInterface $time,
+  ) {
+  }
 
   /**
    * Get working academic year in YY format.
@@ -46,4 +61,35 @@ class AuditYearService {
     // Format as YYYY/YY.
     return $start_year . '/' . sprintf('%02d', $end_year % 100);
   }
+
+  /**
+   * Gets the end date of the current year.
+   *
+   * @return \DateTimeInterface
+   */
+  public function getWorkingYearEndDate(): DateTimeInterface {
+    $yy = $this->getWorkingYear();
+    $start_year = 2000 + (int) $yy;
+
+    return new DateTime($start_year . '/08/31');
+  }
+
+  /**
+   * Gets a cache expiry for the current year.
+   *
+   * This should be used as the cache expiry time for anything which depends on
+   * the current for its output.
+   *
+   * @return integer
+   *   The number of seconds between the request time and the end of the
+   *   current year.
+   */
+  public function getWorkingYearCacheExpiry(): int {
+    $working_year_end_date = $this->getWorkingYearEndDate();
+    $working_year_end_timestamp = $working_year_end_date->getTimestamp();
+    $current_timestamp = $this->time->getRequestTime();
+
+    return ($working_year_end_timestamp - $current_timestamp);
+  }
+
 }
