@@ -76,10 +76,6 @@ class AuditorWorkingInfoBlock extends BlockBase implements ContainerFactoryPlugi
       '#theme' => 'auditor_working_info',
       '#school' => $school,
       '#year' => $year,
-      '#cache' => [
-        'contexts' => ['user'],
-        'tags' => ['user:' . $this->currentUser->id()],
-      ],
     ];
   }
 
@@ -87,13 +83,27 @@ class AuditorWorkingInfoBlock extends BlockBase implements ContainerFactoryPlugi
    * {@inheritdoc}
    */
   public function getCacheContexts() {
-    return ['user']; // does this invalidate on profile save as well?
+    return [
+      'ascend_active_school',
+      'ascend_current_year',
+    ];
   }
 
   /**
    * {@inheritdoc}
    */
   public function getCacheTags() {
-    return ['user:' . $this->currentUser->id()]; // see above.
+    // Use the school's cache tags, as we need to invalidate this block if the
+    // school changes its name for instance.
+    $school = $this->auditSchoolService->getWorkingSchoolEntity();
+    return $school->getCacheTags();
   }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheMaxAge() {
+    return $this->auditYearService->getWorkingYearCacheExpiry();
+  }
+
 }
