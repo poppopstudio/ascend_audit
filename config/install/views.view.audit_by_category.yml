@@ -558,6 +558,7 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
+        - ascend_current_year
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
@@ -878,6 +879,7 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
+        - ascend_current_year
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
@@ -1253,6 +1255,7 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
+        - ascend_current_year
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
