@@ -558,6 +558,7 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
+        - ascend_active_school
         - ascend_current_year
         - 'languages:language_content'
         - 'languages:language_interface'
@@ -879,6 +880,7 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
+        - ascend_active_school
         - ascend_current_year
         - 'languages:language_content'
         - 'languages:language_interface'
@@ -1255,6 +1257,7 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
+        - ascend_active_school
         - ascend_current_year
         - 'languages:language_content'
         - 'languages:language_interface'
