@@ -69,10 +69,19 @@ class AuditYearService {
    * @return \DateTimeInterface
    */
   public function getWorkingYearEndDate(): DateTimeInterface {
-    $yy = $this->getWorkingYear();
-    $start_year = 2000 + (int) $yy;
+    $current_date = new \DateTime('@' . $this->time->getRequestTime());
 
-    return new DateTime($start_year . '/08/31');
+    $current_month = (int) $current_date->format('n');
+    $current_year = (int) $current_date->format('Y');
+
+    if ($current_month < 9) {
+      // January-August, we're still in the previous school year.
+      return new DateTime($current_year . '/08/31');
+    }
+    else {
+      // September-December, end of the school year is next calendar year.
+      return new DateTime(($current_year + 1) . '/08/31');
+    }
   }
 
   /**
