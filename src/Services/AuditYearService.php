@@ -2,10 +2,17 @@
 
 namespace Drupal\ascend_audit\Services;
 
+/**
+ * Gets the current academic year.
+ */
 class AuditYearService {
 
   /**
    * Get working academic year in YY format.
+   *
+   * @return int
+   *   The 2-digit year of the start calendar year of the current academic year.
+   *   For example, if the academic year is 2025-26, this returns 25.
    */
   public function getWorkingYear() {
     $current_date = new \DateTime();
