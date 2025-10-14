@@ -12,8 +12,11 @@ class AuditSchoolService {
 
   /**
    * Get working school in entity ID format.
+   *
+   * @return int
+   *   The entity ID of the current user's working school.
    */
-  public function getWorkingSchool() {
+  public function getWorkingSchool(): int {
     $current_user = \Drupal::currentUser();
     $current_user_roles = array_values($current_user->getRoles(TRUE));
 
