@@ -14,7 +14,7 @@ class AuditYearService {
    *   The 2-digit year of the start calendar year of the current academic year.
    *   For example, if the academic year is 2025-26, this returns 25.
    */
-  public function getWorkingYear() {
+  public function getWorkingYear(): int {
     $current_date = new \DateTime();
     $current_year = (int) $current_date->format('y'); // Already YY format
     $current_month = (int) $current_date->format('n'); // 1-12
@@ -34,7 +34,7 @@ class AuditYearService {
   /**
    * Get a properly formatted YYYY/YY text version of the data.
    */
-  public function getFormattedWorkingYear() {
+  public function getFormattedWorkingYear(): string {
     $yy = $this->getWorkingYear(); // Gets YY format (e.g., "24")
 
     // Convert YY back to full year for the start year.
