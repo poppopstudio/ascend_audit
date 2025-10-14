@@ -2,6 +2,8 @@
 
 namespace Drupal\ascend_audit\Services;
 
+use Drupal\ascend_school\Entity\SchoolInterface;
+
 class AuditSchoolService {
 
   /**
@@ -9,6 +11,25 @@ class AuditSchoolService {
    * that is not misleading but doesn't cause views to collapse.
    */
   const DUMMYSCHOOLID = 0;
+
+  /**
+   * Gets the current user's working school, if there is one.
+   *
+   * @return \Drupal\ascend_school\Entity\SchoolInterface|null
+   *   The working school, or NULL if none is set.
+   */
+  public function getWorkingSchoolEntity(): ?SchoolInterface {
+    $school_id = $this->getWorkingSchool();
+
+    if ($school_id) {
+      return \Drupal::entityTypeManager()
+        ->getStorage('school')
+        ->load($school_id);
+    }
+    else {
+      return NULL;
+    }
+  }
 
   /**
    * Get working school in entity ID format.
