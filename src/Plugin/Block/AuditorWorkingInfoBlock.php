@@ -69,13 +69,11 @@ class AuditorWorkingInfoBlock extends BlockBase implements ContainerFactoryPlugi
    * {@inheritdoc}
    */
   public function build() {
-    $username = $this->currentUser->getDisplayName();
     $school = $this->auditSchoolService->getWorkingSchoolName();
     $year = $this->auditYearService->getFormattedWorkingYear();
 
     return [
       '#theme' => 'auditor_working_info',
-      '#name' => $username,
       '#school' => $school,
       '#year' => $year,
       '#cache' => [

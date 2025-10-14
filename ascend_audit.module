@@ -87,7 +87,6 @@ function ascend_audit_theme($existing, $type, $theme, $path) {
     // This is for the auditor working info block.
     'auditor_working_info' => [
       'variables' => [
-        'name' => NULL,
         'school' => NULL,
         'year' => NULL,
       ],
