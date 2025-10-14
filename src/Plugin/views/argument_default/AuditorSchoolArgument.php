@@ -4,6 +4,7 @@ namespace Drupal\ascend_audit\Plugin\views\argument_default;
 
 use Drupal\ascend_audit\Services\AuditSchoolService;
 use Drupal\Core\Cache\Cache;
+use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\views\Attribute\ViewsArgumentDefault;
 use Drupal\views\Plugin\views\argument_default\ArgumentDefaultPluginBase;
@@ -17,7 +18,7 @@ use Drupal\views\Plugin\views\argument_default\ArgumentDefaultPluginBase;
   short_title: new TranslatableMarkup('Auditor School Argument'),
   no_ui: FALSE,
 )]
-class AuditorSchoolArgument extends ArgumentDefaultPluginBase {
+class AuditorSchoolArgument extends ArgumentDefaultPluginBase implements CacheableDependencyInterface {
 
   /**
    * {@inheritdoc}
@@ -38,8 +39,7 @@ class AuditorSchoolArgument extends ArgumentDefaultPluginBase {
    */
   public function getCacheContexts() {
     return [
-      'user',
-      // school too? and/or profile!
+      'ascend_active_school',
     ];
   }
 
