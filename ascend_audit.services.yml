@@ -8,3 +8,8 @@ services:
   Drupal\ascend_audit\Services\AuditSchoolService:
     class: Drupal\ascend_audit\Services\AuditSchoolService
     autowire: true
+  cache_context.ascend_current_year:
+    class: Drupal\ascend_audit\ContextProvider\AscendCurrentYearContext
+    arguments: ['@Drupal\ascend_audit\Services\AuditYearService']
+    tags:
+      - { name: cache.context }
