@@ -4,6 +4,7 @@ namespace Drupal\ascend_audit\Plugin\views\argument_default;
 
 use Drupal\ascend_audit\Services\AuditYearService;
 use Drupal\Core\Cache\Cache;
+use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\views\Attribute\ViewsArgumentDefault;
 use Drupal\views\Plugin\views\argument_default\ArgumentDefaultPluginBase;
@@ -17,7 +18,7 @@ use Drupal\views\Plugin\views\argument_default\ArgumentDefaultPluginBase;
   short_title: new TranslatableMarkup('Audit year argument'),
   no_ui: FALSE,
 )]
-class AuditYearArgument extends ArgumentDefaultPluginBase {
+class AuditYearArgument extends ArgumentDefaultPluginBase implements CacheableDependencyInterface {
 
   /**
    * {@inheritdoc}
@@ -38,7 +39,7 @@ class AuditYearArgument extends ArgumentDefaultPluginBase {
    */
   public function getCacheContexts() {
     return [
-      'user', // surely not, here. school? profile?
+      'ascend_current_year',
     ];
   }
 
