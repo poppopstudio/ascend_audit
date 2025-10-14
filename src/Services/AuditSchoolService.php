@@ -56,7 +56,9 @@ class AuditSchoolService {
       return self::DUMMYSCHOOLID;
     }
 
-    // Process matching roles (maintains priority order from $profile_roles).
+    // Return the school ID from the first found profile (a user can't have both
+    // of these profiles: see
+    // Drupal\ascend_audit\Plugin\Validation\Constraint\AuditRoleConflict).
     foreach ($matching_roles as $role) {
 
       /** @var \Drupal\profile\entity\Profile */
