@@ -37,7 +37,8 @@ class AuditYearService {
     // January-August, we're still in the previous school year.
     if ($current_month < 9) {
       $school_year = $current_year - 1;
-    } else {
+    }
+    else {
       // September-December, school year is the current year.
       $school_year = $current_year;
     }
