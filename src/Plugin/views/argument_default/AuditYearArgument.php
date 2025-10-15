@@ -10,7 +10,7 @@ use Drupal\views\Attribute\ViewsArgumentDefault;
 use Drupal\views\Plugin\views\argument_default\ArgumentDefaultPluginBase;
 
 /**
- * Service class for ascend_audit.
+ * Default argument provider for the current academic year.
  */
 #[ViewsArgumentDefault(
   id: 'ascend_audit_audit_year_argument',
