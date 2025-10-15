@@ -29,11 +29,16 @@ class AuditAccess extends EntityAccessControlHandler {
         $auditor_linked = $this->checkAuditorSchoolLink($entity, $account);
 
         if (!$auditor_linked) {
+          // If the auditor is linked, we know the school exists.
+          $audit_school = $entity->get('school')->entity;
+
           return AccessResult::forbidden()
             ->cachePerPermissions()
             ->cachePerUser()
-            ->addCacheableDependency($entity);
-            // may need to change if a school is saved?
+            ->addCacheableDependency($entity)
+            // Add a dependency on the school, as if that is edited the auditor
+            // could have changed.
+            ->addCacheableDependency($audit_school);
         }
 
         // For view operation, check "view own" permission.
