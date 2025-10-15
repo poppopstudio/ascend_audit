@@ -73,9 +73,7 @@ class AuditAccess extends EntityAccessControlHandler {
     }
 
     // Load the audit's school.
-    $audit_school = \Drupal::entityTypeManager()
-      ->getStorage('school')
-      ->load($audit_school_id);
+    $audit_school = $entity->get('school')->entity;
 
     if (empty($audit_school)) {
       return FALSE; // No school set, deny access.
