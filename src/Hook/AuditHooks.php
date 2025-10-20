@@ -54,7 +54,7 @@ class AuditHooks {
 
   // Update ap/audit forms' category field settings to correct term id.
   protected function setFocusAreas(EntityInterface $entity) {
-    
+
     // Get the ID of the term as set in the config_pages.
     $term_id = (int) $entity->ascend_focus_parent->first()->getValue()['target_id'];
 
@@ -97,6 +97,14 @@ class AuditHooks {
   #[Hook('user_update')]
   public function userUpdate(UserInterface $account) {
 
+    /* temporary fix! */
+    static $processing = FALSE;
+
+    // Prevent infinite recursion
+    if ($processing) {
+      return;
+    }
+
     $original = $account->original ?? NULL;
 
     if (!$original) {
@@ -113,8 +121,10 @@ class AuditHooks {
     if (empty($new_roles)) {
       return;
     }
-
+    
+    $processing = TRUE;
     $this->assignRoles($account, $new_roles, FALSE);
+    $processing = FALSE;
   }
 
   /**
