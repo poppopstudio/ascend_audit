@@ -53,7 +53,7 @@ class AuditForm extends ContentEntityForm {
     $form['meta']['author'] = [
       '#type' => 'item',
       '#title' => $this->t('Author'),
-      '#markup' => $audit->getOwner()->getAccountName(),
+      '#markup' => $audit->getOwner()?->getAccountName() ?? 'n/a!',
       '#wrapper_attributes' => ['class' => ['entity-meta__author']],
     ];
 
