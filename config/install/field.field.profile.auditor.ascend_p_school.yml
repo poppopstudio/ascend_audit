@@ -1,15 +1,18 @@
+uuid: bf2f6765-44f2-49b6-99b6-1bcaa477af70
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.profile.ascend_p_school
     - profile.type.auditor
+_core:
+  default_config_hash: 07AbZ5C4jhVoLXznVyi-NyUjASfuXbtHLXrh1ZTB5Bc
 id: profile.auditor.ascend_p_school
 field_name: ascend_p_school
 entity_type: profile
 bundle: auditor
 label: 'Working school'
-description: 'If you are SENCO at multiple settings (schools), here you can select the setting that you are working with currently. This will be used by default in all audit items and action plans you create.'
+description: "If you are SENCO at multiple settings (schools), here you can select the setting that you are working with currently. This will be used by default in all audit items and action plans you create.\r\n\r\nIf no option is available to select from the list, you are not currently assigned to any setting - please refer to your administrative contact."
 required: true
 translatable: false
 default_value: {  }
