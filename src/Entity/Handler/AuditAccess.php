@@ -68,7 +68,7 @@ class AuditAccess extends EntityAccessControlHandler {
   /**
    * Check if auditor is linked to the school on the audit entity.
    */
-  protected function checkAuditorSchoolLink(EntityInterface $entity, AccountInterface $account): bool {
+  public function checkAuditorSchoolLink(EntityInterface $entity, AccountInterface $account): bool {
 
     // Get the school ID from the audit entity.
     $audit_school_id = $entity->get('school')->target_id;
