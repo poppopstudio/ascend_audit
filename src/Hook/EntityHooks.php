@@ -74,14 +74,14 @@ class EntityHooks {
         '@additional' => implode(', ', $roles_to_add),
       ];
 
-      if (!$original) {
-        \Drupal::logger('ascend_audit')->info('Additional role(s) assigned to new user @user: @additional', $message_vars);
-        \Drupal::messenger()->addMessage(t('Additional role(s) assigned to @user: @additional', $message_vars));
-      }
-      else {
+      if ($original) {
         $message_vars['@primary'] = implode(', ', $new_roles);
         \Drupal::logger('ascend_audit')->info('Additional role(s) assigned to @user after @primary assignment: @additional', $message_vars);
         \Drupal::messenger()->addMessage(t('Additional role(s) assigned to @user after @primary assignment: <strong>@additional</strong>', $message_vars));
+      }
+      else {
+        \Drupal::logger('ascend_audit')->info('Additional role(s) assigned to new user @user: @additional', $message_vars);
+        \Drupal::messenger()->addMessage(t('Additional role(s) assigned to @user: @additional', $message_vars));
       }
     }
   }
