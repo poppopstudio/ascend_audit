@@ -29,18 +29,8 @@ function ascend_audit_form_alter(&$form, FormStateInterface $form_state, $form_i
  * @todo Remove this method when support for Drupal core < 11.1 is dropped.
  */
 #[LegacyHook]
-function ascend_audit_user_update(UserInterface $account) {
-  \Drupal::service(AuditHooks::class)->userUpdate($account);
-}
-
-/**
- * Legacy hook implementation.
- *
- * @todo Remove this method when support for Drupal core < 11.1 is dropped.
- */
-#[LegacyHook]
-function ascend_audit_user_insert(UserInterface $account) {
-  \Drupal::service(AuditHooks::class)->userInsert($account);
+function ascend_audit_user_presave(EntityInterface $entity) {
+  \Drupal::service(EntityHooks::class)->userPresave($entity);
 }
 
 /**
