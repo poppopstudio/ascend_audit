@@ -87,6 +87,7 @@ class EntityHooks {
     }
   }
 
+
   /**
    * Implements hook_ENTITY_TYPE_update().
    */
@@ -181,6 +182,40 @@ class EntityHooks {
       ->execute();
 
     return $ap_count > 0;
+  }
+
+
+  /**
+   * Implements hook_preprocess_page_title().
+   */
+  #[Hook('preprocess_page_title')]
+  public function preprocessPageTitle(&$variables) {
+    $route_match = \Drupal::routeMatch();
+
+    // Rewrite the ugly out of the AP title (swap ref for category)
+    if ($route_match->getRouteName() == 'entity.ap.canonical') {
+      $ap = $route_match->getParameter('ap');
+
+      if ($ap && $ap->hasField('category') && !$ap->get('category')->isEmpty()) {
+        $category = $ap->get('category')->entity;
+        if ($category) {
+          $variables['ref'] = $variables['title'];
+          $variables['title'] = $category->label();
+        }
+      }
+    }
+
+    // Same for audit.
+    if ($route_match->getRouteName() == 'entity.audit.canonical') {
+      $audit = $route_match->getParameter('audit');
+
+      if ($audit && $audit->hasField('category') && !$audit->get('category')->isEmpty()) {
+        $category = $audit->get('category')->entity;
+        if ($category) {
+          $variables['title'] = $category->label();
+        }
+      }
+    }
   }
 
 }
