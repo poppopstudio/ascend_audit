@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Drupal\ascend_audit\Hook;
 
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Hook\Attribute\Hook;
 
 /**
@@ -131,6 +132,55 @@ class EntityHooks {
       $profile->get('ascend_p_school')->set(0, NULL);
       $profile->save();
     }
+  }
+
+
+  /**
+   * Implements hook_form_FORM_ID_alter().
+   */
+  #[Hook('form_user_cancel_form_alter')]
+  public function formUserCancelAlter(&$form, FormStateInterface $form_state, $form_id) {
+    // Get the user being cancelled.
+    $user = $form_state->getFormObject()->getEntity();
+
+    // Check if user has any audit or ap content
+    $has_content = $this->userHasContent($user->id());
+
+    if ($has_content) {
+      // Remove the destructive options.
+      unset($form['user_cancel_method']['#options']['user_cancel_block_unpublish']);
+      unset($form['user_cancel_method']['#options']['user_cancel_reassign']);
+      unset($form['user_cancel_method']['#options']['user_cancel_delete']);
+
+      \Drupal::messenger()->addWarning(t('Audit or action plan content exists which would be orphaned if the user were removed/blocked in a destructive fashion. Consequently, the set of available actions has been limited to maintain data integrity.'));
+    }
+  }
+
+  /**
+   * Check if a user has any audit or ap content.
+   */
+  protected function userHasContent($uid): bool {
+    $entity_type_manager = \Drupal::entityTypeManager();
+
+    // Check audit entities - more likely to hit, so put first.
+    $audit_count = $entity_type_manager->getStorage('audit')->getQuery()
+      ->accessCheck(FALSE)
+      ->condition('uid', $uid)
+      ->count()
+      ->execute();
+
+    if ($audit_count > 0) {
+      return TRUE;
+    }
+
+    // Check ap entities.
+    $ap_count = $entity_type_manager->getStorage('ap')->getQuery()
+      ->accessCheck(FALSE)
+      ->condition('uid', $uid)
+      ->count()
+      ->execute();
+
+    return $ap_count > 0;
   }
 
 }

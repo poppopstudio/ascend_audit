@@ -11,17 +11,6 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Hook\LegacyHook;
 use Drupal\Core\Render\Element;
-use Drupal\user\UserInterface;
-
-/**
- * Legacy hook implementation.
- *
- * @todo Remove this method when support for Drupal core < 11.1 is dropped.
- */
-#[LegacyHook]
-function ascend_audit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  \Drupal::service(AuditHooks::class)->formAlter($form, $form_state, $form_id);
-}
 
 /**
  * Legacy hook implementation.
@@ -72,6 +61,17 @@ function ascend_audit_config_pages_update(EntityInterface $entity) {
 function ascend_audit_entity_type_alter(array &$entity_types) {
   \Drupal::service(AuditHooks::class)->entityTypeAlter($entity_types);
 }
+
+/**
+ * Legacy hook implementation.
+ *
+ * @todo Remove this method when support for Drupal core < 11.1 is dropped.
+ */
+#[LegacyHook]
+function ascend_audit_form_user_cancel_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  \Drupal::service(EntityHooks::class)->formUserCancelAlter($form, $form_state, $form_id);
+}
+
 
 /**
  * These two functions were required in order to add compatibility with
