@@ -2,12 +2,14 @@
 
 namespace Drupal\ascend_audit\Entity\Handler;
 
+use Drupal\ascend_audit\Entity\Handler\AuditorSchoolLinkTrait;
 use Drupal\entity\EntityAccessControlHandler;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Access\AccessResult;
-
 class AuditAccess extends EntityAccessControlHandler {
+
+  use AuditorSchoolLinkTrait;
 
   /**
    * {@inheritdoc}
@@ -26,7 +28,7 @@ class AuditAccess extends EntityAccessControlHandler {
       if (in_array('auditor', $account->getRoles())) {
 
         // Check (below) if user has working access to the school.
-        $auditor_linked = $this->checkAuditorSchoolLink($entity, $account);
+        $auditor_linked = $this->isAuditorSchoolLink($entity, $account);
 
         if (!$auditor_linked) {
           // If the auditor is linked, we know the school exists.
@@ -65,26 +67,4 @@ class AuditAccess extends EntityAccessControlHandler {
     return parent::checkAccess($entity, $operation, $account);
   }
 
-  /**
-   * Check if auditor is linked to the school on the audit entity.
-   */
-  public function checkAuditorSchoolLink(EntityInterface $entity, AccountInterface $account): bool {
-
-    // Get the school ID from the audit entity.
-    $audit_school_id = $entity->get('school')->target_id;
-
-    if (!$audit_school_id) {
-      return FALSE; // No school set on audit, deny access.
-    }
-
-    // Load the audit's school.
-    $audit_school = $entity->get('school')->entity;
-
-    if (empty($audit_school)) {
-      return FALSE; // No school set, deny access.
-    }
-
-    $school_auditor = $audit_school->get('ascend_sch_auditor')->target_id;
-    return ($school_auditor == $account->id());
-  }
 }
