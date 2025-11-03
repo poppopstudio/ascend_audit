@@ -46,7 +46,6 @@ class AuditForm extends ContentEntityForm {
     $form['meta']['changed'] = [
       '#type' => 'item',
       '#title' => $this->t('Last saved'),
-      // '#markup' => !$audit->isNew() ? $this->dateFormatter->format($audit->getChangedTime(), 'short') : $this->t('Not saved yet'),
       '#markup' => !$audit->isNew() ? \Drupal::service('date.formatter')->format($audit->getChangedTime(), 'short') : $this->t('Not saved yet'),
       '#wrapper_attributes' => ['class' => ['entity-meta__last-saved']],
     ];

@@ -24,7 +24,6 @@ class AuditViewsData extends EntityViewsData {
     ];
 
     // Add the filter for "Audit has category".
-    // $data[BASE TABLE of field][TERM FIELD column id]
     $data['audit']['category']['filter'] = [
       'title' => $this->t('Audit item has category'),
       'id' => 'taxonomy_index_tid',

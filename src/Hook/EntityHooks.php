@@ -192,7 +192,7 @@ class EntityHooks {
   public function preprocessPageTitle(&$variables) {
     $route_match = \Drupal::routeMatch();
 
-    // Rewrite the ugly out of the AP title (swap ref for category)
+    // Rewrite the ugly out of the AP title (swap ref for category).
     if ($route_match->getRouteName() == 'entity.ap.canonical') {
       $ap = $route_match->getParameter('ap');
 
