@@ -93,8 +93,10 @@ class AuditorWorkingInfoBlock extends BlockBase implements ContainerFactoryPlugi
    * {@inheritdoc}
    */
   public function getCacheTags() {
-    // Use the school's cache tags, as we need to invalidate this block if the
-    // school changes its name for instance.
+    /**
+     * Use the school's cache tags, as we need to invalidate this block if the
+     * school changes its name for instance.
+     */
     $school = $this->auditSchoolService->getWorkingSchoolEntity();
     return $school ? $school->getCacheTags() : [];
   }

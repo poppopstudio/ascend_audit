@@ -5,7 +5,6 @@ namespace Drupal\ascend_audit\Hook;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Hook\Attribute\Hook;
-use Drupal\user\UserInterface;
 
 /**
  * Contains hook implementations for the Ascend audit module.
