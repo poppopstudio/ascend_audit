@@ -14,6 +14,20 @@ use Drupal\Core\Hook\Attribute\Hook;
 class EntityHooks {
 
   /**
+   * Implements hook_module_implements_alter().
+   * NB This hook is required to support the presave hook below!
+   */
+  #[Hook('module_implements_alter')]
+  public function moduleImplementsAlter(&$implementations, $hook) {
+    if ($hook === 'user_presave') {
+      // Move our implementation to the end.
+      $group = $implementations['ascend_audit'];
+      unset($implementations['ascend_audit']);
+      $implementations['ascend_audit'] = $group;
+    }
+  }
+
+  /**
    * Implements hook_ENTITY_TYPE_presave().
    */
   #[Hook('user_presave')]

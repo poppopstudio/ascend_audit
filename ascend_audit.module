@@ -18,6 +18,17 @@ use Drupal\Core\Render\Element;
  * @todo Remove this method when support for Drupal core < 11.1 is dropped.
  */
 #[LegacyHook]
+function ascend_audit_module_implements_alter(&$implementations, $hook) {
+  // This hook is required for the presave hook below to work!
+  \Drupal::service(EntityHooks::class)->moduleImplementsAlter($implementations, $hook);
+}
+
+/**
+ * Legacy hook implementation.
+ *
+ * @todo Remove this method when support for Drupal core < 11.1 is dropped.
+ */
+#[LegacyHook]
 function ascend_audit_user_presave(EntityInterface $entity) {
   \Drupal::service(EntityHooks::class)->userPresave($entity);
 }
