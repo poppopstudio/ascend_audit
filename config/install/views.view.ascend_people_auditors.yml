@@ -1,3 +1,4 @@
+uuid: 9d8f14d5-00e0-4008-803c-72b72fdaf0df
 langcode: en
 status: true
 dependencies:
@@ -6,10 +7,12 @@ dependencies:
   module:
     - ascend_school
     - user
+_core:
+  default_config_hash: FFLg74mnzRE10lgg5fspPCZWLnIEcvCnJMlNzj8OEtw
 id: ascend_people_auditors
 label: Auditors
 module: user
-description: 'Manage auditor assignment.'
+description: 'Find and manage people interacting with your site.'
 tag: default
 base_table: users_field_data
 base_field: uid
@@ -521,21 +524,12 @@ display:
           row_class: ''
           default_row_class: true
           columns:
-            user_bulk_form: user_bulk_form
             name: name
-            status: status
-            rid: rid
-            created: created
+            title: title
             access: access
-            edit_node: edit_node
-            dropbutton: dropbutton
-          default: created
+            operations: operations
+          default: '-1'
           info:
-            user_bulk_form:
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
             name:
               sortable: true
               default_sort_order: asc
@@ -543,27 +537,13 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            status:
+            title:
               sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
-              responsive: priority-low
-            rid:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: priority-low
-            created:
-              sortable: true
-              default_sort_order: desc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: priority-low
+              responsive: ''
             access:
               sortable: true
               default_sort_order: desc
@@ -571,14 +551,7 @@ display:
               separator: ''
               empty_column: false
               responsive: priority-low
-            edit_node:
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: priority-low
-            dropbutton:
-              sortable: false
-              default_sort_order: asc
+            operations:
               align: ''
               separator: ''
               empty_column: false
@@ -587,6 +560,8 @@ display:
           sticky: false
           summary: ''
           empty_table: true
+          caption: ''
+          description: ''
       row:
         type: fields
       query:
