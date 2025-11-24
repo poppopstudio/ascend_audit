@@ -639,7 +639,7 @@ display:
         show_admin_links: false
       show_admin_links: false
       display_extenders: {  }
-      path: admin/people/assignment
+      path: admin/people/auditors
       menu:
         type: tab
         title: Auditors
