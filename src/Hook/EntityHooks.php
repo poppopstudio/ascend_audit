@@ -206,27 +206,23 @@ class EntityHooks {
   public function preprocessPageTitle(&$variables) {
     $route_match = \Drupal::routeMatch();
 
-    // Rewrite the ugly out of the AP title (swap ref for category).
-    if ($route_match->getRouteName() == 'entity.ap.canonical') {
-      $ap = $route_match->getParameter('ap');
+    $target_types = ['ap', 'audit'];
 
-      if ($ap && $ap->hasField('category') && !$ap->get('category')->isEmpty()) {
-        $category = $ap->get('category')->entity;
-        if ($category) {
-          $variables['ref'] = $variables['title'];
-          $variables['title'] = $category->label();
-        }
-      }
-    }
+    // Rewrite the ugly out of the AP/audit titles (swap ref for category).
+    foreach ($target_types as $type) {
+      if ($route_match->getRouteName() == "entity.$type.canonical") {
+        // Get the entity object.
+        $entity = $route_match->getParameter($type);
 
-    // Same for audit.
-    if ($route_match->getRouteName() == 'entity.audit.canonical') {
-      $audit = $route_match->getParameter('audit');
-
-      if ($audit && $audit->hasField('category') && !$audit->get('category')->isEmpty()) {
-        $category = $audit->get('category')->entity;
-        if ($category) {
-          $variables['title'] = $category->label();
+        // Entity has a non-empty category variable?
+        if ($entity && $entity->hasField('category') && !$entity->get('category')->isEmpty()) {
+          $category = $entity->get('category')->entity;
+          if ($category) {
+            // Set a sensible title instead of the garbage one.
+            $entity_label = \Drupal::entityTypeManager()->getDefinition($type)->getLabel();
+            $variables['ref'] = $variables['title'];
+            $variables['title'] = $entity_label . ": " . $category->label();
+          }
         }
       }
     }
