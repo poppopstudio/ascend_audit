@@ -107,45 +107,44 @@ class EntityHooks {
    */
   #[Hook('school_update')]
   public function schoolUpdate(EntityInterface $entity) {
-    // When the auditor for a school is changed, remove that school from the
-    // auditor's profile.
-    $new_auditor_id = $entity->ascend_sch_auditor->target_id;
-    $old_auditor_id = $entity->original->ascend_sch_auditor->target_id;
 
-    // Nothing to do if the school's auditor is unchanged.
-    if ($new_auditor_id == $old_auditor_id) {
+    // Remove school from auditor profiles when auditor removed from school.
+
+    $old_auditors = $entity->original->get('ascend_sch_auditor')->referencedEntities();
+
+    // Nothing to do if no auditors were originally set.
+    if (empty($old_auditors)) {
       return;
     }
 
-    // Nothing to do if the previous value was empty, as an auditor is not being
-    // removed from the school.
-    if (empty($old_auditor_id)) {
-      return;
-    }
+    $new_auditor_ids = array_column(
+      $entity->get('ascend_sch_auditor')->getValue(),
+      'target_id'
+    );
 
-    $old_auditor = $entity->original->ascend_sch_auditor->entity;
+    foreach ($old_auditors as $old_auditor) {
+      if (!in_array($old_auditor->id(), $new_auditor_ids)) {
 
-    // Load any profiles belonging to the old auditor.
-    $profile_types = ['auditor', 'adviser'];
-    foreach ($profile_types as $profile_type_id) {
-      /** @var \Drupal\profile\entity\Profile */
-      $profile = \Drupal::entityTypeManager()
-        ->getStorage('profile')
-        ->loadByUser($old_auditor, $profile_type_id);
+        // Auditor removed, remove school from their 'auditor' profile & save.
+        /** @var \Drupal\profile\entity\Profile */
+        $profile = \Drupal::entityTypeManager()
+          ->getStorage('profile')
+          ->loadByUser($old_auditor, 'auditor');
 
-      // Skip if there is no profile.
-      if (empty($profile)) {
-        continue;
+        // Skip if there is no profile.
+        if (empty($profile)) {
+          continue;
+        }
+
+        // Skip if the profile doesn't point to the school being edited.
+        if ($profile->ascend_p_school->target_id != $entity->id()) {
+          continue;
+        }
+
+        // Empty the value in the profile and save it.
+        $profile->get('ascend_p_school')->set(0, NULL);
+        $profile->save();
       }
-
-      // Skip if the profile doesn't point to the school being edited.
-      if ($profile->ascend_p_school->target_id != $entity->id()) {
-        continue;
-      }
-
-      // Empty the value in the profile and save it.
-      $profile->get('ascend_p_school')->set(0, NULL);
-      $profile->save();
     }
   }
 
