@@ -23,7 +23,7 @@ trait AuditorSchoolLinkTrait {
    *   TRUE if the auditor is linked to the school, FALSE otherwise.
    */
   protected function isAuditorSchoolLink(ApInterface|AuditInterface $entity, AccountInterface $account): bool {
-    // Get the school ID from the entity.
+    // Get the school ID from the AP/audit entity.
     $school_id = $entity->get('school')->target_id;
 
     if (!$school_id) {
@@ -39,8 +39,11 @@ trait AuditorSchoolLinkTrait {
       return FALSE;
     }
 
-    // This needs to change in event we up the cardinality on the auditor field.
-    $school_auditor = $school->get('ascend_sch_auditor')->target_id;
-    return ($school_auditor == $account->id());
+    // Check if the account is one of the auditors (multi-value field)
+    $auditor_ids = array_column(
+      $school->get('ascend_sch_auditor')->getValue(),
+      'target_id'
+    );
+    return in_array($account->id(), $auditor_ids);
   }
 }
