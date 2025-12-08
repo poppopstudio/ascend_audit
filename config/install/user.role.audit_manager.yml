@@ -10,7 +10,6 @@ dependencies:
     - ascend_audit
     - ascend_school
     - comment
-    - comment_notify
     - contextual
     - entity_print_views
     - form_mode_manager
@@ -43,7 +42,6 @@ permissions:
   - 'masquerade as adviser'
   - 'masquerade as auditor'
   - 'masquerade as authenticated'
-  - 'subscribe to comments'
   - 'update any ap'
   - 'update any audit'
   - 'update any school'

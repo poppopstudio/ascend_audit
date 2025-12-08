@@ -10,7 +10,6 @@ install:
   # Comment/entity_print modules are installed here BUT config'd in audit_ap.
   # Means we can centralise our contrib modules in this ascend_audit repo.
   - comment
-  - comment_notify
   - config_pages
   - entity_print
   - entity_print_views

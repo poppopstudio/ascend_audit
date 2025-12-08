@@ -6,7 +6,6 @@ dependencies:
     - ascend_audit
     - ascend_school
     - comment
-    - comment_notify
     - form_mode_manager
     - profile
     - system
@@ -23,7 +22,6 @@ permissions:
   - 'edit own comments'
   - 'post comments'
   - 'skip comment approval'
-  - 'subscribe to comments'
   - 'update own ap'
   - 'update own audit'
   - 'update own auditor profile'

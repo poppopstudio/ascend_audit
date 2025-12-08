@@ -12,7 +12,6 @@
     ],
     "require": {
         "drupal/core": "^10.5",
-        "drupal/comment_notify": "^1.4",
         "drupal/config_pages": "^2.19",
         "drupal/entity_print": "^2.18",
         "drupal/profile": "^1.12",
