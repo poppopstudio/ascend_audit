@@ -67,6 +67,8 @@ class MyWorkingSchoolLink extends MenuLinkDefault {
     $uid = $this->currentUser->id();
     $roles = $this->currentUser->getRoles(TRUE);
 
+    // We asserted at user update that users cannot have both these roles.
+
     // Check for auditor role.
     if (in_array('auditor', $roles)) {
       return Url::fromUserInput('/user/' . $uid . '/auditor');
