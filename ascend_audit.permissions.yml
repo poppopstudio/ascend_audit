@@ -4,3 +4,10 @@ administer audit entities:
 
 view own audit:
   title: View own audit items
+
+view audit revisions:
+  title: 'View Audit item revisions'
+revert audit revisions:
+  title: 'Revert Audit item revisions'
+delete audit revisions:
+  title: 'Delete Audit item revisions'
