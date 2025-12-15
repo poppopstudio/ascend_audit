@@ -253,6 +253,13 @@ class Audit extends EditorialContentEntityBase implements AuditInterface {
   }
 
   /**
+   * {@inheritdoc}
+   */
+  protected function getNewRevisionDefault() {
+    return TRUE;
+  }
+
+  /**
    * Use a computed label instead of storing titles.
    */
   public function label() {
