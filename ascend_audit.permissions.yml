@@ -6,8 +6,8 @@ view own audit:
   title: View own audit items
 
 view audit revisions:
-  title: 'View Audit item revisions'
+  title: 'View audit revisions'
 revert audit revisions:
-  title: 'Revert Audit item revisions'
+  title: 'Revert audit revisions'
 delete audit revisions:
-  title: 'Delete Audit item revisions'
+  title: 'Delete audit revisions'
