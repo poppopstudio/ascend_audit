@@ -20,9 +20,6 @@ class AuditForm extends ContentEntityForm {
     $audit = $this->entity;
 
     if (isset($form['revision'])) {
-      // Revision toggle -> on by default (see also ::getNewRevisionDefault).
-      $form['revision']['#default_value'] = TRUE;
-
       // Hide the revision checkbox for restricted roles.
       $restricted_roles = ['auditor', 'adviser',];
 
@@ -152,6 +149,14 @@ class AuditForm extends ContentEntityForm {
     ];
 
     return $form;
+  }
+
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getNewRevisionDefault() {
+    return TRUE;
   }
 
   /**
