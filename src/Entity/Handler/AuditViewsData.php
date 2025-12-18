@@ -5,7 +5,7 @@ namespace Drupal\ascend_audit\Entity\Handler;
 use Drupal\views\EntityViewsData;
 
 /**
- * Provides the Views data handler for the Resource entity.
+ * Provides the Views data handler for the Audit entity.
  */
 class AuditViewsData extends EntityViewsData {
   /**
