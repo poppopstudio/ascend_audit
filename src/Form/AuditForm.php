@@ -93,7 +93,7 @@ class AuditForm extends ContentEntityForm {
         '#type' => 'details',
         '#group' => 'advanced',
         '#weight' => -15,
-        '#title' => $this->t('Category info'),
+        '#title' => $this->t('Best practice recommendations'),
         '#open' => TRUE,
       ];
       $form['audit_cat_info']['details'] = [
