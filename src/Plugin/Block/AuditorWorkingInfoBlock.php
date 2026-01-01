@@ -69,12 +69,17 @@ class AuditorWorkingInfoBlock extends BlockBase implements ContainerFactoryPlugi
    * {@inheritdoc}
    */
   public function build() {
-    $school = $this->auditSchoolService->getWorkingSchoolName();
+    $school_entity = $this->auditSchoolService->getWorkingSchoolEntity();
     $year = $this->auditYearService->getFormattedWorkingYear();
+
+    $school_link = NULL;
+    if ($school_entity) {
+      $school_link = $school_entity->toLink()->toRenderable();
+    }
 
     return [
       '#theme' => 'auditor_working_info',
-      '#school' => $school,
+      '#school' => $school_link,
       '#year' => $year,
     ];
   }
@@ -107,5 +112,4 @@ class AuditorWorkingInfoBlock extends BlockBase implements ContainerFactoryPlugi
   public function getCacheMaxAge() {
     return $this->auditYearService->getWorkingYearCacheExpiry();
   }
-
 }
