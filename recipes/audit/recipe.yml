@@ -7,12 +7,10 @@ install:
   - ascend_school
   - ascend_audit
   - ascend_ap
-  # Comment/entity_print modules are installed here BUT config'd in audit_ap.
+  # Comment modules are installed here BUT config'd in audit_ap.
   # Means we can centralise our contrib modules in this ascend_audit repo.
   - comment
   - config_pages
-  - entity_print
-  - entity_print_views
   - profile
   - views_argument_token
   - views_relationship_condition

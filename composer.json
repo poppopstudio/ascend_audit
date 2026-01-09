@@ -13,7 +13,6 @@
     "require": {
         "drupal/core": "^10.5",
         "drupal/config_pages": "^2.19",
-        "drupal/entity_print": "^2.18",
         "drupal/profile": "^1.12",
         "drupal/views_argument_token": "^2.0",
         "drupal/views_relationship_condition": "^1.0@alpha",
