@@ -10,7 +10,6 @@ dependencies:
   - cshs:cshs
   - diff:diff
   - entity:entity
-  - entity_print:entity_print
   - entity_admin_handlers:entity_admin_handlers
   - epp:epp
   - field_group:field_group
