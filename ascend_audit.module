@@ -137,19 +137,3 @@ function ascend_audit_gin_content_form_routes(): array {
     'entity.taxonomy_term.edit_form',
   ];
 }
-
-/**
- * Implements hook_preprocess_page().
- * Show route details for dev/debugging.
- */
-// function ascend_audit_preprocess_page(&$variables) {
-//   $route_name = \Drupal::routeMatch()->getRouteName();
-//   $route_parameters = \Drupal::routeMatch()->getRawParameters()->all();
-
-//   // Add to page variables for use in templates
-//   // $variables['current_route'] = $route_name;
-//   // $variables['route_parameters'] = $route_parameters;
-
-//   // Or show as messenger
-//   \Drupal::messenger()->addStatus('Route: ' . $route_name);
-// }

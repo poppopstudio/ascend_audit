@@ -11,7 +11,6 @@ dependencies:
     - ascend_school
     - comment
     - contextual
-    - entity_print_views
     - form_mode_manager
     - masquerade
     - node
@@ -38,7 +37,6 @@ permissions:
   - 'delete any audit'
   - 'delete own ap'
   - 'delete own audit'
-  - 'entity print views access'
   - 'masquerade as adviser'
   - 'masquerade as auditor'
   - 'masquerade as authenticated'
