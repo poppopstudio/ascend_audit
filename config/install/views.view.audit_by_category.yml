@@ -582,7 +582,7 @@ display:
           entity_type: taxonomy_term
           entity_field: name
           plugin_id: term_name
-          label: 'Short code'
+          label: 'Category'
           exclude: false
           alter:
             alter_text: false
@@ -970,7 +970,7 @@ display:
           entity_type: taxonomy_term
           entity_field: name
           plugin_id: term_name
-          label: 'Short code'
+          label: 'Category'
           exclude: false
           alter:
             alter_text: false
