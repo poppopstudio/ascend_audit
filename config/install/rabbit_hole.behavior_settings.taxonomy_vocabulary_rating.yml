@@ -1,0 +1,14 @@
+uuid: e245cb3a-6d25-4487-938e-1db1a150c9f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.rating
+id: taxonomy_vocabulary_rating
+entity_type_id: taxonomy_vocabulary
+entity_id: rating
+action: page_not_found
+allow_override: 0
+redirect: ''
+redirect_code: 301
+redirect_fallback_action: access_denied
